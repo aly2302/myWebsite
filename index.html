@@ -44,7 +44,7 @@
             background-color: var(--void);
             color: var(--text-main);
             font-family: var(--font-hud);
-            overflow-x: hidden; /* Critical for mobile to prevent side scroll */
+            overflow-x: hidden;
             font-size: 18px;
             line-height: 1.6;
             transition: filter 0.2s;
@@ -136,12 +136,12 @@
             justify-content: space-between;
             align-items: center;
             z-index: 100;
-            background: rgba(3, 3, 4, 0.85); /* Slightly darker for mobile readability */
+            background: rgba(3, 3, 4, 0.85);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             transform: translateY(0);
             transition: transform 0.4s var(--ease-physics);
-            flex-wrap: wrap; /* Allow wrapping on small screens */
+            flex-wrap: wrap;
             gap: 15px;
         }
 
@@ -208,9 +208,10 @@
         }
 
         /* * ============================================================
-         * 5. MATRIX VISUAL EFFECTS
+         * 5. MATRIX VISUAL EFFECTS (UPDATED: SMOOTH SIGNAL NOISE)
          * ============================================================
          */
+        
         body.matrix-mode #main-content {
             opacity: 0;
             pointer-events: none;
@@ -218,17 +219,50 @@
             transition: opacity 0.5s ease;
         }
 
+        /* REPLACED: Violent shaking with smooth signal interference */
         .glitch-layer {
-            animation: glitch-skew 1s infinite linear alternate-reverse;
+            animation: signal-noise 4s infinite linear;
+            will-change: filter, opacity;
         }
         
-        @keyframes glitch-skew {
-            0% { transform: skew(0deg); opacity: 1; }
-            10% { transform: skew(-1deg); opacity: 0.95; }
-            20% { transform: skew(1deg); opacity: 1; }
-            30% { transform: skew(0deg); opacity: 1; filter: hue-rotate(0deg); }
-            40% { transform: skew(0deg); opacity: 1; filter: hue-rotate(90deg); } 
-            100% { transform: skew(0deg); opacity: 1; }
+        @keyframes signal-noise {
+            0% { 
+                filter: blur(0px) brightness(1) hue-rotate(0deg); 
+                opacity: 1; 
+                transform: scale(1);
+            }
+            30% { 
+                filter: blur(0px) brightness(1) hue-rotate(0deg); 
+                opacity: 1; 
+            }
+            31% { 
+                /* Subtle flicker */
+                filter: blur(2px) brightness(1.2) hue-rotate(10deg); 
+                opacity: 0.95; 
+                transform: scale(1.002);
+            }
+            32% { 
+                filter: blur(0px) brightness(1) hue-rotate(0deg); 
+                opacity: 1; 
+                transform: scale(1);
+            }
+            70% { 
+                filter: blur(0px) brightness(1) hue-rotate(0deg); 
+                opacity: 1; 
+            }
+            71% { 
+                /* Deeper interference, no shake */
+                filter: blur(4px) brightness(0.8) hue-rotate(-10deg) contrast(1.2); 
+                opacity: 0.9; 
+            }
+            73% { 
+                filter: blur(0px) brightness(1) hue-rotate(0deg); 
+                opacity: 1; 
+            }
+            100% { 
+                filter: blur(0px) brightness(1) hue-rotate(0deg); 
+                opacity: 1; 
+            }
         }
 
         /* * ============================================================
@@ -309,7 +343,7 @@
             align-items: center;
             gap: 15px;
             font-weight: 700;
-            flex-wrap: wrap; /* Ensure HUD text wraps on very small screens */
+            flex-wrap: wrap;
         }
         .hud-text::before {
             content: ''; display: block; width: 40px; height: 1px; background: var(--gold);
@@ -338,7 +372,7 @@
             text-decoration: none;
             display: flex;
             align-items: center;
-            justify-content: center; /* Center content for mobile balance */
+            justify-content: center;
             gap: 15px;
             transition: 0.3s;
             font-family: var(--font-hud);
@@ -474,7 +508,7 @@
             display: inline-block;
             margin-right: 12px;
             transition: 0.3s;
-            flex-shrink: 0; /* Prevent squishing on mobile */
+            flex-shrink: 0;
         }
         
         a.publication-card {
@@ -829,19 +863,15 @@
          * ============================================================
          */
         
-        /* Tablet & Mobile Breakpoint (max-width: 1024px covering tablets) */
         @media (max-width: 1024px) {
             .container { padding: 0 25px; }
             h1.glitch { font-size: 5rem; }
             .tesseract-thread { display: none; }
         }
 
-        /* Mobile Breakpoint (Strict) */
         @media (max-width: 768px) {
-            
-            /* Header Adjustments */
             header { padding: 15px 20px; justify-content: space-between; }
-            .nav-links { display: none; } /* Kept hidden as in original */
+            .nav-links { display: none; }
             .brand { font-size: 1rem; }
             .breach-btn { 
                 min-width: auto; 
@@ -850,47 +880,37 @@
                 flex-grow: 0;
             }
 
-            /* Typography Scaling */
             h1.glitch { font-size: 3rem; }
             h2 { font-size: 2rem !important; }
             .hud-text { font-size: 0.8rem; }
             
-            /* Section Spacing */
-            section { padding: 60px 0; min-height: auto; } /* Prevent huge vertical gaps */
+            section { padding: 60px 0; min-height: auto; }
 
-            /* Identity Grid Stack */
             .identity-grid { grid-template-columns: 1fr; }
-
-            /* Skills Grid Stack */
             .skills-grid { grid-template-columns: 1fr; }
 
-            /* Projects / Data Module */
             .data-module { padding: 1.5rem; }
             .data-module h3 { font-size: 1.4rem !important; margin-bottom: 10px; }
             .module-content-hidden div { grid-template-columns: 1fr !important; }
             .data-module a.hover-target { display: block; margin: 20px 0 0 0 !important; }
 
-            /* Timeline Stacking */
             .timeline-split-container { 
                 grid-template-columns: 1fr; 
                 gap: 20px;
                 padding-top: 20px;
             }
-            .timeline-split-container::before { display: none; } /* Hide vertical line */
+            .timeline-split-container::before { display: none; }
             
             .holo-beam-inner { padding: 20px 15px; }
             .holo-card { padding: 20px; }
 
-            /* Footer */
             .footer-links { gap: 15px; flex-direction: column; }
             
-            /* Hazard/Blog Mobile */
             .hazard-container { padding: 3rem 1rem; }
             .warning-shield { font-size: 3.5rem; }
             .construction-title { font-size: 1.5rem; }
         }
 
-        /* Small Mobile Devices (e.g. older iPhones, SE) */
         @media (max-width: 400px) {
             header { padding: 10px 15px; }
             .breach-btn { font-size: 0.65rem; padding: 6px 10px; }
@@ -900,7 +920,6 @@
             .edu-institution-hero { font-size: 1.2rem; }
             .tech-tag { padding: 4px 8px; font-size: 0.7rem; }
             
-            /* Ensure words don't break layout */
             .construction-desc, p { font-size: 0.9rem; }
         }
 
@@ -1243,7 +1262,7 @@
             mouse.y = e.clientY;
         });
 
-        // ADDED FOR MOBILE: Touch events for particle interaction
+        // Touch events for particle interaction
         window.addEventListener('touchmove', e => {
             if(e.touches.length > 0) {
                 mouse.x = e.touches[0].clientX;
@@ -1265,7 +1284,6 @@
             }
 
             reset() {
-                // Random position across entire screen
                 this.x = Math.random() * width;
                 this.y = Math.random() * height;
                 this.size = Math.random() * 2 + 0.5;
@@ -1273,7 +1291,6 @@
                 this.originX = this.x;
                 this.originY = this.y;
                 
-                // Random subtle movement
                 this.vx = (Math.random() - 0.5) * 0.5;
                 this.vy = (Math.random() - 0.5) * 0.5;
                 
@@ -1281,17 +1298,14 @@
             }
 
             update() {
-                // Standard Drift
                 this.x += this.vx;
                 this.y += this.vy;
 
-                // Wrap around screen
                 if(this.x < 0) this.x = width;
                 if(this.x > width) this.x = 0;
                 if(this.y < 0) this.y = height;
                 if(this.y > height) this.y = 0;
 
-                // REPULSION PHYSICS
                 let dx = mouse.x - this.x;
                 let dy = mouse.y - this.y;
                 let distance = Math.sqrt(dx*dx + dy*dy);
@@ -1299,15 +1313,10 @@
 
                 if (distance < repulsionRadius) {
                     let force = (repulsionRadius - distance) / repulsionRadius;
-                    
-                    // Push away logic
                     this.x -= (dx / distance) * force * 5;
                     this.y -= (dy / distance) * force * 5;
-                    
-                    // Grow slightly when interacting
                     this.size = this.baseSize * 1.5;
                 } else {
-                    // Return to normal size
                     if(this.size > this.baseSize) this.size -= 0.1;
                 }
             }
@@ -1322,7 +1331,6 @@
 
         function initParticles() {
             particles = [];
-            // Reduce particle count on very small screens for performance
             const particleCount = width < 500 ? 200 : 400;
             for (let i = 0; i < particleCount; i++) particles.push(new Particle());
         }
@@ -1361,7 +1369,6 @@
         });
 
         function animateCursor() {
-            // Lerp for smoothing
             ringX += (cursorX - ringX) * 0.15;
             ringY += (cursorY - ringY) * 0.15;
             cursorRing.style.left = ringX + 'px';
@@ -1431,9 +1438,7 @@
             const email = "rodrigonovelo.pro@gmail.com";
             
             navigator.clipboard.writeText(email).then(() => {
-                // Visual feedback
                 alert("Email copied to clipboard: " + email);
-                // Also try to open mail client
                 window.location.href = "mailto:" + email;
             }).catch(err => {
                 console.error('Failed to copy: ', err);
@@ -1481,7 +1486,6 @@
         function toggleMatrixMode() {
             const btn = document.getElementById('matrix-toggle-btn');
             
-            // If already active, act as "Restore Reality"
             if (isMatrixActive) {
                 restoreReality();
                 return;
@@ -1491,21 +1495,17 @@
             isMatrixActive = true;
             document.body.classList.add('matrix-mode');
             
-            // Change Button to Restore
             btn.innerText = "RESTORE REALITY";
             
-            // Visual Updates
             matrixCanvas.style.opacity = '1';
             document.getElementById('singularity-canvas').style.opacity = '0.2';
             document.getElementById('main-content').classList.add('glitch-layer');
             
-            // Text Updates
             document.getElementById('sys-text').innerText = "SYSTEM OFFLINE // CRITICAL FAILURE";
             document.getElementById('sys-text').classList.add('offline');
             document.getElementById('sys-light').style.background = "#ff3333";
             document.getElementById('sys-light').style.boxShadow = "0 0 10px #ff3333";
             
-            // Start Loop
             matrixInterval = setInterval(drawMatrix, 30);
         }
 
@@ -1516,32 +1516,26 @@
             isMatrixActive = false;
             document.body.classList.remove('matrix-mode');
             
-            // Reset Button
             btn.innerText = "BREACH PROTOCOL";
             
-            // Visual Resets
             matrixCanvas.style.opacity = '0';
             document.getElementById('singularity-canvas').style.opacity = '1';
             document.getElementById('main-content').classList.remove('glitch-layer');
             
-            // Text Resets
             document.getElementById('sys-text').innerText = "SYSTEM ONLINE // PORTUGAL";
             document.getElementById('sys-text').classList.remove('offline');
             document.getElementById('sys-light').style.background = "var(--matrix)";
             document.getElementById('sys-light').style.boxShadow = "0 0 10px var(--matrix)";
             
-            // Reset Opacity (in case glitch stuck)
             document.getElementById('main-content').style.opacity = '1';
             document.getElementById('main-content').style.pointerEvents = 'auto';
             document.getElementById('main-content').style.filter = 'none';
 
-            // Stop Loop
             clearInterval(matrixInterval);
             mCtx.clearRect(0,0, matrixCanvas.width, matrixCanvas.height);
             animateSingularity();
         }
         
-        // Handle resize for Matrix as well
         window.addEventListener('resize', () => {
              matrixCanvas.width = window.innerWidth;
              matrixCanvas.height = window.innerHeight;
