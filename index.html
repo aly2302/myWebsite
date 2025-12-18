@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>RODRIGO NOVELO</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,16 +33,22 @@
             --cursor-size: 30px;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; /* Hide Default Cursor */ }
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
         
+        /* Restore cursor for touch devices automatically */
+        @media (pointer: coarse) {
+            * { cursor: auto !important; }
+        }
+
         body {
             background-color: var(--void);
             color: var(--text-main);
             font-family: var(--font-hud);
-            overflow-x: hidden;
+            overflow-x: hidden; /* Critical for mobile to prevent side scroll */
             font-size: 18px;
             line-height: 1.6;
             transition: filter 0.2s;
+            width: 100vw;
         }
 
         a, button, .data-module, video { cursor: none; }
@@ -82,6 +88,12 @@
         /* Matrix Mode Cursor */
         body.matrix-mode #cursor-dot { background: var(--matrix); }
         body.matrix-mode #cursor-ring { border-color: var(--matrix); }
+
+        /* Hide cursor elements on mobile/tablet */
+        @media (max-width: 991px) {
+            #cursor-dot, #cursor-ring { display: none !important; }
+            a, button, .data-module, video { cursor: pointer; }
+        }
 
         /* * ============================================================
          * 3. BACKGROUND ENGINES (Singularity & Matrix)
@@ -124,11 +136,13 @@
             justify-content: space-between;
             align-items: center;
             z-index: 100;
-            background: rgba(3, 3, 4, 0.7);
+            background: rgba(3, 3, 4, 0.85); /* Slightly darker for mobile readability */
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             transform: translateY(0);
             transition: transform 0.4s var(--ease-physics);
+            flex-wrap: wrap; /* Allow wrapping on small screens */
+            gap: 15px;
         }
 
         header.hidden { transform: translateY(-100%); }
@@ -139,6 +153,7 @@
             font-size: 1.2rem;
             letter-spacing: 2px;
             color: #fff;
+            white-space: nowrap;
         }
 
         .nav-links {
@@ -174,7 +189,7 @@
             transition: 0.3s;
             overflow: hidden;
             position: relative;
-            min-width: 180px; /* Ensure width doesn't jump too much on text change */
+            min-width: 180px;
             text-align: center;
         }
         
@@ -196,8 +211,6 @@
          * 5. MATRIX VISUAL EFFECTS
          * ============================================================
          */
-        
-        /* Hide main content when Matrix Mode is ON */
         body.matrix-mode #main-content {
             opacity: 0;
             pointer-events: none;
@@ -205,7 +218,6 @@
             transition: opacity 0.5s ease;
         }
 
-        /* Screen Shake / Glitch Class */
         .glitch-layer {
             animation: glitch-skew 1s infinite linear alternate-reverse;
         }
@@ -225,6 +237,7 @@
          */
         .container {
             max-width: 1200px;
+            width: 100%;
             margin: 0 auto;
             padding: 0 40px;
             position: relative;
@@ -237,6 +250,7 @@
             flex-direction: column;
             justify-content: center;
             padding: 80px 0;
+            position: relative;
         }
 
         /* Cyberpunk Glitch Title */
@@ -250,6 +264,8 @@
             margin-bottom: 2rem;
             position: relative;
             display: inline-block;
+            max-width: 100%;
+            word-wrap: break-word;
         }
 
         h1.glitch::before, h1.glitch::after {
@@ -293,6 +309,7 @@
             align-items: center;
             gap: 15px;
             font-weight: 700;
+            flex-wrap: wrap; /* Ensure HUD text wraps on very small screens */
         }
         .hud-text::before {
             content: ''; display: block; width: 40px; height: 1px; background: var(--gold);
@@ -321,6 +338,7 @@
             text-decoration: none;
             display: flex;
             align-items: center;
+            justify-content: center; /* Center content for mobile balance */
             gap: 15px;
             transition: 0.3s;
             font-family: var(--font-hud);
@@ -456,6 +474,7 @@
             display: inline-block;
             margin-right: 12px;
             transition: 0.3s;
+            flex-shrink: 0; /* Prevent squishing on mobile */
         }
         
         a.publication-card {
@@ -474,10 +493,12 @@
             border-radius: 4px;
             margin-right: 5px;
             vertical-align: text-bottom;
+            display: inline-block;
+            margin-bottom: 5px;
         }
 
         /* * ============================================================
-         * 10. HOLOGRAPHIC TIMELINE (DUAL-STREAM SPLIT)
+         * 10. HOLOGRAPHIC TIMELINE
          * ============================================================
          */
         .temporal-interface {
@@ -510,7 +531,6 @@
             filter: contrast(1.2) sepia(0.5) hue-rotate(180deg);
         }
 
-        /* The Container for the Two Streams */
         .timeline-split-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -521,7 +541,6 @@
             padding-top: 40px;
         }
 
-        /* The central connector line from Projector to columns */
         .timeline-split-container::before {
             content: '';
             position: absolute;
@@ -540,7 +559,6 @@
             gap: 30px;
         }
 
-        /* Beam Backgrounds for each column */
         .holo-beam-inner {
             flex-grow: 1;
             border-top: 2px solid rgba(255,255,255,0.1);
@@ -560,7 +578,6 @@
             letter-spacing: 2px;
         }
 
-        /* Card Styles */
         .holo-card {
             background: rgba(10, 10, 15, 0.8);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -572,11 +589,9 @@
 
         .holo-card:hover { transform: scale(1.02); z-index: 10; }
 
-        /* Education Specifics */
         .holo-card.edu { border-left: 2px solid var(--cyan); }
         .holo-card.edu:hover { box-shadow: 0 0 30px rgba(94, 252, 232, 0.15); border-color: var(--cyan); }
         
-        /* Work Specifics */
         .holo-card.work { border-left: 2px solid var(--gold); }
         .holo-card.work:hover { box-shadow: 0 0 30px rgba(197, 160, 89, 0.15); border-color: var(--gold); }
 
@@ -598,7 +613,7 @@
         }
 
         /* * ============================================================
-         * 11. FOOTER (CENTERED & FIXED)
+         * 11. FOOTER
          * ============================================================
          */
         footer {
@@ -641,74 +656,13 @@
         .footer-contact {
             color: #666;
             font-size: 0.9rem;
+            word-wrap: break-word;
         }
         .footer-contact a { color: #888; text-decoration: none; border-bottom: 1px dotted #444; }
         .footer-contact a:hover { color: #fff; border-color: #fff; }
 
-        @media (max-width: 768px) {
-            /* 1. Reset Cursor for Touch Devices */
-            * { cursor: auto !important; }
-            #cursor-dot, #cursor-ring { display: none !important; }
-
-            /* 2. Header Adjustments */
-            header { padding: 15px 20px; flex-wrap: wrap; }
-            .nav-links { display: none; } /* Kept hidden as in original */
-            .breach-btn { 
-                min-width: auto; 
-                padding: 8px 12px; 
-                font-size: 0.7rem;
-            }
-            .brand { font-size: 1rem; }
-
-            /* 3. Typography Scaling */
-            h1.glitch { font-size: 3rem; }
-            h2 { font-size: 2rem !important; } /* Force smaller section headers */
-            .hud-text { font-size: 0.8rem; }
-
-            /* 4. Layout & Padding */
-            .container { padding: 0 20px; }
-            section { padding: 60px 0; }
-            
-            /* 5. Grids */
-            .skills-grid { grid-template-columns: 1fr; }
-            .identity-grid { grid-template-columns: 1fr; }
-            
-            /* 6. Timeline Stacking */
-            .timeline-split-container { 
-                grid-template-columns: 1fr; 
-                gap: 40px;
-            }
-            .timeline-split-container::before { display: none; } /* Hide vertical line on mobile */
-            
-            /* 7. Footer */
-            .footer-links { gap: 15px; flex-direction: column; }
-            
-            /* 8. Hide Side Nav (Tesseract Thread) */
-            .tesseract-thread { display: none; }
-
-            /* 9. Data Module Padding Fix */
-            .data-module { padding: 1.5rem; }
-        }
-
-        /* Tesseract Thread (Side Nav) */
-        .tesseract-thread {
-            position: fixed; right: 40px; top: 50%; transform: translateY(-50%);
-            height: 50vh; width: 1px; background: rgba(255, 255, 255, 0.1);
-            display: flex; flex-direction: column; justify-content: space-between;
-            align-items: center; z-index: 50;
-        }
-        .thread-node {
-            width: 8px; height: 8px; background: var(--void);
-            border: 1px solid var(--text-muted); transform: rotate(45deg);
-            transition: 0.3s; cursor: pointer;
-        }
-        .thread-node.active {
-            background: var(--gold); border-color: var(--gold);
-            box-shadow: 0 0 15px var(--gold); width: 12px; height: 12px;
-        }
-
         /* * ============================================================
-         * 12. NEW INCOMING BLOG / HAZARD PROTOCOLS
+         * 12. INCOMING BLOG / HAZARD PROTOCOLS
          * ============================================================
          */
         #blog-incoming {
@@ -732,7 +686,6 @@
             box-shadow: 0 0 50px rgba(0,0,0,0.5);
         }
 
-        /* The moving hazard tape animation */
         .hazard-tape {
             position: absolute;
             left: 0;
@@ -756,7 +709,6 @@
             100% { background-position: 80px 0; }
         }
 
-        /* Warning Shield */
         .warning-shield {
             font-size: 5rem;
             color: var(--gold);
@@ -803,7 +755,6 @@
             margin: 0 auto 30px auto;
         }
 
-        /* Loading Bar for Construction */
         .load-bar-container {
             width: 100%;
             max-width: 400px;
@@ -839,7 +790,6 @@
         .blink-underscore { animation: blink 1s infinite; }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-        /* Laser Scan Effect overlay on the hazard container */
         .scan-line {
             position: absolute;
             top: 0; left: 0;
@@ -855,6 +805,103 @@
             10% { opacity: 1; }
             90% { opacity: 1; }
             100% { top: 100%; opacity: 0; }
+        }
+
+        /* Tesseract Thread (Side Nav) */
+        .tesseract-thread {
+            position: fixed; right: 40px; top: 50%; transform: translateY(-50%);
+            height: 50vh; width: 1px; background: rgba(255, 255, 255, 0.1);
+            display: flex; flex-direction: column; justify-content: space-between;
+            align-items: center; z-index: 50;
+        }
+        .thread-node {
+            width: 8px; height: 8px; background: var(--void);
+            border: 1px solid var(--text-muted); transform: rotate(45deg);
+            transition: 0.3s; cursor: pointer;
+        }
+        .thread-node.active {
+            background: var(--gold); border-color: var(--gold);
+            box-shadow: 0 0 15px var(--gold); width: 12px; height: 12px;
+        }
+
+        /* * ============================================================
+         * 13. RESPONSIVE MEDIA QUERIES
+         * ============================================================
+         */
+        
+        /* Tablet & Mobile Breakpoint (max-width: 1024px covering tablets) */
+        @media (max-width: 1024px) {
+            .container { padding: 0 25px; }
+            h1.glitch { font-size: 5rem; }
+            .tesseract-thread { display: none; }
+        }
+
+        /* Mobile Breakpoint (Strict) */
+        @media (max-width: 768px) {
+            
+            /* Header Adjustments */
+            header { padding: 15px 20px; justify-content: space-between; }
+            .nav-links { display: none; } /* Kept hidden as in original */
+            .brand { font-size: 1rem; }
+            .breach-btn { 
+                min-width: auto; 
+                padding: 8px 12px; 
+                font-size: 0.75rem;
+                flex-grow: 0;
+            }
+
+            /* Typography Scaling */
+            h1.glitch { font-size: 3rem; }
+            h2 { font-size: 2rem !important; }
+            .hud-text { font-size: 0.8rem; }
+            
+            /* Section Spacing */
+            section { padding: 60px 0; min-height: auto; } /* Prevent huge vertical gaps */
+
+            /* Identity Grid Stack */
+            .identity-grid { grid-template-columns: 1fr; }
+
+            /* Skills Grid Stack */
+            .skills-grid { grid-template-columns: 1fr; }
+
+            /* Projects / Data Module */
+            .data-module { padding: 1.5rem; }
+            .data-module h3 { font-size: 1.4rem !important; margin-bottom: 10px; }
+            .module-content-hidden div { grid-template-columns: 1fr !important; }
+            .data-module a.hover-target { display: block; margin: 20px 0 0 0 !important; }
+
+            /* Timeline Stacking */
+            .timeline-split-container { 
+                grid-template-columns: 1fr; 
+                gap: 20px;
+                padding-top: 20px;
+            }
+            .timeline-split-container::before { display: none; } /* Hide vertical line */
+            
+            .holo-beam-inner { padding: 20px 15px; }
+            .holo-card { padding: 20px; }
+
+            /* Footer */
+            .footer-links { gap: 15px; flex-direction: column; }
+            
+            /* Hazard/Blog Mobile */
+            .hazard-container { padding: 3rem 1rem; }
+            .warning-shield { font-size: 3.5rem; }
+            .construction-title { font-size: 1.5rem; }
+        }
+
+        /* Small Mobile Devices (e.g. older iPhones, SE) */
+        @media (max-width: 400px) {
+            header { padding: 10px 15px; }
+            .breach-btn { font-size: 0.65rem; padding: 6px 10px; }
+            h1.glitch { font-size: 2.2rem; }
+            .container { padding: 0 15px; }
+            
+            .edu-institution-hero { font-size: 1.2rem; }
+            .tech-tag { padding: 4px 8px; font-size: 0.7rem; }
+            
+            /* Ensure words don't break layout */
+            .construction-desc, p { font-size: 0.9rem; }
         }
 
     </style>
@@ -1002,8 +1049,8 @@
                 <h2 style="font-family: var(--font-display); font-size: 3rem; margin-bottom: 4rem; color: #fff;">DEPLOYED WORK</h2>
                 
                 <div class="data-module hover-target" style="border-left: 3px solid var(--gold);">
-                    <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap;">
-                        <h3 style="font-family: var(--font-display); font-size: 1.8rem; color: #fff;">GEN_AI EMAIL ASSISTANT</h3>
+                    <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 10px;">
+                        <h3 style="font-family: var(--font-display); font-size: 1.8rem; color: #fff; line-height: 1.2;">GEN_AI EMAIL ASSISTANT</h3>
                         <span style="font-size: 0.8rem; color: var(--gold); border: 1px solid var(--gold); padding: 5px 10px;">[03/2025 - 08/2025]</span>
                     </div>
                     
@@ -1039,7 +1086,7 @@
                             <span class="tech-tag">Google Gemini / OAuth 2.0</span>
                             <span class="tech-tag">SQLite / SQLAlchemy</span>
                             <span class="tech-tag">Sentence Transformers</span>
-                            <a href="https://github.com/aly2302/email-assistant-llm" target="_blank" class="hover-target" style="margin-left: 20px; color: var(--gold); text-decoration: none; border-bottom: 1px solid var(--gold); font-weight: bold; font-size: 0.9rem;">ACCESS SOURCE CODE</a>
+                            <a href="https://github.com/aly2302/email-assistant-llm" target="_blank" class="hover-target" style="margin-left: 20px; color: var(--gold); text-decoration: none; border-bottom: 1px solid var(--gold); font-weight: bold; font-size: 0.9rem; display: inline-block;">ACCESS SOURCE CODE</a>
                         </div>
                     </div>
                 </div>
@@ -1048,7 +1095,7 @@
                     <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px;">
                          <div style="display: flex; align-items: center;">
                             <span class="status-light" style="background: var(--cyan); box-shadow: 0 0 10px var(--cyan);"></span>
-                            <h4 style="color: var(--cyan); font-family: var(--font-hud); letter-spacing: 1px;">VERIFIED PUBLICATION [2025]</h4>
+                            <h4 style="color: var(--cyan); font-family: var(--font-hud); letter-spacing: 1px; font-size: 0.9rem;">VERIFIED PUBLICATION [2025]</h4>
                          </div>
                          <i class="fa-solid fa-arrow-up-right-from-square" style="color: var(--cyan);"></i>
                     </div>
@@ -1196,6 +1243,14 @@
             mouse.y = e.clientY;
         });
 
+        // ADDED FOR MOBILE: Touch events for particle interaction
+        window.addEventListener('touchmove', e => {
+            if(e.touches.length > 0) {
+                mouse.x = e.touches[0].clientX;
+                mouse.y = e.touches[0].clientY;
+            }
+        }, {passive: true});
+
         function resize() {
             width = window.innerWidth;
             height = window.innerHeight;
@@ -1267,7 +1322,9 @@
 
         function initParticles() {
             particles = [];
-            for (let i = 0; i < 400; i++) particles.push(new Particle());
+            // Reduce particle count on very small screens for performance
+            const particleCount = width < 500 ? 200 : 400;
+            for (let i = 0; i < particleCount; i++) particles.push(new Particle());
         }
 
         function animateSingularity() {
@@ -1483,6 +1540,12 @@
             mCtx.clearRect(0,0, matrixCanvas.width, matrixCanvas.height);
             animateSingularity();
         }
+        
+        // Handle resize for Matrix as well
+        window.addEventListener('resize', () => {
+             matrixCanvas.width = window.innerWidth;
+             matrixCanvas.height = window.innerHeight;
+        });
 
     </script>
 </body>
