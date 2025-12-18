@@ -706,6 +706,157 @@
             background: var(--gold); border-color: var(--gold);
             box-shadow: 0 0 15px var(--gold); width: 12px; height: 12px;
         }
+
+        /* * ============================================================
+         * 12. NEW INCOMING BLOG / HAZARD PROTOCOLS
+         * ============================================================
+         */
+        #blog-incoming {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .hazard-container {
+            width: 100%;
+            max-width: 800px;
+            background: rgba(10, 10, 10, 0.8);
+            border: 1px solid #333;
+            position: relative;
+            padding: 4rem 2rem;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            overflow: hidden;
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+        }
+
+        /* The moving hazard tape animation */
+        .hazard-tape {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 15px;
+            background: repeating-linear-gradient(
+                -45deg,
+                var(--gold) 0,
+                var(--gold) 20px,
+                #000 20px,
+                #000 40px
+            );
+            animation: tape-scroll 2s linear infinite;
+            z-index: 10;
+        }
+        .hazard-tape.top { top: 0; border-bottom: 2px solid #000; }
+        .hazard-tape.bottom { bottom: 0; border-top: 2px solid #000; animation-direction: reverse; }
+
+        @keyframes tape-scroll {
+            0% { background-position: 0 0; }
+            100% { background-position: 80px 0; }
+        }
+
+        /* Warning Shield */
+        .warning-shield {
+            font-size: 5rem;
+            color: var(--gold);
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .warning-shield i {
+            filter: drop-shadow(0 0 15px rgba(197, 160, 89, 0.4));
+            animation: warning-pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes warning-pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(0.95); }
+        }
+
+        .lock-icon {
+            position: absolute;
+            bottom: -10px;
+            right: -10px;
+            font-size: 2rem;
+            color: var(--void);
+            background: var(--gold);
+            border-radius: 50%;
+            width: 50px; height: 50px;
+            display: flex; align-items: center; justify-content: center;
+            border: 3px solid #000;
+        }
+
+        .construction-title {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            color: #fff;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+        
+        .construction-desc {
+            color: var(--text-muted);
+            font-size: 1rem;
+            max-width: 500px;
+            margin: 0 auto 30px auto;
+        }
+
+        /* Loading Bar for Construction */
+        .load-bar-container {
+            width: 100%;
+            max-width: 400px;
+            height: 4px;
+            background: rgba(255,255,255,0.1);
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+        .load-bar-fill {
+            position: absolute;
+            top: 0; left: 0;
+            height: 100%;
+            width: 40%;
+            background: var(--gold);
+            box-shadow: 0 0 15px var(--gold);
+            animation: construction-load 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes construction-load {
+            0% { left: 0; width: 20%; }
+            100% { left: 80%; width: 20%; }
+        }
+
+        .terminal-status {
+            font-family: var(--font-hud);
+            font-size: 0.8rem;
+            color: var(--gold);
+            margin-top: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .blink-underscore { animation: blink 1s infinite; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        /* Laser Scan Effect overlay on the hazard container */
+        .scan-line {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 2px;
+            background: var(--error);
+            box-shadow: 0 0 10px var(--error);
+            opacity: 0.5;
+            animation: laser-scan 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+            pointer-events: none;
+        }
+        @keyframes laser-scan {
+            0% { top: 0%; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+
     </style>
 </head>
 <body>
@@ -722,6 +873,7 @@
         <div class="thread-node" onclick="scrollToSection('skills')" data-target="skills"></div>
         <div class="thread-node" onclick="scrollToSection('projects')" data-target="projects"></div>
         <div class="thread-node" onclick="scrollToSection('timeline')" data-target="timeline"></div>
+        <div class="thread-node" onclick="scrollToSection('blog-incoming')" data-target="blog-incoming" style="border-color: var(--gold);"></div>
     </div>
 
     <header id="main-header">
@@ -731,6 +883,7 @@
             <a href="#skills" class="nav-link">Skills</a>
             <a href="#projects" class="nav-link">Systems</a>
             <a href="#timeline" class="nav-link">Log</a>
+            <a href="#blog-incoming" class="nav-link" style="color: var(--gold);">Blog</a>
         </nav>
         <button class="breach-btn hover-target" id="matrix-toggle-btn" onclick="toggleMatrixMode()">MATRIX</button>
     </header>
@@ -966,6 +1119,39 @@
             </div>
         </section>
 
+        <section id="blog-incoming">
+            <div class="container" style="display: flex; justify-content: center;">
+                
+                <div class="hazard-container hover-target">
+                    <div class="hazard-tape top"></div>
+                    <div class="hazard-tape bottom"></div>
+                    <div class="scan-line"></div>
+
+                    <div class="warning-shield">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                        <div class="lock-icon">
+                            <i class="fa-solid fa-lock" style="font-size: 1.2rem;"></i>
+                        </div>
+                    </div>
+
+                    <h2 class="construction-title">blog</h2>
+                    <p class="construction-desc">
+                        This frequency is currently encrypted. The blog interface is undergoing structural rendering and security protocols.
+                    </p>
+
+                    <div class="load-bar-container">
+                        <div class="load-bar-fill"></div>
+                    </div>
+                    
+                    <div class="terminal-status">
+                        > COMPILING NEURAL PATHWAYS<span class="blink-underscore">_</span>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
         <footer>
             <div class="footer-content">
                 <div class="footer-logo">R // NOVELO</div>
@@ -976,6 +1162,7 @@
                     <a href="#home" class="footer-link">Home Base</a>
                     <a href="#skills" class="footer-link">Arsenal</a>
                     <a href="#projects" class="footer-link">Projects</a>
+                    <a href="#blog-incoming" class="footer-link">Transmissions</a>
                     <a href="https://github.com/aly2302" target="_blank" class="footer-link">GitHub</a>
                 </div>
                 
