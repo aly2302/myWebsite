@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RODRIGO NOVELO | THE SINGULARITY</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* * ============================================================
+         * 1. CORE PHYSICS & VARIABLES
+         * ============================================================
+         */
+        :root {
+            --void: #030304;
+            --gold: #c5a059;       
+            --gold-glow: rgba(197, 160, 89, 0.3);
+            --matrix: #00FF41; 
+            --error: #ff3333;       
+            --cyan: #5efce8;       
+            --text-main: #f0f0f0;
+            --text-muted: #989898;
+            
+            --font-display: 'Syncopate', sans-serif;
+            --font-hud: 'Space Mono', monospace;
+            
+            --ease-physics: cubic-bezier(0.19, 1, 0.22, 1);
+            --cursor-size: 30px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; /* Hide Default Cursor */ }
+        
+        body {
+            background-color: var(--void);
+            color: var(--text-main);
+            font-family: var(--font-hud);
+            overflow-x: hidden;
+            font-size: 18px;
+            line-height: 1.6;
+            transition: filter 0.2s;
+        }
+
+        a, button, .data-module, video { cursor: none; }
+
+        /* * ============================================================
+         * 2. CUSTOM CURSOR PHYSICS
+         * ============================================================
+         */
+        #cursor-dot, #cursor-ring {
+            position: fixed;
+            top: 0; left: 0;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 9999;
+            border-radius: 50%;
+        }
+
+        #cursor-dot {
+            width: 6px; height: 6px;
+            background: var(--gold);
+        }
+
+        #cursor-ring {
+            width: var(--cursor-size); height: var(--cursor-size);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: width 0.2s, height 0.2s, border-color 0.2s, background-color 0.2s;
+        }
+
+        /* Hover State for Cursor */
+        body.hovering #cursor-ring {
+            width: 50px; height: 50px;
+            border-color: var(--cyan);
+            background-color: rgba(94, 252, 232, 0.05);
+            mix-blend-mode: screen;
+        }
+        
+        /* Matrix Mode Cursor */
+        body.matrix-mode #cursor-dot { background: var(--matrix); }
+        body.matrix-mode #cursor-ring { border-color: var(--matrix); }
+
+        /* * ============================================================
+         * 3. BACKGROUND ENGINES (Singularity & Matrix)
+         * ============================================================
+         */
+        #singularity-canvas {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            transition: opacity 1s ease;
+        }
+
+        #matrix-canvas {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0; /* Behind content, visible when content hidden */
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+            mix-blend-mode: screen;
+        }
+
+        .event-horizon-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, transparent 20%, #030304 130%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* * ============================================================
+         * 4. HUD HEADER
+         * ============================================================
+         */
+        header {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: rgba(3, 3, 4, 0.7);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transform: translateY(0);
+            transition: transform 0.4s var(--ease-physics);
+        }
+
+        header.hidden { transform: translateY(-100%); }
+
+        .brand {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            color: #fff;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .nav-link:hover { color: var(--gold); }
+        .nav-link::after {
+            content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 1px;
+            background: var(--gold); transition: 0.3s;
+        }
+        .nav-link:hover::after { width: 100%; }
+
+        .breach-btn {
+            border: 1px solid #ff4444;
+            color: #ff4444;
+            background: transparent;
+            padding: 8px 16px;
+            font-family: var(--font-hud);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            transition: 0.3s;
+            overflow: hidden;
+            position: relative;
+            min-width: 180px; /* Ensure width doesn't jump too much on text change */
+            text-align: center;
+        }
+        
+        .breach-btn:hover {
+            background: #ff4444;
+            color: #000;
+            box-shadow: 0 0 15px #ff4444;
+        }
+        
+        /* Matrix Mode State for Button */
+        body.matrix-mode .breach-btn {
+            background: var(--matrix);
+            color: #000;
+            border-color: var(--matrix);
+            box-shadow: 0 0 15px var(--matrix);
+        }
+
+        /* * ============================================================
+         * 5. MATRIX VISUAL EFFECTS
+         * ============================================================
+         */
+        
+        /* Hide main content when Matrix Mode is ON */
+        body.matrix-mode #main-content {
+            opacity: 0;
+            pointer-events: none;
+            filter: blur(10px);
+            transition: opacity 0.5s ease;
+        }
+
+        /* Screen Shake / Glitch Class */
+        .glitch-layer {
+            animation: glitch-skew 1s infinite linear alternate-reverse;
+        }
+        
+        @keyframes glitch-skew {
+            0% { transform: skew(0deg); opacity: 1; }
+            10% { transform: skew(-1deg); opacity: 0.95; }
+            20% { transform: skew(1deg); opacity: 1; }
+            30% { transform: skew(0deg); opacity: 1; filter: hue-rotate(0deg); }
+            40% { transform: skew(0deg); opacity: 1; filter: hue-rotate(90deg); } 
+            100% { transform: skew(0deg); opacity: 1; }
+        }
+
+        /* * ============================================================
+         * 6. TYPOGRAPHY & LAYOUT
+         * ============================================================
+         */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 80px 0;
+        }
+
+        /* Cyberpunk Glitch Title */
+        h1.glitch {
+            font-family: var(--font-display);
+            font-size: clamp(3.5rem, 8vw, 8rem);
+            line-height: 0.9;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: -0.05em;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        h1.glitch::before, h1.glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--void);
+        }
+
+        h1.glitch::before {
+            left: 2px;
+            text-shadow: -1px 0 var(--gold);
+            clip: rect(24px, 550px, 90px, 0);
+            animation: glitch-anim-2 3s infinite linear alternate-reverse;
+        }
+
+        h1.glitch::after {
+            left: -2px;
+            text-shadow: -1px 0 var(--cyan);
+            clip: rect(85px, 550px, 140px, 0);
+            animation: glitch-anim 2.5s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-anim {
+            0% { clip: rect(70px, 9999px, 86px, 0); }
+            20% { clip: rect(28px, 9999px, 86px, 0); }
+            100% { clip: rect(13px, 9999px, 7px, 0); }
+        }
+        @keyframes glitch-anim-2 {
+            0% { clip: rect(12px, 9999px, 2px, 0); }
+            100% { clip: rect(2px, 9999px, 89px, 0); }
+        }
+
+        .hud-text {
+            font-size: 0.9rem;
+            color: var(--gold);
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-weight: 700;
+        }
+        .hud-text::before {
+            content: ''; display: block; width: 40px; height: 1px; background: var(--gold);
+        }
+
+        .system-status { font-weight: bold; transition: color 0.3s; }
+        .system-status.offline { color: var(--error); text-shadow: 0 0 5px var(--error); }
+
+        /* * ============================================================
+         * 7. BUTTONS & IDENTITY
+         * ============================================================
+         */
+        .identity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 2rem;
+            max-width: 900px;
+        }
+
+        .id-btn {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: #fff;
+            padding: 15px 25px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: 0.3s;
+            font-family: var(--font-hud);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        .id-btn i { font-size: 1.2rem; color: var(--text-muted); transition: 0.3s; }
+        
+        .id-btn:hover {
+            background: rgba(197, 160, 89, 0.1);
+            border-color: var(--gold);
+            transform: translateY(-3px);
+        }
+        .id-btn:hover i { color: var(--gold); }
+        
+        .id-btn.primary {
+            border-color: var(--gold);
+            background: rgba(197, 160, 89, 0.05);
+        }
+        .id-btn.primary:hover {
+            background: var(--gold);
+            color: #000;
+        }
+        .id-btn.primary:hover i { color: #000; }
+
+        /* * ============================================================
+         * 8. SKILLS GRID
+         * ============================================================
+         */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            width: 100%;
+        }
+
+        .skill-card {
+            background: rgba(15, 15, 20, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card:hover {
+            background: rgba(20, 20, 25, 0.9);
+            border-color: var(--cyan);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(94, 252, 232, 0.1);
+        }
+
+        .skill-header {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            color: #fff;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .skill-card:hover .skill-header { border-color: var(--cyan); color: var(--cyan); }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-pill {
+            font-size: 0.85rem;
+            color: #aaa;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 5px 12px;
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        .skill-card:hover .skill-pill {
+            border-color: rgba(94, 252, 232, 0.3);
+            color: #fff;
+            background: rgba(94, 252, 232, 0.05);
+        }
+        
+        /* * ============================================================
+         * 9. PROJECT CARDS
+         * ============================================================
+         */
+        .data-module {
+            background: rgba(20, 20, 25, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s var(--ease-physics);
+            backdrop-filter: blur(10px);
+            margin-bottom: 30px;
+        }
+
+        .data-module:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-5px);
+            border-color: var(--gold);
+        }
+
+        .module-content-hidden {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px dashed rgba(255, 255, 255, 0.1);
+        }
+
+        .tech-tag {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 6px 14px;
+            margin: 0 6px 6px 0;
+            transition: 0.3s;
+        }
+        .data-module:hover .tech-tag { color: var(--gold); border-color: var(--gold); }
+
+        .status-light {
+            width: 10px; height: 10px;
+            background: #444;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 12px;
+            transition: 0.3s;
+        }
+        
+        a.publication-card {
+            text-decoration: none;
+            display: block;
+            border-left: 3px solid var(--cyan);
+            background: linear-gradient(90deg, rgba(94, 252, 232, 0.05) 0%, rgba(0,0,0,0) 100%);
+            cursor: none;
+        }
+        
+        .citation-badge {
+            font-size: 0.75rem;
+            color: var(--cyan);
+            border: 1px solid var(--cyan);
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-right: 5px;
+            vertical-align: text-bottom;
+        }
+
+        /* * ============================================================
+         * 10. HOLOGRAPHIC TIMELINE (DUAL-STREAM SPLIT)
+         * ============================================================
+         */
+        .temporal-interface {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        .holo-projector {
+            width: 100%;
+            max-width: 600px;
+            height: 200px;
+            position: relative;
+            border: 1px solid #333;
+            background: #000;
+            overflow: hidden;
+            border-radius: 10px 10px 0 0;
+            margin-bottom: 0;
+            z-index: 5;
+            box-shadow: 0 0 50px rgba(0,0,0,0.8);
+        }
+
+        .holo-projector video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.6;
+            filter: contrast(1.2) sepia(0.5) hue-rotate(180deg);
+        }
+
+        /* The Container for the Two Streams */
+        .timeline-split-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            width: 100%;
+            max-width: 1000px;
+            position: relative;
+            padding-top: 40px;
+        }
+
+        /* The central connector line from Projector to columns */
+        .timeline-split-container::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 40px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.3), rgba(255,255,255,0));
+            z-index: 1;
+        }
+        
+        .timeline-col {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        /* Beam Backgrounds for each column */
+        .holo-beam-inner {
+            flex-grow: 1;
+            border-top: 2px solid rgba(255,255,255,0.1);
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 0%, rgba(0,0,0,0) 100%);
+            padding: 30px;
+            position: relative;
+        }
+
+        .holo-beam-inner.blue { border-top-color: var(--cyan); background: linear-gradient(to bottom, rgba(94, 252, 232, 0.05) 0%, rgba(0,0,0,0) 100%); }
+        .holo-beam-inner.gold { border-top-color: var(--gold); background: linear-gradient(to bottom, rgba(197, 160, 89, 0.05) 0%, rgba(0,0,0,0) 100%); }
+
+        .col-header {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            text-align: center;
+            letter-spacing: 2px;
+        }
+
+        /* Card Styles */
+        .holo-card {
+            background: rgba(10, 10, 15, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            position: relative;
+            backdrop-filter: blur(5px);
+            transition: all 0.4s ease;
+        }
+
+        .holo-card:hover { transform: scale(1.02); z-index: 10; }
+
+        /* Education Specifics */
+        .holo-card.edu { border-left: 2px solid var(--cyan); }
+        .holo-card.edu:hover { box-shadow: 0 0 30px rgba(94, 252, 232, 0.15); border-color: var(--cyan); }
+        
+        /* Work Specifics */
+        .holo-card.work { border-left: 2px solid var(--gold); }
+        .holo-card.work:hover { box-shadow: 0 0 30px rgba(197, 160, 89, 0.15); border-color: var(--gold); }
+
+        .edu-institution-hero {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.2;
+            margin: 10px 0;
+            font-family: var(--font-display);
+            text-transform: uppercase;
+        }
+
+        .edu-degree { font-size: 0.9rem; color: var(--cyan); letter-spacing: 1px; display: block; }
+        .work-role { font-size: 1.3rem; color: #fff; font-family: var(--font-display); }
+        .time-stamp-holo {
+            font-size: 0.75rem; color: #aaa; margin-bottom: 10px; display: block;
+            border-bottom: 1px dashed rgba(255,255,255,0.2); padding-bottom: 5px;
+        }
+
+        /* * ============================================================
+         * 11. FOOTER (CENTERED & FIXED)
+         * ============================================================
+         */
+        footer {
+            padding: 60px 20px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            background: #050505;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .footer-logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            color: #fff;
+            letter-spacing: 3px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+        .footer-link:hover { color: var(--gold); }
+
+        .footer-contact {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        .footer-contact a { color: #888; text-decoration: none; border-bottom: 1px dotted #444; }
+        .footer-contact a:hover { color: #fff; border-color: #fff; }
+
+        @media (max-width: 768px) {
+            h1.glitch { font-size: 3rem; }
+            .nav-links { display: none; }
+            header { justify-content: space-between; padding: 20px; }
+            .skills-grid { grid-template-columns: 1fr; }
+            .timeline-split-container { grid-template-columns: 1fr; }
+            .footer-links { gap: 15px; flex-direction: column; }
+        }
+
+        /* Tesseract Thread (Side Nav) */
+        .tesseract-thread {
+            position: fixed; right: 40px; top: 50%; transform: translateY(-50%);
+            height: 50vh; width: 1px; background: rgba(255, 255, 255, 0.1);
+            display: flex; flex-direction: column; justify-content: space-between;
+            align-items: center; z-index: 50;
+        }
+        .thread-node {
+            width: 8px; height: 8px; background: var(--void);
+            border: 1px solid var(--text-muted); transform: rotate(45deg);
+            transition: 0.3s; cursor: pointer;
+        }
+        .thread-node.active {
+            background: var(--gold); border-color: var(--gold);
+            box-shadow: 0 0 15px var(--gold); width: 12px; height: 12px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="cursor-dot"></div>
+    <div id="cursor-ring"></div>
+
+    <canvas id="singularity-canvas"></canvas>
+    <canvas id="matrix-canvas"></canvas>
+    <div class="event-horizon-overlay"></div>
+
+    <div class="tesseract-thread">
+        <div class="thread-node" onclick="scrollToSection('home')" data-target="home"></div>
+        <div class="thread-node" onclick="scrollToSection('skills')" data-target="skills"></div>
+        <div class="thread-node" onclick="scrollToSection('projects')" data-target="projects"></div>
+        <div class="thread-node" onclick="scrollToSection('timeline')" data-target="timeline"></div>
+    </div>
+
+    <header id="main-header">
+        <div class="brand">R // NOVELO</div>
+        <nav class="nav-links">
+            <a href="#home" class="nav-link">Home</a>
+            <a href="#skills" class="nav-link">Skills</a>
+            <a href="#projects" class="nav-link">Systems</a>
+            <a href="#timeline" class="nav-link">Log</a>
+        </nav>
+        <button class="breach-btn hover-target" id="matrix-toggle-btn" onclick="toggleMatrixMode()">BREACH PROTOCOL</button>
+    </header>
+
+    <main id="main-content">
+        
+        <section id="home">
+            <div class="container">
+                <div class="hud-text">
+                    <span class="status-light" id="sys-light" style="background: var(--matrix); box-shadow: 0 0 10px var(--matrix);"></span>
+                    <span id="sys-text" class="system-status">SYSTEM ONLINE // PORTUGAL</span>
+                </div>
+                
+                <h1 class="glitch" data-text="RODRIGO NOVELO">RODRIGO<br>NOVELO</h1>
+                
+                <p style="max-width: 600px; margin-bottom: 2rem; color: #aaa; font-size: 1.25rem; border-left: 2px solid var(--gold); padding-left: 30px;">
+                    "We have to go further than we've ever gone before." <br>
+                    <span style="font-size: 1rem; color: var(--gold); margin-top: 15px; display: block; font-weight: bold;">
+                        Network Architect & AI Engineer
+                    </span>
+                </p>
+
+                <div class="identity-grid">
+                    <a href="assets/rodrigoNovelo_cv.pdf" download="Rodrigo_Novelo_CV.pdf" class="id-btn primary hover-target">
+                        <i class="fa-solid fa-file-pdf"></i> Download CV
+                    </a>
+                    <a href="https://www.linkedin.com/in/rodrigo-novelo-997079332/" target="_blank" class="id-btn hover-target">
+                        <i class="fa-brands fa-linkedin-in"></i> LinkedIn
+                    </a>
+                    <a href="https://github.com/aly2302" target="_blank" class="id-btn hover-target">
+                        <i class="fa-brands fa-github"></i> GitHub
+                    </a>
+                    <button onclick="copyEmail()" class="id-btn hover-target">
+                        <i class="fa-solid fa-envelope"></i> Email Me
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="skills">
+            <div class="container">
+                <div class="hud-text">ARSENAL ANALYSIS</div>
+                <h2 style="font-family: var(--font-display); font-size: 3rem; margin-bottom: 4rem; color: #fff;">TECHNICAL SKILLS</h2>
+                
+                <div class="skills-grid">
+                    
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <span>CORE PROGRAMMING</span>
+                            <i class="fa-solid fa-code" style="color: #666;"></i>
+                        </div>
+                        <div class="skill-list">
+                            <span class="skill-pill">Python</span>
+                            <span class="skill-pill">C / C++</span>
+                            <span class="skill-pill">C#</span>
+                            <span class="skill-pill">SQL</span>
+                            <span class="skill-pill">JavaScript</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <span>NETWORK & SECURITY</span>
+                            <i class="fa-solid fa-network-wired" style="color: #666;"></i>
+                        </div>
+                        <div class="skill-list">
+                            <span class="skill-pill">Cisco Packet Tracer</span>
+                            <span class="skill-pill">Wireshark</span>
+                            <span class="skill-pill">GNS3</span>
+                            <span class="skill-pill">Kali Linux</span>
+                            <span class="skill-pill">TCP/IP Stack</span>
+                            <span class="skill-pill">Firewalls & ACLs</span>
+                            <span class="skill-pill">Routing & Switching</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <span>AI & BACKEND</span>
+                            <i class="fa-solid fa-brain" style="color: #666;"></i>
+                        </div>
+                        <div class="skill-list">
+                            <span class="skill-pill">Generative AI (LLMs)</span>
+                            <span class="skill-pill">RAG Pipelines</span>
+                            <span class="skill-pill">PyTorch</span>
+                            <span class="skill-pill">Flask (RESTful)</span>
+                            <span class="skill-pill">Redis</span>
+                            <span class="skill-pill">Google Cloud APIs</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <span>OPS & INFRASTRUCTURE</span>
+                            <i class="fa-solid fa-server" style="color: #666;"></i>
+                        </div>
+                        <div class="skill-list">
+                            <span class="skill-pill">Docker</span>
+                            <span class="skill-pill">Ansible</span>
+                            <span class="skill-pill">Linux / Bash</span>
+                            <span class="skill-pill">Git</span>
+                            <span class="skill-pill">Nginx / Apache</span>
+                            <span class="skill-pill">Prometheus & Grafana</span>
+                            <span class="skill-pill">VMware</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <div class="container">
+                <div class="hud-text">ARCHIVE ACCESS</div>
+                <h2 style="font-family: var(--font-display); font-size: 3rem; margin-bottom: 4rem; color: #fff;">DEPLOYED SYSTEMS</h2>
+                
+                <div class="data-module hover-target" style="border-left: 3px solid var(--gold);">
+                    <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap;">
+                        <h3 style="font-family: var(--font-display); font-size: 1.8rem; color: #fff;">GEN_AI EMAIL ASSISTANT</h3>
+                        <span style="font-size: 0.8rem; color: var(--gold); border: 1px solid var(--gold); padding: 5px 10px;">[03/2025 - 08/2025]</span>
+                    </div>
+                    
+                    <p style="margin: 1.5rem 0; color: #ccc; font-size: 1.1rem;">
+                        <span class="citation-badge">REF: BACHELOR_PROJECT</span>
+                        A privacy-focused email drafting agent leveraging LLMs and RAG to ground responses in user history.
+                    </p>
+
+                    <div class="module-content-hidden">
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+                            <div>
+                                <h4 style="color: var(--cyan); margin-bottom: 10px;">> ARCHITECTURE</h4>
+                                <p style="font-size: 0.95rem; color: #aaa; margin-bottom: 10px;">
+                                    <strong>Personalization Architecture:</strong> Designed a custom JSON ontology to define the AI's personality, social context per contact, and factual memory.
+                                </p>
+                                <p style="font-size: 0.95rem; color: #aaa;">
+                                    <strong>Hybrid Retrieval Engine:</strong> Developed a dual-search system (Vector + Keyword) to inject accurate historical data into the LLM context.
+                                </p>
+                            </div>
+                            <div>
+                                <h4 style="color: var(--cyan); margin-bottom: 10px;">> AUTONOMOUS AGENTS</h4>
+                                <p style="font-size: 0.95rem; color: #aaa;">
+                                    <strong>Adaptive Feedback:</strong> Implemented logic that analyzes user edits to automatically infer and update behavioral rules.
+                                </p>
+                                <p style="font-size: 0.95rem; color: #aaa; margin-top: 10px;">
+                                    <strong>Dual Modes:</strong> Collaborative Web Dashboard and an autonomous Background Agent.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1);">
+                            <span class="tech-tag">Python (Celery, Redis)</span>
+                            <span class="tech-tag">Google Gemini / OAuth 2.0</span>
+                            <span class="tech-tag">SQLite / SQLAlchemy</span>
+                            <span class="tech-tag">Sentence Transformers</span>
+                            <a href="https://github.com/aly2302/email-assistant-llm" target="_blank" class="hover-target" style="margin-left: 20px; color: var(--gold); text-decoration: none; border-bottom: 1px solid var(--gold); font-weight: bold; font-size: 0.9rem;">ACCESS SOURCE CODE</a>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="https://www.mdpi.com/1999-5903/17/12/536" target="_blank" class="data-module publication-card hover-target" style="margin-top: 2rem;">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px;">
+                         <div style="display: flex; align-items: center;">
+                            <span class="status-light" style="background: var(--cyan); box-shadow: 0 0 10px var(--cyan);"></span>
+                            <h4 style="color: var(--cyan); font-family: var(--font-hud); letter-spacing: 1px;">VERIFIED PUBLICATION [2025]</h4>
+                         </div>
+                         <i class="fa-solid fa-arrow-up-right-from-square" style="color: var(--cyan);"></i>
+                    </div>
+                    
+                    <h3 style="font-size: 1.5rem; color: #fff; margin-bottom: 1rem; line-height: 1.4;">
+                        "A Literature Review of Personalized Large Language Models for Email Generation and Automation"
+                    </h3>
+                    
+                    <div style="font-size: 1rem; color: #bbb;">
+                        <span style="color: var(--text-muted);">Novelo, R., Silva, R. R., & Bernardino, J.</span> <br>
+                        <span style="color: #fff; border-bottom: 1px dotted var(--cyan); display:inline-block; margin-top:5px;">MDPI Future Internet, Vol 17(12), 536</span>
+                    </div>
+                </a>
+
+            </div>
+        </section>
+
+        <section id="timeline">
+            <div class="container">
+                <div class="hud-text">TEMPORAL LOG</div>
+                
+                <div class="temporal-interface">
+                    
+                    <div class="holo-projector">
+                        <video autoplay loop muted playsinline>
+                            <source src="assets/interstellar_msg.mp4" type="video/mp4">
+                        </video>
+                        <div style="position: absolute; bottom: 10px; left: 20px; color: #fff; font-family: var(--font-hud); font-size: 0.8rem; background: rgba(0,0,0,0.7); padding: 5px;">
+                            DATA_STREAM: CONNECTED // SPLIT_MODE
+                        </div>
+                    </div>
+
+                    <div class="timeline-split-container">
+                        
+                        <div class="timeline-col">
+                            <h3 class="col-header" style="color: var(--cyan);">ACADEMIC PROTOCOL</h3>
+                            
+                            <div class="holo-beam-inner blue">
+                                <div class="holo-card edu">
+                                    <span class="time-stamp-holo">09/2021 - 10/2025</span>
+                                    <h2 class="edu-institution-hero">ISEC</h2>
+                                    <span class="edu-degree">B.SC. COMPUTER SCIENCE</span>
+                                    <p style="color: #aaa; font-size: 0.95rem; margin-top: 15px;">
+                                        Comprehensive training in Networks and Systems Administration. Focus on Network Design, Linux/Windows OS, Security, and Performance Monitoring.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-col">
+                            <h3 class="col-header" style="color: var(--gold);">OPERATIONS HISTORY</h3>
+                            
+                            <div class="holo-beam-inner gold">
+                                <div class="holo-card work">
+                                    <span class="time-stamp-holo" style="color: var(--gold); border-color: var(--gold);">SUMMERS 2023 & 2024</span>
+                                    <h2 class="work-role">PRODUCTION ASSISTANT</h2>
+                                    <span class="edu-degree" style="color: var(--gold);">CASA RELVAS WINERY</span>
+                                    <p style="color: #aaa; font-size: 0.95rem; margin-top: 15px;">
+                                        Two consecutive summers supporting industrial-scale operations. Operated automated processing machinery and maintained quality protocols.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-logo">R // NOVELO</div>
+                
+                <div style="font-size: 2rem; color: var(--gold); animation: spin 20s linear infinite;">⟁</div>
+                
+                <div class="footer-links">
+                    <a href="#home" class="footer-link">Home Base</a>
+                    <a href="#skills" class="footer-link">Arsenal</a>
+                    <a href="#projects" class="footer-link">Projects</a>
+                    <a href="https://github.com/aly2302" target="_blank" class="footer-link">GitHub</a>
+                </div>
+                
+                <div class="footer-contact">
+                    <a href="mailto:rodrigonovelo.pro@gmail.com">rodrigonovelo.pro@gmail.com</a>
+                    <span style="margin: 0 10px; color: #444;">|</span>
+                    Redondo, Portugal
+                </div>
+                
+                <div style="font-size: 0.8rem; color: #444; margin-top: 10px;">
+                    SYSTEM STATUS: STABLE // 2025
+                </div>
+            </div>
+        </footer>
+
+    </main>
+
+    <script>
+        /**
+         * 1. PHYSICS & BACKGROUND ENGINE (Singularity)
+         */
+        const canvas = document.getElementById('singularity-canvas');
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let particles = [];
+        
+        let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+        
+        window.addEventListener('mousemove', e => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
+
+        function resize() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = width;
+            canvas.height = height;
+        }
+        window.addEventListener('resize', () => { resize(); initParticles(); });
+
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                // Random position across entire screen
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.size = Math.random() * 2 + 0.5;
+                this.baseSize = this.size;
+                this.originX = this.x;
+                this.originY = this.y;
+                
+                // Random subtle movement
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                
+                this.color = Math.random() > 0.85 ? '#c5a059' : '#444'; 
+            }
+
+            update() {
+                // Standard Drift
+                this.x += this.vx;
+                this.y += this.vy;
+
+                // Wrap around screen
+                if(this.x < 0) this.x = width;
+                if(this.x > width) this.x = 0;
+                if(this.y < 0) this.y = height;
+                if(this.y > height) this.y = 0;
+
+                // REPULSION PHYSICS
+                let dx = mouse.x - this.x;
+                let dy = mouse.y - this.y;
+                let distance = Math.sqrt(dx*dx + dy*dy);
+                let repulsionRadius = 150;
+
+                if (distance < repulsionRadius) {
+                    let force = (repulsionRadius - distance) / repulsionRadius;
+                    
+                    // Push away logic
+                    this.x -= (dx / distance) * force * 5;
+                    this.y -= (dy / distance) * force * 5;
+                    
+                    // Grow slightly when interacting
+                    this.size = this.baseSize * 1.5;
+                } else {
+                    // Return to normal size
+                    if(this.size > this.baseSize) this.size -= 0.1;
+                }
+            }
+
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            for (let i = 0; i < 400; i++) particles.push(new Particle());
+        }
+
+        function animateSingularity() {
+            if(document.body.classList.contains('matrix-mode')) return;
+
+            ctx.fillStyle = 'rgba(3, 3, 4, 0.2)';
+            ctx.fillRect(0, 0, width, height);
+
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateSingularity);
+        }
+
+        resize();
+        initParticles();
+        animateSingularity();
+
+        /**
+         * 2. CUSTOM CURSOR LOGIC
+         */
+        const cursorDot = document.getElementById('cursor-dot');
+        const cursorRing = document.getElementById('cursor-ring');
+        
+        let cursorX = 0, cursorY = 0;
+        let ringX = 0, ringY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            cursorX = e.clientX;
+            cursorY = e.clientY;
+            cursorDot.style.left = cursorX + 'px';
+            cursorDot.style.top = cursorY + 'px';
+        });
+
+        function animateCursor() {
+            // Lerp for smoothing
+            ringX += (cursorX - ringX) * 0.15;
+            ringY += (cursorY - ringY) * 0.15;
+            cursorRing.style.left = ringX + 'px';
+            cursorRing.style.top = ringY + 'px';
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        const hoverTargets = document.querySelectorAll('a, button, .data-module, .thread-node, .hover-target, .holo-card, .skill-card');
+        hoverTargets.forEach(target => {
+            target.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
+            target.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
+        });
+
+        /**
+         * 3. HEADER SCROLL & NAV
+         */
+        let lastScroll = 0;
+        const header = document.getElementById('main-header');
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll <= 0) {
+                header.classList.remove('hidden');
+                return;
+            }
+            
+            if (currentScroll > lastScroll && currentScroll > 100) {
+                header.classList.add('hidden');
+            } else {
+                header.classList.remove('hidden');
+            }
+            lastScroll = currentScroll;
+
+            updateActiveSection();
+        });
+
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function updateActiveSection() {
+            const sections = document.querySelectorAll('section');
+            const navNodes = document.querySelectorAll('.thread-node');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= (sectionTop - 400)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navNodes.forEach(node => {
+                node.classList.remove('active');
+                if(node.getAttribute('data-target') === current) {
+                    node.classList.add('active');
+                }
+            });
+        }
+
+        /**
+         * 4. EMAIL COPY FUNCTION
+         */
+        function copyEmail() {
+            const email = "rodrigonovelo.pro@gmail.com";
+            
+            navigator.clipboard.writeText(email).then(() => {
+                // Visual feedback
+                alert("Email copied to clipboard: " + email);
+                // Also try to open mail client
+                window.location.href = "mailto:" + email;
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+                window.location.href = "mailto:" + email;
+            });
+        }
+
+        /**
+         * 5. THE MATRIX EASTER EGG & SINGLE BUTTON TOGGLE
+         */
+        const matrixCanvas = document.getElementById('matrix-canvas');
+        const mCtx = matrixCanvas.getContext('2d');
+        let matrixInterval;
+        let isMatrixActive = false;
+
+        matrixCanvas.width = window.innerWidth;
+        matrixCanvas.height = window.innerHeight;
+
+        const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプ0123456789Z';
+        const characters = katakana.split("");
+        const fontSize = 16;
+        const columns = matrixCanvas.width / fontSize;
+        const drops = []; 
+
+        for(let x = 0; x < columns; x++) drops[x] = 1;
+
+        function drawMatrix() {
+            mCtx.fillStyle = "rgba(0, 0, 0, 0.05)";
+            mCtx.fillRect(0, 0, matrixCanvas.width, matrixCanvas.height);
+
+            mCtx.fillStyle = "#0F0";
+            mCtx.font = fontSize + "px monospace";
+
+            for(let i = 0; i < drops.length; i++) {
+                const text = characters[Math.floor(Math.random() * characters.length)];
+                mCtx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if(drops[i] * fontSize > matrixCanvas.height && Math.random() > 0.975)
+                    drops[i] = 0;
+                
+                drops[i]++;
+            }
+        }
+
+        function toggleMatrixMode() {
+            const btn = document.getElementById('matrix-toggle-btn');
+            
+            // If already active, act as "Restore Reality"
+            if (isMatrixActive) {
+                restoreReality();
+                return;
+            }
+            
+            // ACTIVATE MATRIX
+            isMatrixActive = true;
+            document.body.classList.add('matrix-mode');
+            
+            // Change Button to Restore
+            btn.innerText = "RESTORE REALITY";
+            
+            // Visual Updates
+            matrixCanvas.style.opacity = '1';
+            document.getElementById('singularity-canvas').style.opacity = '0.2';
+            document.getElementById('main-content').classList.add('glitch-layer');
+            
+            // Text Updates
+            document.getElementById('sys-text').innerText = "SYSTEM OFFLINE // CRITICAL FAILURE";
+            document.getElementById('sys-text').classList.add('offline');
+            document.getElementById('sys-light').style.background = "#ff3333";
+            document.getElementById('sys-light').style.boxShadow = "0 0 10px #ff3333";
+            
+            // Start Loop
+            matrixInterval = setInterval(drawMatrix, 30);
+        }
+
+        function restoreReality() {
+            const btn = document.getElementById('matrix-toggle-btn');
+            
+            // DEACTIVATE MATRIX
+            isMatrixActive = false;
+            document.body.classList.remove('matrix-mode');
+            
+            // Reset Button
+            btn.innerText = "BREACH PROTOCOL";
+            
+            // Visual Resets
+            matrixCanvas.style.opacity = '0';
+            document.getElementById('singularity-canvas').style.opacity = '1';
+            document.getElementById('main-content').classList.remove('glitch-layer');
+            
+            // Text Resets
+            document.getElementById('sys-text').innerText = "SYSTEM ONLINE // PORTUGAL";
+            document.getElementById('sys-text').classList.remove('offline');
+            document.getElementById('sys-light').style.background = "var(--matrix)";
+            document.getElementById('sys-light').style.boxShadow = "0 0 10px var(--matrix)";
+            
+            // Reset Opacity (in case glitch stuck)
+            document.getElementById('main-content').style.opacity = '1';
+            document.getElementById('main-content').style.pointerEvents = 'auto';
+            document.getElementById('main-content').style.filter = 'none';
+
+            // Stop Loop
+            clearInterval(matrixInterval);
+            mCtx.clearRect(0,0, matrixCanvas.width, matrixCanvas.height);
+            animateSingularity();
+        }
+
+    </script>
+</body>
+</html>
