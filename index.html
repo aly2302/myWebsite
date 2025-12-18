@@ -646,12 +646,48 @@
         .footer-contact a:hover { color: #fff; border-color: #fff; }
 
         @media (max-width: 768px) {
+            /* 1. Reset Cursor for Touch Devices */
+            * { cursor: auto !important; }
+            #cursor-dot, #cursor-ring { display: none !important; }
+
+            /* 2. Header Adjustments */
+            header { padding: 15px 20px; flex-wrap: wrap; }
+            .nav-links { display: none; } /* Kept hidden as in original */
+            .breach-btn { 
+                min-width: auto; 
+                padding: 8px 12px; 
+                font-size: 0.7rem;
+            }
+            .brand { font-size: 1rem; }
+
+            /* 3. Typography Scaling */
             h1.glitch { font-size: 3rem; }
-            .nav-links { display: none; }
-            header { justify-content: space-between; padding: 20px; }
+            h2 { font-size: 2rem !important; } /* Force smaller section headers */
+            .hud-text { font-size: 0.8rem; }
+
+            /* 4. Layout & Padding */
+            .container { padding: 0 20px; }
+            section { padding: 60px 0; }
+            
+            /* 5. Grids */
             .skills-grid { grid-template-columns: 1fr; }
-            .timeline-split-container { grid-template-columns: 1fr; }
+            .identity-grid { grid-template-columns: 1fr; }
+            
+            /* 6. Timeline Stacking */
+            .timeline-split-container { 
+                grid-template-columns: 1fr; 
+                gap: 40px;
+            }
+            .timeline-split-container::before { display: none; } /* Hide vertical line on mobile */
+            
+            /* 7. Footer */
             .footer-links { gap: 15px; flex-direction: column; }
+            
+            /* 8. Hide Side Nav (Tesseract Thread) */
+            .tesseract-thread { display: none; }
+
+            /* 9. Data Module Padding Fix */
+            .data-module { padding: 1.5rem; }
         }
 
         /* Tesseract Thread (Side Nav) */
