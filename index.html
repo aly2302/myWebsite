@@ -725,13 +725,18 @@
             left: 0;
             width: 100%;
             height: 15px;
-            background: repeating-linear-gradient(
-                -45deg,
-                var(--gold) 0,
-                var(--gold) 20px,
-                #000 20px,
-                #000 40px
+            /* SEAMLESS LOOP FIX: Tiled gradient with fixed size */
+            background-image: linear-gradient(
+                -45deg, 
+                var(--gold) 25%, 
+                #000 25%, 
+                #000 50%, 
+                var(--gold) 50%, 
+                var(--gold) 75%, 
+                #000 75%, 
+                #000 100%
             );
+            background-size: 40px 40px;
             animation: tape-scroll 2s linear infinite;
             z-index: 10;
         }
@@ -740,7 +745,7 @@
 
         @keyframes tape-scroll {
             0% { background-position: 0 0; }
-            100% { background-position: 80px 0; }
+            100% { background-position: 40px 0; }
         }
 
         .warning-shield {
