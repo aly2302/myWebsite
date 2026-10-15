@@ -24,7 +24,7 @@ Exit seam (owned by Ch1, scrub, desktop only): name and role drift up 60px and f
 hero's bottom moves from 75% to 25% of the viewport.
 
 ## Ch2 Experience (auto height)
-Entrance: heading rises once (trigger at 80% viewport). The five role points reveal one by one as
+Entrance: the five role points reveal one by one as
 they enter (stagger 0.08s, opacity + 12px), tags light gold in sequence. Earlier line: no motion.
 No exit seam; the carrier (field) carries the handoff.
 
