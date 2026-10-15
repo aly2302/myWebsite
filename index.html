@@ -98,12 +98,11 @@
         #cursor-ring {
             width: var(--cursor-size); height: var(--cursor-size);
             border: 1px solid rgba(255, 255, 255, 0.3);
-            transition: scale 0.2s, border-color 0.2s, background-color 0.2s;
+            transition: border-color 0.2s, background-color 0.2s;
         }
 
         /* Hover State for Cursor */
         body.hovering #cursor-ring {
-            scale: 1.67;
             border-color: var(--cyan);
             background-color: rgba(94, 252, 232, 0.05);
             mix-blend-mode: screen;
@@ -1264,10 +1263,14 @@
             cursorDot.style.transform = `translate3d(${cursorX - 3}px, ${cursorY - 3}px, 0)`;
         });
 
+        // Scale lives in the same transform as the position; a separate CSS scale would multiply the
+        // translation too and throw the ring away from the dot
+        let ringScale = 1;
         function animateCursor() {
             ringX += (cursorX - ringX) * 0.15;
             ringY += (cursorY - ringY) * 0.15;
-            cursorRing.style.transform = `translate3d(${ringX - 15}px, ${ringY - 15}px, 0)`;
+            ringScale += ((document.body.classList.contains('hovering') ? 1.67 : 1) - ringScale) * 0.2;
+            cursorRing.style.transform = `translate3d(${ringX - 15}px, ${ringY - 15}px, 0) scale(${ringScale})`;
             requestAnimationFrame(animateCursor);
         }
         animateCursor();

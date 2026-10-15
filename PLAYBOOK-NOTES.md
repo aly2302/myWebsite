@@ -1,5 +1,7 @@
 # Playbook notes
 
+> Merged into Website-Building-Playbook.md v3 on 2026-10-15. Kept as the history of the first run.
+
 Additions and corrections to Website-Building-Playbook.md, collected while running it in improve
 mode on this portfolio (October 2026). Merge them into the site-studio skill after the project.
 Part A is what was planned up front; part B is what the first real run showed.
@@ -143,3 +145,4 @@ Mode: new | improve. Motion level: 1 | 2 | 3. Branch: ...
 - [P8 / quality] The type-ramp advisories cleared by consolidating near-duplicate sizes (0.95 to 0.9rem, 0.85 to 0.8rem) and then recording the ramp in DESIGN.md as built, not by adding every stray value as a token.
 - [P8 / quality] Icon fonts are a large hidden cost: Font Awesome was ~376 KB for 6 icons. Pull exact SVGs from the official npm package (lucide-static) and inline them.
 - [why mistakes slipped through] Checks verified states (classes, opacity, overflow) after scripted actions, not the experience a person has (scroll back up, move the mouse across nested elements, a real mail client). Every user-found bug in this run was in that gap. The verify step needs a short real-interaction script, and the report should say which feel checks still need a human.
+- [P7 / found by the user, twice] The cursor ring still glitched after the delegation fix: the P7 swap from width/height to the CSS `scale` property multiplied the ring's translate transform, so it jumped away from the dot. The check had only read the hover class. Measure the visible outcome (ring centre vs pointer), not the state.
