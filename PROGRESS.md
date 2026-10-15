@@ -70,8 +70,8 @@ page, build the scroll moments chapter by chapter (P6), then the motion pass (P7
   "ISEC, Coimbra" with the full name below; a global mobile h2 override removed; tighter cards.
   Phone page 10,535px to 9,311px. The repo link sits inside the collapsed details on phones.
 - Fix 8, video: 12-second loop (assets/interstellar_loop.mp4, 160 KB, was 10 MB) with a 13 KB poster;
-  preload none, plays only while on screen, poster only under reduced motion. The old
-  interstellar_msg.mp4 is no longer referenced; delete it if the user agrees.
+  preload none, plays only while on screen, poster only under reduced motion. The old 10 MB
+  interstellar_msg.mp4 was deleted (still in git history).
 - Baseline screenshots in `screenshots/baseline/` (not committed).
 
 ## Deferred (don't lose these)

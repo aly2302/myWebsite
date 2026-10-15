@@ -10,8 +10,10 @@ Website-Building-Playbook.md is the process; we are in improve mode at motion le
   current phase. Never read the whole playbook.
 - Do that phase or step, running commands yourself. Stop at its gate, update PROGRESS.md,
   commit, and report. The user reviews and types "continue" for the next one.
-- Ask instead of guessing on taste or on facts missing from PRODUCT.md. The CV is the source
-  of truth for facts.
+- Decide yourself whenever there's a clearly reasonable choice that can be undone (cleanup,
+  unused files, small technical choices) and say what you did in the report.
+- Ask only about: content and facts, taste and design direction, anything that can't be undone,
+  and anything involving accounts or money. The CV is the source of truth for facts.
 - This project also tests the playbook before it becomes a skill. Whenever something was
   unclear, broke, wasted tokens, needed a workaround or had to be adapted for vanilla HTML,
   add one line to PLAYBOOK-NOTES.md part C: "[phase/step] note". Never edit the playbook itself.
