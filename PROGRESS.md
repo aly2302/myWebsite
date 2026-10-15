@@ -6,7 +6,7 @@ Branch: `redesign`.
 
 ## Current phase
 Improve step 5, polish. Work through the 10 baseline problems one at a time, stopping for
-review after each. Next up: item 1.
+review after each. Next up: item 2 (hero).
 Playbook sections to read: "Improving a site you already built".
 Critique backlog: `.impeccable/critique/2026-10-15T00-29-18Z__index-html.md` (score 15/32).
 
@@ -35,7 +35,8 @@ Critique backlog: `.impeccable/critique/2026-10-15T00-29-18Z__index-html.md` (sc
 8. Video: poster, lazy load, smaller file (optimize)
 9. Blog to one line, page ends on contact, footer year (distill)
 10. Contrast, gradient-text name, token drift, inline styles (polish)
-Then: re-run `/impeccable critique`, then step 6 (retrofit motion: SCROLL_SCRIPT.md, then P6).
+Then: re-run `/impeccable critique`, then step 6 (Level 2 motion): SCROLL_SCRIPT.md for the cleaned-up
+page, build the scroll moments chapter by chapter (P6), then the motion pass (P7) and quality (P8).
 
 ## Done
 - Step 1, protect: work committed, `redesign` branch created.
@@ -43,9 +44,13 @@ Then: re-run `/impeccable critique`, then step 6 (retrofit motion: SCROLL_SCRIPT
 - Step 3, record: PRODUCT.md (`/impeccable init`, updated from the October 2026 CV),
   DESIGN.md + .impeccable/design.json (`/impeccable document`).
 - Step 4, baseline: detect (35 findings) + dual-agent critique, 15/32.
+- Fix 1, content: Experience section (Closer) after the hero, winery demoted to an "Earlier" line,
+  3 new projects + DOI, skills rebuilt from the CV (6 groups, frontend first), certifications and
+  languages in the education block. Order is now home, experience, projects, skills, education, blog.
 - Baseline screenshots in `screenshots/baseline/` (not committed).
 
 ## Open questions
+- Omitted "SPMS Design System" from the Closer tags: it names the client. Add it back if that's fine.
 - Signature move (one sentence for CLAUDE.md): decide during step 6.
 
 ## Before merging to main

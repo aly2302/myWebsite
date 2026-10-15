@@ -100,3 +100,12 @@ Mode: new | improve. Motion level: 1 | 2 | 3. Branch: ...
    once before falling back to a degraded single-context run.
 8. **The critique reads facts from PRODUCT.md, not the page.** With an outdated page, its top
    problems are content gaps. That's correct, but it means content is always fix 1 in improve mode.
+
+## C. Running log (one line per note)
+
+- [improve 5 / fix 1] The Impeccable design hook re-reports every pre-existing finding after each edit and goes silent after 6 edits per session; during one-fix-at-a-time polish it's mostly noise. Run `npx impeccable detect` once at the end of each fix instead.
+- [improve 5 / fix 1] The dev server had stopped between sessions and the first screenshot round came back blank (HTTP 000). Check the server responds before screenshotting.
+- [improve 5 / fix 1] Fix boundaries overlap: adding the Experience section forced nav and side-nav changes that fix 6 (labels) will redo. In improve mode, merge "content" and "section labels" into one fix.
+- [improve 5 / fix 1] A content-from-CV fix needed only craft-floor.md, not the clarify/distill references. Skip command references for pure content fixes to save tokens.
+- [improve 5 / fix 1] The CV named the client's design system (SPMS). Add to the playbook: check CV facts against confidentiality before publishing them.
+- [improve 5 / fix 1] Content-first makes the phone page longer before adapt shortens it (6,800px to 9,900px). Expected; don't judge mobile until the adapt fix.

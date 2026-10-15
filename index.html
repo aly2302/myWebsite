@@ -395,7 +395,7 @@
          */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             width: 100%;
         }
@@ -471,6 +471,160 @@
             background: rgba(255, 255, 255, 0.05);
             transform: translateY(-5px);
             border-color: var(--gold);
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            margin-bottom: 4rem;
+            color: #fff;
+        }
+
+        .module-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .module-title {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            color: #fff;
+            line-height: 1.2;
+        }
+
+        .role-org {
+            display: block;
+            margin-top: 10px;
+            color: var(--gold);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .date-tag {
+            font-size: 0.8rem;
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            padding: 5px 10px;
+            white-space: nowrap;
+        }
+
+        .module-lede {
+            margin: 1.5rem 0;
+            color: var(--text-main);
+            font-size: 1.1rem;
+            max-width: 70ch;
+        }
+
+        .role-points {
+            list-style: none;
+            display: grid;
+            gap: 12px;
+            max-width: 75ch;
+            margin-bottom: 2rem;
+        }
+
+        .role-points li {
+            position: relative;
+            padding-left: 24px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .role-points li::before {
+            content: '>';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+        }
+
+        .tag-row { display: flex; flex-wrap: wrap; }
+
+        .earlier-role {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 8px 24px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        .earlier-role strong { color: var(--text-main); font-weight: 400; }
+        .earlier-label {
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-size: 0.8rem;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .project-grid .data-module {
+            margin-bottom: 0;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-kind {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .project-title {
+            font-family: var(--font-display);
+            font-size: 1.05rem;
+            color: #fff;
+            line-height: 1.4;
+            margin-bottom: 1rem;
+        }
+
+        .project-desc {
+            color: var(--text-main);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .doi {
+            display: block;
+            margin-top: 8px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .skill-icon { color: var(--text-muted); }
+
+        .cert-list {
+            list-style: none;
+            display: grid;
+            gap: 16px;
+            color: var(--text-main);
+            font-size: 0.95rem;
+        }
+        .cert-issuer {
+            display: block;
+            color: var(--cyan);
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .lang-line {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px dashed rgba(255, 255, 255, 0.2);
+            color: var(--text-muted);
+            font-size: 0.9rem;
         }
 
         .module-content-hidden {
@@ -885,7 +1039,10 @@
             .skills-grid { grid-template-columns: 1fr; }
 
             .data-module { padding: 1.5rem; }
-            .data-module h3 { font-size: 1.4rem !important; margin-bottom: 10px; }
+            .data-module h3:not(.project-title) { font-size: 1.4rem !important; margin-bottom: 10px; }
+            .section-title { font-size: 2rem; margin-bottom: 2.5rem; }
+            .project-grid { grid-template-columns: 1fr; }
+            .date-tag { white-space: normal; }
             .module-content-hidden div { grid-template-columns: 1fr !important; }
             .data-module a.hover-target { display: block; margin: 20px 0 0 0 !important; }
 
@@ -931,8 +1088,9 @@
 
     <div class="tesseract-thread">
         <div class="thread-node" onclick="scrollToSection('home')" data-target="home"></div>
-        <div class="thread-node" onclick="scrollToSection('skills')" data-target="skills"></div>
+        <div class="thread-node" onclick="scrollToSection('experience')" data-target="experience"></div>
         <div class="thread-node" onclick="scrollToSection('projects')" data-target="projects"></div>
+        <div class="thread-node" onclick="scrollToSection('skills')" data-target="skills"></div>
         <div class="thread-node" onclick="scrollToSection('timeline')" data-target="timeline"></div>
         <div class="thread-node" onclick="scrollToSection('blog-incoming')" data-target="blog-incoming" style="border-color: var(--gold);"></div>
     </div>
@@ -941,8 +1099,9 @@
         <div class="brand">R // NOVELO</div>
         <nav class="nav-links">
             <a href="#home" class="nav-link">Home</a>
-            <a href="#skills" class="nav-link">Skills</a>
+            <a href="#experience" class="nav-link">Work</a>
             <a href="#projects" class="nav-link">Systems</a>
+            <a href="#skills" class="nav-link">Skills</a>
             <a href="#timeline" class="nav-link">Log</a>
             <a href="#blog-incoming" class="nav-link" style="color: var(--gold);">Blog</a>
         </nav>
@@ -985,74 +1144,47 @@
             </div>
         </section>
 
-        <section id="skills">
+        <section id="experience">
             <div class="container">
-                <div class="hud-text">tech stack</div>
-                <h2 style="font-family: var(--font-display); font-size: 3rem; margin-bottom: 4rem; color: #fff;">TECHNICAL SKILLS</h2>
-                
-                <div class="skills-grid">
-                    
-                    <div class="skill-card">
-                        <div class="skill-header">
-                            <span>CORE PROGRAMMING</span>
-                            <i class="fa-solid fa-code" style="color: #666;"></i>
+                <h2 class="section-title">EXPERIENCE</h2>
+
+                <article class="data-module role-card hover-target">
+                    <div class="module-head">
+                        <div>
+                            <h3 class="module-title">FRONTEND DEVELOPER</h3>
+                            <span class="role-org">Closer Consulting · Lisbon</span>
                         </div>
-                        <div class="skill-list">
-                            <span class="skill-pill">Python</span>
-                            <span class="skill-pill">C / C++</span>
-                            <span class="skill-pill">C#</span>
-                            <span class="skill-pill">SQL</span>
-                            <span class="skill-pill">JavaScript</span>
-                        </div>
+                        <span class="date-tag">APR 2026 – PRESENT</span>
                     </div>
 
-                    <div class="skill-card">
-                        <div class="skill-header">
-                            <span>NETWORK & SECURITY</span>
-                            <i class="fa-solid fa-network-wired" style="color: #666;"></i>
-                        </div>
-                        <div class="skill-list">
-                            <span class="skill-pill">Cisco Packet Tracer</span>
-                            <span class="skill-pill">Wireshark</span>
-                            <span class="skill-pill">GNS3</span>
-                            <span class="skill-pill">Kali Linux</span>
-                            <span class="skill-pill">TCP/IP Stack</span>
-                            <span class="skill-pill">Firewalls & ACLs</span>
-                            <span class="skill-pill">Routing & Switching</span>
-                        </div>
-                    </div>
+                    <p class="module-lede">
+                        Building an enterprise healthcare web platform in Angular, with responsive experiences across mobile and desktop.
+                    </p>
 
-                    <div class="skill-card">
-                        <div class="skill-header">
-                            <span>AI & BACKEND</span>
-                            <i class="fa-solid fa-brain" style="color: #666;"></i>
-                        </div>
-                        <div class="skill-list">
-                            <span class="skill-pill">Generative AI (LLMs)</span>
-                            <span class="skill-pill">RAG Pipelines</span>
-                            <span class="skill-pill">PyTorch</span>
-                            <span class="skill-pill">Flask (RESTful)</span>
-                            <span class="skill-pill">Redis</span>
-                            <span class="skill-pill">Google Cloud APIs</span>
-                        </div>
-                    </div>
+                    <ul class="role-points">
+                        <li>Build responsive Angular modules with Standalone Components and Signals.</li>
+                        <li>Deliver end-to-end features: reactive forms, dynamic routing and reusable UI directives.</li>
+                        <li>Integrate Swagger/OpenAPI REST endpoints (auth, pagination, file exports) and WebSocket feeds, and report backend contract gaps.</li>
+                        <li>Fix bugs and improve performance by resolving memory leaks and UI permission issues.</li>
+                        <li>Ship through Azure DevOps, reviewing pull requests and testing new features.</li>
+                    </ul>
 
-                    <div class="skill-card">
-                        <div class="skill-header">
-                            <span>OPS & INFRASTRUCTURE</span>
-                            <i class="fa-solid fa-server" style="color: #666;"></i>
-                        </div>
-                        <div class="skill-list">
-                            <span class="skill-pill">Docker</span>
-                            <span class="skill-pill">Ansible</span>
-                            <span class="skill-pill">Linux / Bash</span>
-                            <span class="skill-pill">Git</span>
-                            <span class="skill-pill">Nginx / Apache</span>
-                            <span class="skill-pill">Prometheus & Grafana</span>
-                            <span class="skill-pill">VMware</span>
-                        </div>
+                    <div class="tag-row">
+                        <span class="tech-tag">Angular</span>
+                        <span class="tech-tag">TypeScript</span>
+                        <span class="tech-tag">RxJS</span>
+                        <span class="tech-tag">SCSS</span>
+                        <span class="tech-tag">PrimeNG</span>
+                        <span class="tech-tag">OIDC / JWT</span>
+                        <span class="tech-tag">Power BI Embedded</span>
+                        <span class="tech-tag">STOMP / WebSockets</span>
                     </div>
+                </article>
 
+                <div class="earlier-role">
+                    <span class="earlier-label">Earlier</span>
+                    <span><strong>Production Assistant</strong>, Casa Relvas Winery</span>
+                    <span>Summers 2023 &amp; 2024</span>
                 </div>
             </div>
         </section>
@@ -1060,17 +1192,17 @@
         <section id="projects">
             <div class="container">
                 <div class="hud-text">ARCHIVE ACCESS</div>
-                <h2 style="font-family: var(--font-display); font-size: 3rem; margin-bottom: 4rem; color: #fff;">DEPLOYED WORK</h2>
-                
+                <h2 class="section-title">PROJECTS</h2>
+
                 <div class="data-module hover-target" style="border-left: 3px solid var(--gold);">
-                    <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 10px;">
-                        <h3 style="font-family: var(--font-display); font-size: 1.8rem; color: #fff; line-height: 1.2;">GEN_AI EMAIL ASSISTANT</h3>
-                        <span style="font-size: 0.8rem; color: var(--gold); border: 1px solid var(--gold); padding: 5px 10px;">[03/2025 - 08/2025]</span>
+                    <div class="module-head">
+                        <h3 class="module-title">AI EMAIL ASSISTANT</h3>
+                        <span class="date-tag">MAR 2025 – JUL 2025</span>
                     </div>
-                    
+
                     <p style="margin: 1.5rem 0; color: #ccc; font-size: 1.1rem;">
-                        <span class="citation-badge">REF: BACHELOR_PROJECT</span>
-                        A privacy-focused email drafting agent leveraging LLMs and RAG to ground responses in user history.
+                        <span class="citation-badge">FINAL-YEAR PROJECT · ISEC</span>
+                        A privacy-focused email drafting agent leveraging LLMs and RAG to ground responses in user history. It led to a peer-reviewed publication.
                     </p>
 
                     <div class="module-content-hidden">
@@ -1090,7 +1222,7 @@
                                     <strong>Adaptive Feedback:</strong> Implemented logic that analyzes user edits to automatically infer and update behavioral rules.
                                 </p>
                                 <p style="font-size: 0.95rem; color: #aaa; margin-top: 10px;">
-                                    <strong>Dual Modes:</strong> Collaborative Web Dashboard and an autonomous Background Agent.
+                                    <strong>Dual Modes:</strong> A web dashboard for manual review, secured with OAuth 2.0, and an autonomous background agent running on Celery and Redis.
                                 </p>
                             </div>
                         </div>
@@ -1121,9 +1253,144 @@
                     <div style="font-size: 1rem; color: #bbb;">
                         <span style="color: var(--text-muted);">Novelo, R., Silva, R. R., & Bernardino, J.</span> <br>
                         <span style="color: #fff; border-bottom: 1px dotted var(--cyan); display:inline-block; margin-top:5px;">MDPI Future Internet, Vol 17(12), 536</span>
+                        <span class="doi">DOI 10.3390/fi17120536</span>
                     </div>
                 </a>
 
+                <div class="project-grid">
+                    <article class="data-module hover-target">
+                        <span class="project-kind">Personal project</span>
+                        <h3 class="project-title">SELF-HOSTED LLM PLATFORM</h3>
+                        <p class="project-desc">Serves a quantized 8B model locally behind a streaming API with caching, auth and PII redaction. Fine-tuned with LoRA on a single GPU and validated on a held-out benchmark; a regression-testing pipeline blocks prompt or model changes that lower output quality.</p>
+                        <div class="tag-row">
+                            <span class="tech-tag">PEFT / LoRA</span>
+                            <span class="tech-tag">Hugging Face</span>
+                            <span class="tech-tag">Streaming API</span>
+                        </div>
+                    </article>
+
+                    <article class="data-module hover-target">
+                        <span class="project-kind">Personal project</span>
+                        <h3 class="project-title">GITOPS HOME SERVER</h3>
+                        <p class="project-desc">A full self-hosted server defined as code and rebuildable from a blank OS. CI/CD deploys on every push with health checks and automatic rollback, backups are encrypted with automated restore tests, and a React dashboard shows service status and resource usage.</p>
+                        <div class="tag-row">
+                            <span class="tech-tag">Docker Compose</span>
+                            <span class="tech-tag">Ansible</span>
+                            <span class="tech-tag">CI/CD</span>
+                            <span class="tech-tag">React</span>
+                        </div>
+                    </article>
+
+                    <article class="data-module hover-target">
+                        <span class="project-kind">Personal project</span>
+                        <h3 class="project-title">TRANSFORMER &amp; BACKPROP ENGINE</h3>
+                        <p class="project-desc">Neural networks built from the ground up in PyTorch: backpropagation, gradient descent and multi-head self-attention without high-level abstractions. Custom tokenisation and preprocessing train compact language models locally, from raw text to a converged checkpoint.</p>
+                        <div class="tag-row">
+                            <span class="tech-tag">PyTorch</span>
+                            <span class="tech-tag">Self-attention</span>
+                            <span class="tech-tag">Tokenisation</span>
+                        </div>
+                    </article>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="skills">
+            <div class="container">
+                <div class="hud-text">tech stack</div>
+                <h2 class="section-title">TECHNICAL SKILLS</h2>
+
+                <div class="skills-grid">
+
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <span>FRONTEND</span>
+                            <i class="fa-solid fa-display skill-icon" aria-hidden="true"></i>
+                        </div>
+                        <div class="skill-list">
+                            <span class="skill-pill">Angular (5–20)</span>
+                            <span class="skill-pill">React</span>
+                            <span class="skill-pill">RxJS</span>
+                            <span class="skill-pill">NgRx / NgXs</span>
+                            <span class="skill-pill">HTML5</span>
+                            <span class="skill-pill">Sass</span>
+                            <span class="skill-pill">PrimeNG</span>
+                            <span class="skill-pill">Tailwind CSS</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <span>LANGUAGES</span>
+                            <i class="fa-solid fa-code skill-icon" aria-hidden="true"></i>
+                        </div>
+                        <div class="skill-list">
+                            <span class="skill-pill">TypeScript</span>
+                            <span class="skill-pill">JavaScript</span>
+                            <span class="skill-pill">Python</span>
+                            <span class="skill-pill">C / C++</span>
+                            <span class="skill-pill">Bash</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <span>BACKEND &amp; APIS</span>
+                            <i class="fa-solid fa-plug skill-icon" aria-hidden="true"></i>
+                        </div>
+                        <div class="skill-list">
+                            <span class="skill-pill">REST (OpenAPI / Swagger)</span>
+                            <span class="skill-pill">WebSockets</span>
+                            <span class="skill-pill">OAuth 2.0</span>
+                            <span class="skill-pill">Celery</span>
+                            <span class="skill-pill">Redis</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <span>AI &amp; ML</span>
+                            <i class="fa-solid fa-brain skill-icon" aria-hidden="true"></i>
+                        </div>
+                        <div class="skill-list">
+                            <span class="skill-pill">PyTorch</span>
+                            <span class="skill-pill">Hugging Face Transformers</span>
+                            <span class="skill-pill">PEFT / LoRA</span>
+                            <span class="skill-pill">RAG</span>
+                            <span class="skill-pill">LangChain</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <span>DEVOPS &amp; INFRA</span>
+                            <i class="fa-solid fa-server skill-icon" aria-hidden="true"></i>
+                        </div>
+                        <div class="skill-list">
+                            <span class="skill-pill">Git</span>
+                            <span class="skill-pill">Azure DevOps</span>
+                            <span class="skill-pill">CI/CD</span>
+                            <span class="skill-pill">Docker</span>
+                            <span class="skill-pill">Ansible</span>
+                            <span class="skill-pill">Nginx</span>
+                            <span class="skill-pill">Linux (Ubuntu / Debian / Kali)</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <span>DATABASES</span>
+                            <i class="fa-solid fa-database skill-icon" aria-hidden="true"></i>
+                        </div>
+                        <div class="skill-list">
+                            <span class="skill-pill">PostgreSQL</span>
+                            <span class="skill-pill">MySQL</span>
+                            <span class="skill-pill">SQLite</span>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </section>
 
@@ -1151,25 +1418,25 @@
                                 <div class="holo-card edu">
                                     <span class="time-stamp-holo">09/2021 - 10/2025</span>
                                     <h2 class="edu-institution-hero">Instituto Superior de Engenharia de Coimbra (ISEC)</h2>
-                                    <span class="edu-degree">B.SC. COMPUTER ENGINEERING</span>
+                                    <span class="edu-degree">B.SC. COMPUTER ENGINEERING · NETWORKS AND SYSTEMS ADMINISTRATION</span>
                                     <p style="color: #aaa; font-size: 0.95rem; margin-top: 15px;">
-                                        Comprehensive training in Networks and Systems Administration. Focus on Network Design, Linux/Windows OS, Security, and Performance Monitoring.
+                                        Network design, Linux and Windows systems, security and performance monitoring, alongside web programming and object-oriented programming. Final-year project: the AI Email Assistant, published in Future Internet (MDPI, 2025).
                                     </p>
                                 </div>
                             </div>
                         </div>
 
                         <div class="timeline-col">
-                            <h3 class="col-header" style="color: var(--gold);">WORK EXPERIENCE</h3>
-                            
-                            <div class="holo-beam-inner gold">
-                                <div class="holo-card work">
-                                    <span class="time-stamp-holo" style="color: var(--gold); border-color: var(--gold);">SUMMERS 2023 & 2024</span>
-                                    <h2 class="work-role">PRODUCTION ASSISTANT</h2>
-                                    <span class="edu-degree" style="color: var(--gold);">CASA RELVAS WINERY</span>
-                                    <p style="color: #aaa; font-size: 0.95rem; margin-top: 15px;">
-                                        Two consecutive summers supporting industrial-scale operations. Operated automated processing machinery and maintained quality protocols.
-                                    </p>
+                            <h3 class="col-header" style="color: var(--cyan);">CERTIFICATIONS</h3>
+
+                            <div class="holo-beam-inner blue">
+                                <div class="holo-card edu">
+                                    <ul class="cert-list">
+                                        <li><span class="cert-issuer">Cisco</span>CCNA: Introduction to Networks</li>
+                                        <li><span class="cert-issuer">Cisco</span>CCNA: Network Security</li>
+                                        <li><span class="cert-issuer">TryHackMe</span>Cyber Security 101</li>
+                                    </ul>
+                                    <p class="lang-line">Portuguese (native) · English (C2) · Spanish (B1)</p>
                                 </div>
                             </div>
                         </div>

@@ -12,7 +12,9 @@ Website-Building-Playbook.md is the process; we are in improve mode at motion le
   commit, and report. The user reviews and types "continue" for the next one.
 - Ask instead of guessing on taste or on facts missing from PRODUCT.md. The CV is the source
   of truth for facts.
-- Process lessons go in PLAYBOOK-NOTES.md, not in the playbook.
+- This project also tests the playbook before it becomes a skill. Whenever something was
+  unclear, broke, wasted tokens, needed a workaround or had to be adapted for vanilla HTML,
+  add one line to PLAYBOOK-NOTES.md part C: "[phase/step] note". Never edit the playbook itself.
 
 ## Stack (no alternatives)
 Plain HTML, CSS and vanilla JS. Vite is the dev server and bundler only.
