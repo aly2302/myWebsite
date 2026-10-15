@@ -5,10 +5,11 @@ Motion level: 2 (Polished): Lenis smooth scroll, a few scroll moments, one signa
 Branch: `redesign`.
 
 ## Current phase
-Improve step 5, polish. Work through the 10 baseline problems one at a time, stopping for
-review after each. All 10 fixes done. Next: re-run /impeccable critique, then the polish gate.
-Playbook sections to read: "Improving a site you already built".
-Critique backlog: `.impeccable/critique/2026-10-15T00-29-18Z__index-html.md` (score 15/32).
+Improve step 6 / Phase 6, motion built (Level 2). Next: P7 motion pass (review-animations,
+improve-animations, animation-performance, mobile-native), then the owner's feel-tuning rounds on a
+real phone, then P8 quality (re-document DESIGN.md, critique, audit, harden), then P9 launch.
+Playbook sections to read: "Prompt library" P7, feel-tuning, P8.
+Re-critique after polish: 24/32 (was 15/32). Detector: 15 advisories, 0 anti-patterns.
 
 ## Decisions (2026-10-15)
 - Polish, not redesign: keep the void, gold/cyan, Syncopate + Space Mono, panel language.
@@ -39,6 +40,12 @@ Then: re-run `/impeccable critique`, then step 6 (Level 2 motion): SCROLL_SCRIPT
 page, build the scroll moments chapter by chapter (P6), then the motion pass (P7) and quality (P8).
 
 ## Done
+- Polish round 2 (from the re-critique): skills as a compact list, personal projects as a ledger,
+  Education without the film clip and without nested frames, Contact ends on the email in large type,
+  skip link, live region for copy, favicon, title case, cursor hidden until the mouse moves,
+  sections no longer forced to full height, phone overflow and touch-particle fixes.
+- Motion (src/main.js): Lenis on gsap.ticker, side-nav state via ScrollTrigger, signature gold line,
+  hero SplitText intro + exit seam, reveals per SCROLL_SCRIPT.md, matchMedia desktop/mobile/reduced.
 - Step 1, protect: work committed, `redesign` branch created.
 - Step 2, set up: Vite dev server, gsap + lenis, Impeccable, playwright-cli skill, CLAUDE.md (gate 0).
 - Step 3, record: PRODUCT.md (`/impeccable init`, updated from the October 2026 CV),
@@ -89,7 +96,6 @@ page, build the scroll moments chapter by chapter (P6), then the motion pass (P7
 
 ## Open questions
 - Omitted "SPMS Design System" from the Closer tags: it names the client. Add it back if that's fine.
-- Signature move (one sentence for CLAUDE.md): decide during step 6.
 
 ## Before merging to main
 - Netlify serves the repo root with no build. Add netlify.toml (npm run build, publish dist)

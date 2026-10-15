@@ -7,20 +7,21 @@ content a recruiter reads, not a film to sit through).
 Continuity carrier: the gold particle field (`#singularity-canvas`), fixed behind the whole page.
 It's code-built, already there, and it's the "Event Horizon" of DESIGN.md.
 
-Signature move: **gravity.** Scrolling pulls the particle field toward a point, like light bending
-around Gargantua. Scroll speed sets the strength; when you stop, the field drifts back to calm.
-At the end of the page the field settles into a slow orbit around the Contact email button.
-(One sentence for CLAUDE.md: "The particle field is pulled by your scroll, like light around a
-black hole, and comes to rest orbiting the email button.")
+Signature move: **the gold line.** A gold line draws down the side rail as you scroll (a hairline
+across the top on phones and tablets), lighting each section's diamond as you reach it, and it
+ends by drawing the underline of the email address in Contact. The journey ends on the main
+action. Chosen over the particle-gravity idea after the re-critique: the canvas is too faint to
+carry a signature, and the line ties the motion to the email.
 
-How it's built: the existing particle loop moves onto gsap.ticker and reads two numbers each frame:
-`pull` (0-1, from Lenis velocity, smoothed) and `anchor` (a screen point). No new canvas.
+As built (src/main.js): `.thread-progress` scaleY / `.scroll-progress` scaleX scrubbed over the whole
+page; `.email-rule` scaleX scrubbed while Contact moves from 75% to 25% of the viewport; nodes via
+ScrollTrigger onToggle. Reduced motion: line and underline drawn in full, static.
 
 ## Ch1 Hero (100svh, not pinned)
 On load (0.9s, power3.out, once): name splits by line and rises 24px from opacity 0; the role line,
 depth line and actions follow at 0.12s steps. The particle field fades in from 0 over 1.2s.
-Exit seam (owned by Ch1, scrub, last 30% of the hero): name and role drift up 40px and fade to 0.3;
-gravity anchor sits behind the Experience heading, so the field visibly leans toward it.
+Exit seam (owned by Ch1, scrub, desktop only): name and role drift up 60px and fade to 0.3 while the
+hero's bottom moves from 75% to 25% of the viewport.
 
 ## Ch2 Experience (auto height)
 Entrance: heading rises once (trigger at 80% viewport). The five role points reveal one by one as
@@ -28,38 +29,35 @@ they enter (stagger 0.08s, opacity + 12px), tags light gold in sequence. Earlier
 No exit seam; the carrier (field) carries the handoff.
 
 ## Ch3 Projects (auto height)
-Email assistant card: top gold border draws left to right (scaleX 0 to 1) as the card enters.
-Publication card: mask reveal, `clip-path: inset(0 0 100% 0)` to `inset(0)`, scrubbed over its
-first 40% in view, cyan border leading.
-Three personal projects: enter in a single stagger (0.1s), once.
+Email assistant card: top gold rule draws left to right (scaleX 0 to 1) as the card enters.
+Publication card: mask reveal, `clip-path: inset(0 0 100% 0)` to `inset(0)`, scrubbed from 90% to
+55% of the viewport (desktop); one-shot fade on phones.
+Personal projects ledger: rows enter in one stagger (0.1s), once.
 
 ## Ch4 Skills (auto height)
-Cards don't move. Pills light up in reading order as each card enters (border to cyan for 0.4s,
-then back), once. Different from every other section's entrance on purpose.
+Rows slide in from the label side (x -16), stagger 0.06s, once. Different from every other entrance.
 
 ## Ch5 Education (auto height)
-Video frame opens like a projector: `clip-path: inset(50% 0 50% 0)` to `inset(0)`, scrubbed while
-the frame moves from 85% to 55% of the viewport. The video starts playing when fully open.
+The two cards open downward from their cyan edge (clip-path), stagger 0.15s, once.
+The film clip was removed from this section: unlicensed and unrelated to the content.
 
 ## Ch6 Contact + footer
-Gravity anchor moves to the email button; as Contact enters, `pull` eases to a steady 0.3 and the
-field settles into a slow orbit around the button. The button's border brightens once when the
-orbit forms. Footer: no motion.
+Heading, line and email address rise once; the gold underline under the address is the end of the
+signature line. Footer: no motion.
 
-## Mobile (<768px)
-Lenis on with default touch behaviour (syncTouch off). No scrubbed clip-path; publication and video
-reveal as one-shot fades. Gravity at half strength, 200 particles, anchor fixed at screen centre.
-Each section keeps one triggered entrance at most.
+## Mobile (<=1024px)
+Lenis on with default touch behaviour. No hero exit scrub; the publication fades in once. The
+signature line is a 2px hairline across the top. Other entrances as desktop.
 
 ## Reduced motion
-No Lenis smoothing, no scrub, no reveals: final states shown. Particle field static (already built
-in fix 5). Video shows its poster. Gravity off.
+No Lenis, no scrub, no reveals: final states shown, signature line drawn in full. Particle field
+static (fix 5).
 
 ## Seams at a glance
 | From -> To | Owner | Carrier | Pattern |
 | --- | --- | --- | --- |
-| Hero -> Experience | Hero, last 30% | Particle field leaning to the heading | Text drift + color continuity of the field |
-| Experience -> Projects | none (no seam) | Particle field | Simple reveals |
-| Projects -> Skills | none | Particle field | Mask reveal on the publication |
-| Skills -> Education | none | Particle field | Projector mask reveal |
-| Education -> Contact | Contact entrance | Field converges on the email button | Signature payoff |
+| Hero -> Experience | Hero exit scrub | Gold line + particle field | Text drift |
+| Experience -> Projects | none | Gold line | Simple reveals, rule draw |
+| Projects -> Skills | none | Gold line | Mask reveal on the publication |
+| Skills -> Education | none | Gold line | Clip reveal of the cards |
+| Education -> Contact | Contact | Gold line becomes the email underline | Signature payoff |

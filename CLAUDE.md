@@ -50,7 +50,8 @@ Use Context7 for current API docs before writing library code.
   a simpler mobile branch, and a reduced-motion branch that shows final states.
 
 ## Signature move
-[one sentence, filled in Phase 3]
+A gold line draws down the side rail as you scroll, lights each section, and ends by underlining
+the email address in Contact.
 
 ## Banned defaults
 Inter/system fonts for display, purple-blue gradients, centered hero over 3 cards,
