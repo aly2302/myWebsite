@@ -8,8 +8,12 @@ Website-Building-Playbook.md is the process; we are in improve mode at motion le
 ## Autopilot
 - Each session: read PROGRESS.md first, then only the playbook section it names for the
   current phase. Never read the whole playbook.
-- Do that phase or step, running commands yourself. Stop at its gate, update PROGRESS.md,
-  commit, and report. The user reviews and types "continue" for the next one.
+- Run a whole phase end to end without stopping between its steps: commit each step, verify,
+  fix what the checks show, and keep going. Stop only at a phase gate (end of polish, the drafted
+  scroll script, each finished motion chapter, end of P7, end of P8) with one report and
+  screenshots. The user types "continue" for the next phase.
+- Infer and reason before asking: use PRODUCT.md, DESIGN.md, the critique and the craft rules to
+  make the call, state the reasoning in the report, and leave it easy to undo.
 - Decide yourself whenever there's a clearly reasonable choice that can be undone (cleanup,
   unused files, small technical choices) and say what you did in the report.
 - Ask only about: content and facts, taste and design direction, anything that can't be undone,

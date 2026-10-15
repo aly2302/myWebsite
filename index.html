@@ -25,6 +25,9 @@
             --cyan: #5efce8;       
             --text-main: #f0f0f0;
             --text-muted: #989898;
+            --white: #ffffff;
+            --black: #000000;
+            --void-deep: #050505;
             
             --font-display: 'Syncopate', sans-serif;
             --font-hud: 'Space Mono', monospace;
@@ -44,7 +47,7 @@
             outline: 2px solid var(--gold);
             outline-offset: 4px;
         }
-        ::selection { background: var(--gold); color: #000; }
+        ::selection { background: var(--gold); color: var(--black); }
 
         @media (prefers-reduced-motion: reduce) {
             html { scroll-behavior: auto; }
@@ -134,7 +137,7 @@
         .event-horizon-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at center, transparent 20%, #030304 130%);
+            background: radial-gradient(circle at center, transparent 20%, var(--void) 130%);
             z-index: -1;
             pointer-events: none;
         }
@@ -167,7 +170,7 @@
             font-weight: 700;
             font-size: 1.2rem;
             letter-spacing: 2px;
-            color: #fff;
+            color: var(--white);
             white-space: nowrap;
         }
 
@@ -239,7 +242,7 @@
             text-transform: uppercase;
             letter-spacing: 0.06em;
             line-height: 1.1;
-            color: #fff;
+            color: var(--white);
             margin-bottom: 2rem;
             text-wrap: balance;
         }
@@ -276,7 +279,7 @@
         .id-btn {
             background: rgba(255,255,255,0.03);
             border: 1px solid rgba(255,255,255,0.1);
-            color: #fff;
+            color: var(--white);
             padding: 15px 25px;
             text-decoration: none;
             display: flex;
@@ -304,9 +307,9 @@
         }
         .id-btn.primary:hover {
             background: var(--gold);
-            color: #000;
+            color: var(--black);
         }
-        .id-btn.primary:hover i { color: #000; }
+        .id-btn.primary:hover i { color: var(--black); }
 
         .contact-actions {
             display: flex;
@@ -378,7 +381,7 @@
         .skill-header {
             font-family: var(--font-display);
             font-size: 1.1rem;
-            color: #fff;
+            color: var(--white);
             margin-bottom: 20px;
             padding-bottom: 10px;
             border-bottom: 2px solid rgba(255, 255, 255, 0.1);
@@ -397,7 +400,7 @@
 
         .skill-pill {
             font-size: 0.85rem;
-            color: #aaa;
+            color: var(--text-muted);
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
             padding: 5px 12px;
@@ -407,7 +410,7 @@
 
         .skill-card:hover .skill-pill {
             border-color: rgba(94, 252, 232, 0.3);
-            color: #fff;
+            color: var(--white);
             background: rgba(94, 252, 232, 0.05);
         }
         
@@ -436,7 +439,7 @@
             font-family: var(--font-display);
             font-size: 3rem;
             margin-bottom: 4rem;
-            color: #fff;
+            color: var(--white);
         }
 
         .module-head {
@@ -450,7 +453,7 @@
         .module-title {
             font-family: var(--font-display);
             font-size: 1.8rem;
-            color: #fff;
+            color: var(--white);
             line-height: 1.2;
         }
 
@@ -541,7 +544,7 @@
         .project-title {
             font-family: var(--font-display);
             font-size: 1.05rem;
-            color: #fff;
+            color: var(--white);
             line-height: 1.4;
             margin-bottom: 1rem;
         }
@@ -584,6 +587,62 @@
             font-size: 0.9rem;
         }
 
+        .feature-module { border-top: 2px solid var(--gold); }
+        .source-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--gold);
+            text-decoration: none;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid currentColor;
+            padding-bottom: 2px;
+        }
+        .source-link:hover { color: var(--text-main); }
+        .detail-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .detail-heading { color: var(--cyan); margin-bottom: 10px; font-size: 1rem; }
+        .detail-text { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 10px; }
+        .detail-text strong { color: var(--text-main); }
+        .detail-tags {
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .pub-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            color: var(--cyan);
+        }
+        .pub-label { font-size: 0.9rem; letter-spacing: 1px; font-weight: 700; }
+        .pub-title { font-size: 1.5rem; color: var(--white); margin-bottom: 1rem; line-height: 1.4; max-width: 60ch; }
+        .pub-meta { display: flex; flex-direction: column; gap: 5px; color: var(--text-muted); font-size: 1rem; }
+        .pub-journal { color: var(--text-main); border-bottom: 1px dotted var(--cyan); align-self: flex-start; }
+
+        .col-header { color: var(--cyan); }
+        .edu-desc { color: var(--text-muted); font-size: 0.95rem; margin-top: 15px; }
+
+        .footer-quote { max-width: 46ch; color: var(--text-muted); font-size: 0.95rem; font-style: italic; }
+        .footer-quote cite { display: block; margin-top: 8px; color: var(--gold); font-size: 0.8rem; font-style: normal; letter-spacing: 1px; text-transform: uppercase; }
+        .footer-sep { margin: 0 10px; color: var(--text-muted); }
+        .footer-meta {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
         .menu-toggle { display: none; }
 
         .module-details summary {
@@ -617,21 +676,13 @@
         }
         .data-module:hover .tech-tag { color: var(--gold); border-color: var(--gold); }
 
-        .status-light {
-            width: 10px; height: 10px;
-            background: #444;
-            border-radius: 50%;
-            display: inline-block;
-            margin-right: 12px;
-            transition: 0.3s;
-            flex-shrink: 0;
-        }
         
         a.publication-card {
             text-decoration: none;
             display: block;
-            border-left: 3px solid var(--cyan);
-            background: linear-gradient(90deg, rgba(94, 252, 232, 0.05) 0%, rgba(0,0,0,0) 100%);
+            border-top: 2px solid var(--cyan);
+            margin-top: 2rem;
+            background: linear-gradient(180deg, rgba(94, 252, 232, 0.05) 0%, rgba(0,0,0,0) 100%);
             cursor: none;
         }
         
@@ -664,8 +715,8 @@
             max-width: 600px;
             height: 200px;
             position: relative;
-            border: 1px solid #333;
-            background: #000;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: var(--black);
             overflow: hidden;
             border-radius: 10px 10px 0 0;
             margin-bottom: 0;
@@ -739,16 +790,15 @@
 
         .holo-card:hover { transform: scale(1.02); z-index: 10; }
 
-        .holo-card.edu { border-left: 2px solid var(--cyan); }
+        .holo-card.edu { border-left: 1px solid rgba(94, 252, 232, 0.4); }
         .holo-card.edu:hover { box-shadow: 0 0 30px rgba(94, 252, 232, 0.15); border-color: var(--cyan); }
         
-        .holo-card.work { border-left: 2px solid var(--gold); }
         .holo-card.work:hover { box-shadow: 0 0 30px rgba(197, 160, 89, 0.15); border-color: var(--gold); }
 
         .edu-institution-hero {
             font-size: 1.5rem;
             font-weight: 700;
-            color: #fff;
+            color: var(--white);
             line-height: 1.2;
             margin: 10px 0;
             font-family: var(--font-display);
@@ -756,9 +806,9 @@
         }
 
         .edu-degree { font-size: 0.9rem; color: var(--cyan); letter-spacing: 1px; display: block; }
-        .work-role { font-size: 1.3rem; color: #fff; font-family: var(--font-display); }
+        .work-role { font-size: 1.3rem; color: var(--white); font-family: var(--font-display); }
         .time-stamp-holo {
-            font-size: 0.75rem; color: #aaa; margin-bottom: 10px; display: block;
+            font-size: 0.75rem; color: var(--text-muted); margin-bottom: 10px; display: block;
             border-bottom: 1px dashed rgba(255,255,255,0.2); padding-bottom: 5px;
         }
 
@@ -769,7 +819,7 @@
         footer {
             padding: 60px 20px;
             border-top: 1px solid rgba(255,255,255,0.05);
-            background: #050505;
+            background: var(--void-deep);
             text-align: center;
         }
 
@@ -783,7 +833,7 @@
         .footer-logo {
             font-family: var(--font-display);
             font-size: 1.5rem;
-            color: #fff;
+            color: var(--white);
             letter-spacing: 3px;
         }
 
@@ -804,163 +854,12 @@
         .footer-link:hover { color: var(--gold); }
 
         .footer-contact {
-            color: #666;
+            color: var(--text-muted);
             font-size: 0.9rem;
             word-wrap: break-word;
         }
-        .footer-contact a { color: #888; text-decoration: none; border-bottom: 1px dotted #444; }
-        .footer-contact a:hover { color: #fff; border-color: #fff; }
-
-        /* * ============================================================
-         * 12. INCOMING BLOG / HAZARD PROTOCOLS
-         * ============================================================
-         */
-        #blog-incoming {
-            min-height: 80vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-
-        .hazard-container {
-            width: 100%;
-            max-width: 800px;
-            background: rgba(10, 10, 10, 0.8);
-            border: 1px solid #333;
-            position: relative;
-            padding: 4rem 2rem;
-            text-align: center;
-            backdrop-filter: blur(5px);
-            overflow: hidden;
-            box-shadow: 0 0 50px rgba(0,0,0,0.5);
-        }
-
-        .hazard-tape {
-            position: absolute;
-            left: 0;
-            width: 100%;
-            height: 15px;
-            /* SEAMLESS LOOP FIX: Tiled gradient with fixed size */
-            background-image: linear-gradient(
-                -45deg, 
-                var(--gold) 25%, 
-                #000 25%, 
-                #000 50%, 
-                var(--gold) 50%, 
-                var(--gold) 75%, 
-                #000 75%, 
-                #000 100%
-            );
-            background-size: 40px 40px;
-            animation: tape-scroll 2s linear infinite;
-            z-index: 10;
-        }
-        .hazard-tape.top { top: 0; border-bottom: 2px solid #000; }
-        .hazard-tape.bottom { bottom: 0; border-top: 2px solid #000; animation-direction: reverse; }
-
-        @keyframes tape-scroll {
-            0% { background-position: 0 0; }
-            100% { background-position: 40px 0; }
-        }
-
-        .warning-shield {
-            font-size: 5rem;
-            color: var(--gold);
-            margin-bottom: 2rem;
-            position: relative;
-            display: inline-block;
-        }
-        
-        .warning-shield i {
-            filter: drop-shadow(0 0 15px rgba(197, 160, 89, 0.4));
-            animation: warning-pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes warning-pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.6; transform: scale(0.95); }
-        }
-
-        .lock-icon {
-            position: absolute;
-            bottom: -10px;
-            right: -10px;
-            font-size: 2rem;
-            color: var(--void);
-            background: var(--gold);
-            border-radius: 50%;
-            width: 50px; height: 50px;
-            display: flex; align-items: center; justify-content: center;
-            border: 3px solid #000;
-        }
-
-        .construction-title {
-            font-family: var(--font-display);
-            font-size: 2rem;
-            color: #fff;
-            margin-bottom: 1rem;
-            letter-spacing: 2px;
-        }
-        
-        .construction-desc {
-            color: var(--text-muted);
-            font-size: 1rem;
-            max-width: 500px;
-            margin: 0 auto 30px auto;
-        }
-
-        .load-bar-container {
-            width: 100%;
-            max-width: 400px;
-            height: 4px;
-            background: rgba(255,255,255,0.1);
-            margin: 0 auto;
-            position: relative;
-            overflow: hidden;
-        }
-        .load-bar-fill {
-            position: absolute;
-            top: 0; left: 0;
-            height: 100%;
-            width: 40%;
-            background: var(--gold);
-            box-shadow: 0 0 15px var(--gold);
-            animation: construction-load 2s ease-in-out infinite alternate;
-        }
-        
-        @keyframes construction-load {
-            0% { left: 0; width: 20%; }
-            100% { left: 80%; width: 20%; }
-        }
-
-        .terminal-status {
-            font-family: var(--font-hud);
-            font-size: 0.8rem;
-            color: var(--gold);
-            margin-top: 15px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .blink-underscore { animation: blink 1s infinite; }
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-
-        .scan-line {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 2px;
-            background: var(--error);
-            box-shadow: 0 0 10px var(--error);
-            opacity: 0.5;
-            animation: laser-scan 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-            pointer-events: none;
-        }
-        @keyframes laser-scan {
-            0% { top: 0%; opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { top: 100%; opacity: 0; }
-        }
+        .footer-contact a { color: var(--text-main); text-decoration: none; border-bottom: 1px dotted rgba(255, 255, 255, 0.3); }
+        .footer-contact a:hover { color: var(--gold); border-color: var(--gold); }
 
         /* Tesseract Thread (Side Nav) */
         .tesseract-thread {
@@ -977,7 +876,7 @@
         }
         .thread-node.active {
             background: var(--gold); border-color: var(--gold);
-            box-shadow: 0 0 15px var(--gold); width: 12px; height: 12px;
+            width: 12px; height: 12px;
         }
 
         /* * ============================================================
@@ -1055,8 +954,7 @@
             .section-title { font-size: 2rem; margin-bottom: 2.5rem; }
             .project-grid { grid-template-columns: 1fr; }
             .date-tag { white-space: normal; }
-            .module-content-hidden div { grid-template-columns: 1fr !important; }
-            .data-module a.hover-target { display: block; margin: 20px 0 0 0 !important; }
+            .detail-grid { grid-template-columns: 1fr; }
 
             .timeline-split-container { 
                 grid-template-columns: 1fr; 
@@ -1069,10 +967,9 @@
             .holo-card { padding: 20px; }
 
             .footer-links { gap: 15px; flex-direction: column; }
+            .footer-contact { display: flex; flex-direction: column; gap: 6px; }
+            .footer-contact .footer-sep { display: none; }
             
-            .hazard-container { padding: 3rem 1rem; }
-            .warning-shield { font-size: 3.5rem; }
-            .construction-title { font-size: 1.5rem; }
         }
 
         @media (max-width: 400px) {
@@ -1081,7 +978,7 @@
             
             .tech-tag { padding: 4px 8px; font-size: 0.7rem; }
             
-            .construction-desc, p { font-size: 0.9rem; }
+            p { font-size: 0.9rem; }
         }
 
     </style>
@@ -1105,7 +1002,6 @@
             <a href="#projects" class="nav-link">Projects</a>
             <a href="#skills" class="nav-link">Skills</a>
             <a href="#education" class="nav-link">Education</a>
-            <a href="#blog-incoming" class="nav-link">Blog</a>
             <a href="#contact" class="nav-link">Contact</a>
         </nav>
     </header>
@@ -1116,7 +1012,6 @@
         <button type="button" class="thread-node" data-target="projects" aria-label="Go to Projects" title="Projects"></button>
         <button type="button" class="thread-node" data-target="skills" aria-label="Go to Skills" title="Skills"></button>
         <button type="button" class="thread-node" data-target="education" aria-label="Go to Education" title="Education"></button>
-        <button type="button" class="thread-node" data-target="blog-incoming" aria-label="Go to Blog" title="Blog"></button>
         <button type="button" class="thread-node" data-target="contact" aria-label="Go to Contact" title="Contact"></button>
     </nav>
 
@@ -1199,68 +1094,54 @@
             <div class="container">
                 <h2 class="section-title">PROJECTS</h2>
 
-                <div class="data-module hover-target" style="border-left: 3px solid var(--gold);">
+                <article class="data-module feature-module hover-target">
                     <div class="module-head">
                         <h3 class="module-title">AI EMAIL ASSISTANT</h3>
                         <span class="date-tag">MAR 2025 – JUL 2025</span>
                     </div>
 
-                    <p style="margin: 1.5rem 0; color: #ccc; font-size: 1.1rem;">
+                    <p class="module-lede">
                         <span class="citation-badge">FINAL-YEAR PROJECT · ISEC</span>
                         A privacy-focused email drafting agent leveraging LLMs and RAG to ground responses in user history. It led to a peer-reviewed publication.
                     </p>
 
+                    <a href="https://github.com/aly2302/email-assistant-llm" target="_blank" rel="noopener" class="source-link hover-target"><i class="fa-brands fa-github" aria-hidden="true"></i> View source on GitHub</a>
+
                     <details class="module-details" open>
                         <summary>Architecture and stack</summary>
-                    <div class="module-content-hidden">
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
-                            <div>
-                                <h4 style="color: var(--cyan); margin-bottom: 10px;">> ARCHITECTURE</h4>
-                                <p style="font-size: 0.95rem; color: #aaa; margin-bottom: 10px;">
-                                    <strong>Personalization Architecture:</strong> Designed a custom JSON ontology to define the AI's personality, social context per contact, and factual memory.
-                                </p>
-                                <p style="font-size: 0.95rem; color: #aaa;">
-                                    <strong>Hybrid Retrieval Engine:</strong> Developed a dual-search system (Vector + Keyword) to inject accurate historical data into the LLM context.
-                                </p>
+                        <div class="module-content-hidden">
+                            <div class="detail-grid">
+                                <div>
+                                    <h4 class="detail-heading">&gt; ARCHITECTURE</h4>
+                                    <p class="detail-text"><strong>Personalization Architecture:</strong> Designed a custom JSON ontology to define the AI's personality, social context per contact, and factual memory.</p>
+                                    <p class="detail-text"><strong>Hybrid Retrieval Engine:</strong> Developed a dual-search system (Vector + Keyword) to inject accurate historical data into the LLM context.</p>
+                                </div>
+                                <div>
+                                    <h4 class="detail-heading">&gt; AUTONOMOUS AGENTS</h4>
+                                    <p class="detail-text"><strong>Adaptive Feedback:</strong> Implemented logic that analyzes user edits to automatically infer and update behavioral rules.</p>
+                                    <p class="detail-text"><strong>Dual Modes:</strong> A web dashboard for manual review, secured with OAuth 2.0, and an autonomous background agent running on Celery and Redis.</p>
+                                </div>
                             </div>
-                            <div>
-                                <h4 style="color: var(--cyan); margin-bottom: 10px;">> AUTONOMOUS AGENTS</h4>
-                                <p style="font-size: 0.95rem; color: #aaa;">
-                                    <strong>Adaptive Feedback:</strong> Implemented logic that analyzes user edits to automatically infer and update behavioral rules.
-                                </p>
-                                <p style="font-size: 0.95rem; color: #aaa; margin-top: 10px;">
-                                    <strong>Dual Modes:</strong> A web dashboard for manual review, secured with OAuth 2.0, and an autonomous background agent running on Celery and Redis.
-                                </p>
-                            </div>
-                        </div>
-                        
-                        <div style="margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1);">
-                            <span class="tech-tag">Python (Celery, Redis)</span>
-                            <span class="tech-tag">Google Gemini / OAuth 2.0</span>
-                            <span class="tech-tag">SQLite / SQLAlchemy</span>
-                            <span class="tech-tag">Sentence Transformers</span>
-                            <a href="https://github.com/aly2302/email-assistant-llm" target="_blank" class="hover-target" style="margin-left: 20px; color: var(--gold); text-decoration: none; border-bottom: 1px solid var(--gold); font-weight: bold; font-size: 0.9rem; display: inline-block;">ACCESS SOURCE CODE</a>
-                        </div>
-                    </div>
-                    </details>
-                </div>
 
-                <a href="https://www.mdpi.com/1999-5903/17/12/536" target="_blank" class="data-module publication-card hover-target" style="margin-top: 2rem;">
-                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px;">
-                         <div style="display: flex; align-items: center;">
-                            <span class="status-light" style="background: var(--cyan); box-shadow: 0 0 10px var(--cyan);"></span>
-                            <h4 style="color: var(--cyan); font-family: var(--font-hud); letter-spacing: 1px; font-size: 0.9rem;">PUBLICATION · 2025</h4>
-                         </div>
-                         <i class="fa-solid fa-arrow-up-right-from-square" style="color: var(--cyan);"></i>
+                            <div class="tag-row detail-tags">
+                                <span class="tech-tag">Python (Celery, Redis)</span>
+                                <span class="tech-tag">Google Gemini / OAuth 2.0</span>
+                                <span class="tech-tag">SQLite / SQLAlchemy</span>
+                                <span class="tech-tag">Sentence Transformers</span>
+                            </div>
+                        </div>
+                    </details>
+                </article>
+
+                <a href="https://www.mdpi.com/1999-5903/17/12/536" target="_blank" rel="noopener" class="data-module publication-card hover-target">
+                    <div class="pub-head">
+                        <span class="pub-label">PUBLICATION · 2025</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
                     </div>
-                    
-                    <h3 style="font-size: 1.5rem; color: #fff; margin-bottom: 1rem; line-height: 1.4;">
-                        "A Literature Review of Personalized Large Language Models for Email Generation and Automation"
-                    </h3>
-                    
-                    <div style="font-size: 1rem; color: #bbb;">
-                        <span style="color: var(--text-muted);">Novelo, R., Silva, R. R., & Bernardino, J.</span> <br>
-                        <span style="color: #fff; border-bottom: 1px dotted var(--cyan); display:inline-block; margin-top:5px;">MDPI Future Internet, Vol 17(12), 536</span>
+                    <h3 class="pub-title">"A Literature Review of Personalized Large Language Models for Email Generation and Automation"</h3>
+                    <div class="pub-meta">
+                        <span>Novelo, R., Silva, R. R., &amp; Bernardino, J.</span>
+                        <span class="pub-journal">MDPI Future Internet, Vol 17(12), 536</span>
                         <span class="doi">DOI 10.3390/fi17120536</span>
                     </div>
                 </a>
@@ -1416,7 +1297,7 @@
                     <div class="timeline-split-container">
                         
                         <div class="timeline-col">
-                            <h3 class="col-header" style="color: var(--cyan);">DEGREE</h3>
+                            <h3 class="col-header">DEGREE</h3>
                             
                             <div class="holo-beam-inner blue">
                                 <div class="holo-card edu">
@@ -1424,7 +1305,7 @@
                                     <h2 class="edu-institution-hero">ISEC, Coimbra</h2>
                                     <span class="edu-fullname">Instituto Superior de Engenharia de Coimbra</span>
                                     <span class="edu-degree">B.SC. COMPUTER ENGINEERING · NETWORKS AND SYSTEMS ADMINISTRATION</span>
-                                    <p style="color: #aaa; font-size: 0.95rem; margin-top: 15px;">
+                                    <p class="edu-desc">
                                         Network design, Linux and Windows systems, security and performance monitoring, alongside web programming and object-oriented programming. Final-year project: the AI Email Assistant, published in Future Internet (MDPI, 2025).
                                     </p>
                                 </div>
@@ -1432,7 +1313,7 @@
                         </div>
 
                         <div class="timeline-col">
-                            <h3 class="col-header" style="color: var(--cyan);">CERTIFICATIONS</h3>
+                            <h3 class="col-header">CERTIFICATIONS</h3>
 
                             <div class="holo-beam-inner blue">
                                 <div class="holo-card edu">
@@ -1447,39 +1328,6 @@
                         </div>
 
                     </div>
-                </div>
-
-            </div>
-        </section>
-
-        <section id="blog-incoming">
-            <div class="container" style="display: flex; justify-content: center;">
-                
-                <div class="hazard-container hover-target">
-                    <div class="hazard-tape top"></div>
-                    <div class="hazard-tape bottom"></div>
-                    <div class="scan-line"></div>
-
-                    <div class="warning-shield">
-                        <i class="fa-solid fa-triangle-exclamation"></i>
-                        <div class="lock-icon">
-                            <i class="fa-solid fa-lock" style="font-size: 1.2rem;"></i>
-                        </div>
-                    </div>
-
-                    <h2 class="construction-title">blog</h2>
-                    <p class="construction-desc">
-                        This frequency is currently encrypted. The blog interface is undergoing structural rendering and security protocols.
-                    </p>
-
-                    <div class="load-bar-container">
-                        <div class="load-bar-fill"></div>
-                    </div>
-                    
-                    <div class="terminal-status">
-                        > COMPILING NEURAL PATHWAYS<span class="blink-underscore">_</span>
-                    </div>
-
                 </div>
 
             </div>
@@ -1508,9 +1356,12 @@
         <footer>
             <div class="footer-content">
                 <div class="footer-logo">R // NOVELO</div>
-                
-                <button type="button" class="matrix-egg hover-target" id="matrix-toggle-btn" aria-pressed="false" aria-label="Matrix mode" title="Matrix mode">⟁</button>
-                
+
+                <blockquote class="footer-quote">
+                    <p>"We've always defined ourselves by the ability to overcome the impossible."</p>
+                    <cite>Interstellar (2014)</cite>
+                </blockquote>
+
                 <div class="footer-links">
                     <a href="#experience" class="footer-link">Experience</a>
                     <a href="#projects" class="footer-link">Projects</a>
@@ -1520,15 +1371,18 @@
                     <a href="https://www.linkedin.com/in/rodrigo-novelo-997079332/" target="_blank" rel="noopener" class="footer-link">LinkedIn</a>
                     <a href="https://github.com/aly2302" target="_blank" rel="noopener" class="footer-link">GitHub</a>
                 </div>
-                
+
                 <div class="footer-contact">
                     <a href="mailto:rodrigonovelo.pro@gmail.com">rodrigonovelo.pro@gmail.com</a>
-                    <span style="margin: 0 10px; color: #444;">|</span>
+                    <span class="footer-sep" aria-hidden="true">|</span>
                     Redondo, Portugal
                 </div>
-                
-                <div style="font-size: 0.8rem; color: #444; margin-top: 10px;">
-                    SYSTEM STATUS: STABLE // 2025
+
+                <div class="footer-meta">
+                    <span>© <span id="year">2026</span> Rodrigo Novelo</span>
+                    <span class="footer-sep" aria-hidden="true">·</span>
+                    <span>Blog coming soon</span>
+                    <button type="button" class="matrix-egg hover-target" id="matrix-toggle-btn" aria-pressed="false" aria-label="Matrix mode" title="Matrix mode">⟁</button>
                 </div>
             </div>
         </footer>
@@ -1754,6 +1608,8 @@
         /**
          * 4. EMAIL COPY FUNCTION
          */
+        document.getElementById('year').textContent = new Date().getFullYear();
+
         const EMAIL = "rodrigonovelo.pro@gmail.com";
 
         // mailto does nothing visible when no email app is set up, so every click also copies the address

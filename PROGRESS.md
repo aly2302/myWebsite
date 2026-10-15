@@ -6,7 +6,7 @@ Branch: `redesign`.
 
 ## Current phase
 Improve step 5, polish. Work through the 10 baseline problems one at a time, stopping for
-review after each. Next up: item 9 (blog to one line, end on contact, footer + Interstellar quote).
+review after each. All 10 fixes done. Next: re-run /impeccable critique, then the polish gate.
 Playbook sections to read: "Improving a site you already built".
 Critique backlog: `.impeccable/critique/2026-10-15T00-29-18Z__index-html.md` (score 15/32).
 
@@ -72,10 +72,17 @@ page, build the scroll moments chapter by chapter (P6), then the motion pass (P7
 - Fix 8, video: 12-second loop (assets/interstellar_loop.mp4, 160 KB, was 10 MB) with a 13 KB poster;
   preload none, plays only while on screen, poster only under reduced motion. The old 10 MB
   interstellar_msg.mp4 was deleted (still in git history).
+- Fix 9, ending: blog panel removed ("Blog coming soon" line in the footer, Blog dropped from both
+  navs); page ends Contact -> footer; footer has the Interstellar quote, current year, plain meta,
+  Matrix toggle beside it.
+- Fix 10, polish: inline styles 28 -> 0, all colours via tokens (--white, --black, --void-deep added),
+  side-tab borders -> 2px top accents, static glows removed (hover glow kept by the user's hybrid
+  choice; file-scoped ignore in .impeccable/config.json), footer contrast fixed, unused CSS removed.
+  Repo link moved out of the collapsed details. Detector 35 -> 16 (14 font-size advisories and the
+  documented 10px video radius; both get recorded when DESIGN.md is re-documented at P8).
 - Baseline screenshots in `screenshots/baseline/` (not committed).
 
 ## Deferred (don't lose these)
-- Fix 9: bring the Interstellar quote back in the footer (user request, 2026-10-15).
 - Before merge: Netlify build to dist/ (see below).
 
 ## Open questions
