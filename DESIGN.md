@@ -1,43 +1,76 @@
 ---
 name: Rodrigo Novelo
-description: A cinematic sci-fi HUD portfolio, with gold and cyan instruments over a black-hole void.
+description: A quiet, cinematic portfolio on a black-hole void, with gold for action, cyan for knowledge and one gold line that carries you to the email.
 colors:
   void: "#030304"
   void-deep: "#050505"
+  black: "#000000"
+  white: "#ffffff"
   gargantua-gold: "#c5a059"
   tesseract-cyan: "#5efce8"
   matrix-green: "#00FF41"
   breach-red: "#ff3333"
   starlight: "#f0f0f0"
-  pure-white: "#ffffff"
   dust-grey: "#989898"
 typography:
   display:
     fontFamily: "Syncopate, sans-serif"
-    fontSize: "clamp(2rem, 5vw, 4rem)"
+    fontSize: "clamp(2.2rem, 6vw, 4.5rem)"
     fontWeight: 700
-    lineHeight: 1.2
-    letterSpacing: "0.1em"
+    lineHeight: 1.1
+    letterSpacing: "0.06em"
   headline:
     fontFamily: "Syncopate, sans-serif"
     fontSize: "3rem"
     fontWeight: 700
     lineHeight: 1.2
+  headline-sm:
+    fontFamily: "Syncopate, sans-serif"
+    fontSize: "2rem"
+    fontWeight: 700
+  title-lg:
+    fontFamily: "Syncopate, sans-serif"
+    fontSize: "1.8rem"
+    fontWeight: 700
+    lineHeight: 1.2
   title:
     fontFamily: "Syncopate, sans-serif"
+    fontSize: "1.4rem"
+    fontWeight: 700
+    lineHeight: 1.3
+  title-sm:
+    fontFamily: "Syncopate, sans-serif"
     fontSize: "1.1rem"
-    fontWeight: 400
+    fontWeight: 700
     letterSpacing: "2px"
+  lede:
+    fontFamily: "Space Mono, monospace"
+    fontSize: "clamp(1.1rem, 2vw, 1.4rem)"
+    lineHeight: 1.5
+  email:
+    fontFamily: "Space Mono, monospace"
+    fontSize: "clamp(1.15rem, 4.4vw, 3.4rem)"
+  glyph:
+    fontFamily: "system-ui"
+    fontSize: "1.6rem"
   body:
     fontFamily: "Space Mono, monospace"
     fontSize: "18px"
     fontWeight: 400
     lineHeight: 1.6
-  label:
+  body-sm:
+    fontFamily: "Space Mono, monospace"
+    fontSize: "1rem"
+  small:
     fontFamily: "Space Mono, monospace"
     fontSize: "0.9rem"
-    fontWeight: 700
-    letterSpacing: "0.25em"
+  label:
+    fontFamily: "Space Mono, monospace"
+    fontSize: "0.8rem"
+    letterSpacing: "1px"
+  micro:
+    fontFamily: "Space Mono, monospace"
+    fontSize: "0.75rem"
 rounded:
   none: "0px"
   hairline: "2px"
@@ -48,195 +81,199 @@ spacing:
   md: "20px"
   lg: "30px"
   xl: "40px"
-  section: "80px"
+  section: "130px"
 components:
   button-primary:
     backgroundColor: "rgba(197, 160, 89, 0.05)"
-    textColor: "{colors.pure-white}"
-    typography: "{typography.label}"
+    textColor: "{colors.white}"
     rounded: "{rounded.none}"
     padding: "15px 25px"
   button-primary-hover:
     backgroundColor: "{colors.gargantua-gold}"
-    textColor: "#000000"
+    textColor: "{colors.black}"
   button-secondary:
     backgroundColor: "rgba(255, 255, 255, 0.03)"
-    textColor: "{colors.pure-white}"
+    textColor: "{colors.white}"
     rounded: "{rounded.none}"
     padding: "15px 25px"
-  button-secondary-hover:
-    backgroundColor: "rgba(197, 160, 89, 0.1)"
-  button-breach:
-    backgroundColor: "transparent"
-    textColor: "{colors.breach-red}"
-    rounded: "{rounded.none}"
-    padding: "8px 16px"
-  button-breach-hover:
-    backgroundColor: "{colors.breach-red}"
-    textColor: "#000000"
   nav-link:
     textColor: "{colors.dust-grey}"
   nav-link-hover:
     textColor: "{colors.gargantua-gold}"
-  skill-pill:
-    backgroundColor: "rgba(255, 255, 255, 0.05)"
-    textColor: "#aaaaaa"
-    rounded: "{rounded.hairline}"
-    padding: "5px 12px"
   tech-tag:
     backgroundColor: "transparent"
     textColor: "{colors.dust-grey}"
     rounded: "{rounded.none}"
     padding: "6px 14px"
-  card-skill:
-    backgroundColor: "rgba(15, 15, 20, 0.6)"
-    rounded: "{rounded.none}"
-    padding: "25px"
   card-module:
-    backgroundColor: "rgba(20, 20, 25, 0.4)"
+    backgroundColor: "rgba(14, 14, 18, 0.82)"
     rounded: "{rounded.none}"
     padding: "3rem"
+  card-education:
+    backgroundColor: "rgba(10, 10, 15, 0.8)"
+    rounded: "{rounded.none}"
+    padding: "2rem"
+  email-display:
+    textColor: "{colors.white}"
+    typography: "{typography.email}"
 ---
 
 # Design System: Rodrigo Novelo
 
+<!-- Re-recorded from the built site on 2026-10-15 (P8). The first version recorded the incumbent HUD
+     site; this one records the polished site with Level 2 motion. -->
+
 ## Overview
 
-**Creative North Star: "The Event Horizon HUD"**
+**Creative North Star: "The Event Horizon"**
 
-The site is an astronaut's heads-up display at the edge of Gargantua. A near-black void fills the screen, with a slow particle field and a radial vignette that darkens the edges like a gravity well. On top of it, thin-bordered instrument panels carry the content: gold readouts, cyan data signals, monospace telemetry. Its references are Interstellar (the quote, the video, the tesseract side nav) and The Matrix (a hidden mode that hides the content and fills the screen with falling green code).
+A black-hole void with a slow gold particle field and an edge vignette. Content sits on dark,
+square, hairline-bordered panels and is written plainly: name, role, work, proof, contact. The
+cinematic world now lives in the material (void, gold, cyan, wide display type, monospace) and in
+the motion, not in sci-fi labels. Earlier versions used HUD language ("SYSTEM ONLINE"); that was
+removed on purpose because recruiters had to decode it.
 
-The mood is cinematic. Type is wide and spaced out for headlines and monospace for everything else, so the whole page reads like instrument output. Labels are in uppercase system language ("SYSTEM ONLINE", "ARCHIVE ACCESS", "TEMPORAL LOG"). Density is low: each section takes a full viewport and the content sits inside a 1200px column with generous space around it.
+The page reads top to bottom as one argument: who he is, the job he does now, what he built, what
+he knows, how to reach him. Density is calm: generous section spacing, a 1200px column, one primary
+action per screen.
 
-Interaction is where the panels come alive. At rest they are dark, translucent glass. When the cursor arrives (a custom gold dot with a trailing ring), borders light up gold or cyan, panels lift a few pixels and coloured light spills out.
+The signature is a **gold line**. It draws down the side rail as you scroll (a hairline across the
+top on phones), lights each section's diamond, and ends by underlining the email address in
+Contact. Everything else moves less than it.
 
 **Key Characteristics:**
-- Void-black canvas with a live particle field and an edge vignette
-- Syncopate for display, Space Mono for everything else
-- Gold for action and identity, cyan for knowledge and data, green only in Matrix mode
-- Square-cornered, hairline-bordered instrument panels
-- Glass at rest, coloured glow on interaction
-- Custom cursor on desktop, native cursor on touch
+- Void-black canvas, gold particle field, edge vignette
+- Syncopate for display and titles, Space Mono for everything else
+- Gold = action and identity; cyan = knowledge and data; green = Matrix easter egg only
+- Square, hairline-bordered panels with a thin top accent rule
+- Coloured glow only on hover; flat at rest
+- One signature motion (the gold line); section entrances differ from each other
 
 ## Colors
 
-A void-black base lit by three instrument colours, each with one job.
+A void-black base lit by two accents with one job each.
 
 ### Primary
-- **Gargantua Gold**: the main accent. Used for action and identity: the primary CTA, nav hover, HUD labels, the active side-nav node, project-card hover borders, work-experience accents and the cursor dot. A 30% alpha version (`rgba(197,160,89,0.3)`) is the gold glow.
+- **Gargantua Gold**: action and identity. The email button and display address, hover states,
+  the signature line, accent rules on project cards, date tags, ledger stack lines, the active
+  side-nav diamond.
 
 ### Secondary
-- **Tesseract Cyan**: knowledge and data. Used for skill-card hover, the publication card, education entries, the citation badge and the cursor ring on hover.
+- **Tesseract Cyan**: knowledge and data. The publication card, skills labels, education cards,
+  certification issuers.
 
 ### Tertiary
-- **Matrix Green**: the hidden channel. Only used for Matrix mode (rain canvas, toggle active state, cursor) and the "system online" status light.
-- **Breach Red**: alarm. Used for the Matrix toggle at rest, the offline status and the blog scan line.
+- **Matrix Green**: only inside the Matrix easter egg (rain, cursor).
+- **Breach Red**: reserved for errors. Not used on the page today.
 
 ### Neutral
-- **Void**: the page background and the base of every surface.
-- **Void Deep**: the footer background, one step off the void.
-- **Starlight**: default body text.
-- **Pure White**: headings, the brand mark and button labels.
-- **Dust Grey**: muted text, nav links at rest, tech tags and icons.
+- **Void** page background; **Void Deep** footer; **Black** text on gold; **White** headings;
+  **Starlight** body text; **Dust Grey** secondary text (7:1 on the void).
 
 ### Named Rules
-**The One Job Rule.** Each accent means one thing. Gold is action and identity, cyan is knowledge and data, green is Matrix mode only, red is alarm only. Don't use cyan on a CTA or gold on an education entry.
+**The One Job Rule.** Gold is action and identity, cyan is knowledge. Never swap them.
 
-**The Void Base Rule.** Every surface is the void plus transparency (`rgba(15,15,20,0.6)`, `rgba(20,20,25,0.4)`), never a lighter solid grey. Panels let the particle field show through.
+**The Void Base Rule.** Surfaces are the void plus a dark translucent fill; never a lighter solid grey.
 
 ## Typography
 
-**Display Font:** Syncopate (with sans-serif)
-**Body Font:** Space Mono (with monospace)
+**Display Font:** Syncopate (sans-serif fallback)
+**Body Font:** Space Mono (monospace fallback)
 
-**Character:** Syncopate is wide, geometric and engineered, made for titles on a mission patch. Space Mono turns every paragraph into terminal output. Together they read as a spacecraft interface, not a document.
+**Character:** Syncopate is wide and engineered, for names and titles. Space Mono sets everything
+read: copy, labels, the email address.
 
 ### Hierarchy
-- **Display** (700, clamp(2rem, 5vw, 4rem), uppercase, 0.1em tracking): the hero name only. Filled with a moving grey-to-white shine gradient (`#666 → #fff → #666`, 5s loop).
-- **Headline** (700, 3rem, 2rem on phones): section titles such as "TECHNICAL SKILLS" and "DEPLOYED WORK", in white.
-- **Title** (400, 1.1–1.8rem, 2px tracking): card headers, timeline column headers, project names, the institution name.
-- **Body** (400, 18px, line-height 1.6): paragraphs and descriptions in Starlight; Dust Grey for secondary copy.
-- **Label** (700, 0.9rem, 0.25em tracking, uppercase): HUD lines such as "SYSTEM ONLINE // PORTUGAL", led by a 40px gold rule. Nav and buttons use a lighter version (0.8–0.9rem, 1px tracking, uppercase).
+- **Display**: the hero name only.
+- **Headline** (3rem, 2rem on phones): section titles.
+- **Title-lg / Title / Title-sm** (1.8 / 1.4 / 1.1rem): card titles, the publication and
+  institution, ledger names and the brand.
+- **Lede**: the hero role line; module ledes at 1.1rem.
+- **Email**: the Contact address, set large in Space Mono.
+- **Body** (18px, line-height 1.6), **Body-sm** (1rem), **Small** (0.9rem): copy and details.
+- **Label / Micro** (0.8 / 0.75rem): date tags, stack lines, footer meta. Never below 0.75rem.
 
 ### Named Rules
-**The Telemetry Rule.** If text isn't a headline, it's in Space Mono. Syncopate never sets a paragraph.
+**The Telemetry Rule.** If it isn't a name or a title, it's in Space Mono.
 
-**The Slash Rule.** Labels separate their parts with `//` or `|` ("SYSTEM ONLINE // PORTUGAL", "WebDev | Networking | Cybersecurity"), never bullets or commas.
+**The No-Kicker Rule.** No small labels above headings. Context goes beside or below the title
+(e.g. "Closer Consulting · Lisbon" under the role).
 
 ## Layout
 
-One long single page. Sections are at least a viewport tall (`100vh`, `auto` on phones), with content centred vertically inside a 1200px column. Side padding is 40px on desktop, 25px at 1024px and 15px at 400px. Vertical padding is 80px per section (60px on phones).
+One long page: hero (100svh), Experience, Projects, Skills, Education, Contact, footer. Sections
+are content height with 130px top padding; content in a 1200px column with 40px side padding
+(25px at 1024px, 15px at 400px). Skills and Education are two-column grids that stack at 768px.
+Personal projects are a ledger: name left, description and stack right, hairline rows.
 
-Grids are fluid auto-fit: identity buttons use `minmax(200px, 1fr)` and skill cards use `minmax(250px, 1fr)`, both collapsing to one column at 768px. The timeline is a two-column split (education and work) under a centred video, stacking to one column on phones.
-
-Fixed layers, from back to front: particle canvas, vignette, content, Matrix canvas, header, side nav, cursor. The header hides on scroll down (it slides up out of view). The diamond side nav (the "tesseract thread") sits 40px from the right edge and disappears at 1024px.
-
-Breakpoints: 1024px (side nav off, smaller hero), 991px (custom cursor off), 768px (nav links hidden, single columns), 400px (tightest padding and type).
+Fixed layers back to front: particle canvas, vignette, content, Matrix canvas (off), header,
+side rail with the gold line, cursor. The header hides on scroll down and returns on scroll up.
+Phones (768px and below) get a Menu button; the side rail is replaced by a top progress hairline
+at 1024px and below.
 
 ## Elevation & Depth
 
-Hybrid: glass at rest, glow on interaction. Panels sit on the void as translucent dark glass, some with `backdrop-filter: blur(5–10px)`, so the particle field shows through. Panels don't cast shadows at rest. On hover they rise (`translateY(-3px to -5px)` or `scale(1.02)`) and give off coloured light in their accent.
-
-### Shadow Vocabulary
-- **Cyan lift** (`box-shadow: 0 10px 30px rgba(94, 252, 232, 0.1)`): skill-card hover.
-- **Accent halo** (`box-shadow: 0 0 30px rgba(94, 252, 232, 0.15)` or the gold equivalent): timeline cards on hover.
-- **Signal glow** (`box-shadow: 0 0 15px <accent>`): active states such as the Matrix toggle, the active side-nav node and the loading bar.
-- **Void sink** (`box-shadow: 0 0 50px rgba(0,0,0,0.5–0.8)`): the video frame and the blog panel, which sit deeper in the void.
+Flat at rest, light on interaction. Panels are dark translucent fills with no backdrop blur (blur
+over the animated canvas was too expensive). On hover, project panels rise 5px and their border
+turns gold; buttons fill gold. The only glow is the cyan hover on education-style cards, chosen
+by the owner ("glass at rest, glow on interaction").
 
 ### Named Rules
-**The Light-Not-Shadow Rule.** Elevation is shown with coloured light, not grey drop shadows. If a panel needs to come forward, it glows in its accent.
+**The Light-Not-Shadow Rule.** No grey drop shadows. Depth comes from borders and colour on hover.
 
 ## Shapes
 
-Square and engineered. Panels, cards and buttons have sharp 0px corners and 1px hairline borders (`rgba(255,255,255,0.08–0.15)`) that switch to an accent on hover. The few exceptions are small: skill pills at 2px, the citation badge at 4px, and the video frame rounded only on top (10px) like a projector housing. Circles appear only on lights: the status light, the cursor dot and ring, and the lock badge. Diamonds (squares rotated 45°) mark the side-nav nodes. Accent strips on the left or top edge (2–3px) tag a card's category: cyan for education and publication, gold for work.
+Square and engineered: 0px corners on panels and buttons, 1px hairline borders, 2px top accent
+rules in gold (projects) or cyan (publication, education). Small exceptions: 2px and 4px on tiny
+badges. Diamonds (rotated squares) for side-nav nodes; circles only for the cursor.
 
 ## Components
 
 ### Buttons
-Instrument switches: square, hairline-bordered, monospace uppercase.
-- **Shape:** sharp corners (0px), 1px border, icon and label centred with a 15px gap.
-- **Primary (Download CV):** gold border on a faint gold tint. On hover it fills solid gold with black text and black icon.
-- **Secondary (LinkedIn, GitHub, Email):** faint white tint, white hairline, grey icon. On hover the border and icon turn gold, the tint turns gold and the button rises 3px.
-- **Breach toggle (Matrix):** a red outlined switch in the header, 180px minimum width. On hover it fills red with a red glow. In Matrix mode it fills Matrix Green.
-
-### Chips
-- **Skill pill:** tiny 2px corners, faint white tint, grey text. They light up cyan when their card is hovered.
-- **Tech tag:** square, bold 0.8rem grey text in a hairline outline. They turn gold when the project card is hovered.
-- **Citation badge:** cyan outline, 4px corners, 0.75rem.
+- **Primary (email address in the hero):** gold hairline on a faint gold tint; fills gold with
+  black text on hover. Clicking copies the address and says so, then opens the mail app.
+- **Copy:** secondary button; label switches to "Copied" (announced to screen readers).
+- **Text links (Download CV, LinkedIn, GitHub):** uppercase Space Mono with a Lucide icon,
+  grey to gold on hover.
 
 ### Cards / Containers
-- **Corner Style:** square (0px).
-- **Background:** void glass, `rgba(15,15,20,0.6)` (skill), `rgba(20,20,25,0.4)` with 10px blur (project module) and `rgba(10,10,15,0.8)` with 5px blur (timeline).
-- **Shadow Strategy:** none at rest; accent glow on hover (see Elevation & Depth).
-- **Border:** 1px white hairline at 8–10% opacity; it switches to cyan or gold on hover.
-- **Internal Padding:** 25px (skill and timeline cards), 3rem (project modules, 1.5rem on phones).
+- **Project module:** dark fill, hairline border, gold top rule that draws in on scroll; date tag
+  top right, context line under the title, details collapsible on phones.
+- **Publication card:** same shell with a cyan top rule; opens with a scrubbed mask on desktop.
+- **Education card:** single frame, cyan top border, date tag, institution, degree.
+
+### Lists
+- **Skills list:** definition list in two columns; cyan uppercase label, starlight items.
+- **Project ledger:** hairline rows, Syncopate name, description, gold stack line.
 
 ### Navigation
-- **Header:** fixed, `rgba(3,3,4,0.85)` with 10px blur and a 5% white bottom hairline; it hides on scroll down. Brand "R // NOVELO" in Syncopate 700.
-- **Links:** Space Mono 0.9rem, uppercase, 1px tracking, Dust Grey. On hover they turn gold and a 1px gold underline grows from the left. The Blog link sits in gold permanently.
-- **Mobile:** links are hidden at 768px; only the brand and the Matrix toggle remain. There is no menu replacement.
-- **Tesseract thread:** a fixed vertical hairline on the right with a diamond node per section. The active node glows gold and grows from 8px to 12px.
+- **Header:** fixed, near-opaque void, brand left, links right (Menu button on phones).
+- **Side rail:** a hairline with a diamond per section; the gold signature line fills it as you
+  scroll and the current section's diamond fills gold (aria-current).
 
-### Custom Cursor
-A 6px gold dot with a 30px white-hairline ring that follows it. Over interactive elements, the ring grows to 50px and turns cyan with a faint cyan fill. In Matrix mode both turn green. Hidden at 991px and on touch devices.
+### Contact
+The email address in large Space Mono with a gold underline that the signature line draws, a Copy
+button, nothing else. The footer carries the Interstellar quote, links, and the Matrix glyph toggle.
 
-### Hazard Panel (blog placeholder)
-A dark glass box between two animated gold and black hazard-tape strips, with a pulsing shield icon, a gold lock badge, a red laser scan line, a looping gold loading bar and a blinking terminal underscore. It signals "locked, under construction" through the HUD language.
+### Motion (src/main.js)
+Lenis smooth scroll on gsap.ticker; hero name split by line on load; hero exit drift on desktop;
+role points, ledger rows, skills rows and education cards each enter differently; reduced motion
+shows final states with the line drawn in full.
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** set every surface as void plus transparency, and let the particle field show through.
-- **Do** keep corners square (0px) on panels and buttons; 2–4px only on tiny chips and badges.
-- **Do** use Gargantua Gold for action and identity, and Tesseract Cyan for knowledge and data (the One Job Rule).
-- **Do** use the physics ease (`cubic-bezier(0.19, 1, 0.22, 1)`) for movement such as panels and the header.
-- **Do** keep HUD language to small secondary labels inside components, with `//` separators; section names stay plain.
-- **Do** use the `:root` tokens; the current hard-coded `#fff`, `#aaa`, `#666` and `#ff4444` (the breach button, which differs from `--error #ff3333`) are drift to fold back into tokens.
+- **Do** keep surfaces as the void plus a dark translucent fill.
+- **Do** keep corners square; 2-4px only on tiny badges.
+- **Do** use gold for action and identity, cyan for knowledge (the One Job Rule).
+- **Do** use the physics ease (`cubic-bezier(0.19, 1, 0.22, 1)`) for hover movement and the header.
+- **Do** put context beside or below a title, never above it.
+- **Do** use the `:root` tokens and the type ramp above for every new colour and size.
 
 ### Don't:
-- **Don't** use grey drop shadows for elevation; use coloured light.
+- **Don't** use grey drop shadows or static glows.
 - **Don't** set paragraphs in Syncopate.
-- **Don't** use Matrix Green outside Matrix mode and the status light.
-- **Don't** round panels or buttons.
-- **Don't** fill surfaces with solid lighter greys; they break the void.
-- **Don't** put kicker or eyebrow labels above headings (decided after the October 2026 critique).
+- **Don't** use Matrix Green outside the easter egg.
+- **Don't** put kicker or eyebrow labels above headings.
+- **Don't** add backdrop blur to panels over the particle canvas.
+- **Don't** add a second signature motion; the gold line is the one.

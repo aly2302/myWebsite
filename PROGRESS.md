@@ -5,11 +5,9 @@ Motion level: 2 (Polished): Lenis smooth scroll, a few scroll moments, one signa
 Branch: `redesign`.
 
 ## Current phase
-Improve step 6 / Phase 6, motion built (Level 2). Next: P7 motion pass (review-animations,
-improve-animations, animation-performance, mobile-native), then the owner's feel-tuning rounds on a
-real phone, then P8 quality (re-document DESIGN.md, critique, audit, harden), then P9 launch.
-Playbook sections to read: "Prompt library" P7, feel-tuning, P8.
-Re-critique after polish: 24/32 (was 15/32). Detector: 15 advisories, 0 anti-patterns.
+P7 and P8 done. Next: the owner's feel-tuning rounds on a real phone, then P9 launch (metadata,
+social image, Netlify build to dist/, deploy). Playbook v3 merged from PLAYBOOK-NOTES.md.
+Level 3 choreography is a later, separate round (owner's request, 2026-10-15).
 
 ## Decisions (2026-10-15)
 - Polish, not redesign: keep the void, gold/cyan, Syncopate + Space Mono, panel language.
@@ -40,6 +38,11 @@ Then: re-run `/impeccable critique`, then step 6 (Level 2 motion): SCROLL_SCRIPT
 page, build the scroll moments chapter by chapter (P6), then the motion pass (P7) and quality (P8).
 
 ## Done
+- P7 motion pass: no backdrop blur over the canvas, cursor on transforms, explicit transitions,
+  hover-only lifts, fewer particles on small screens, delegated cursor hover state (flicker fix).
+- P8 quality: Font Awesome replaced by 6 inline Lucide SVGs, 44 dead CSS rules removed, type ramp
+  consolidated, DESIGN.md + sidecar re-recorded as built, detector 0 findings, no overflow at
+  320/375/768/1024/1440, heading order clean, reduced motion shows everything.
 - Polish round 2 (from the re-critique): skills as a compact list, personal projects as a ledger,
   Education without the film clip and without nested frames, Contact ends on the email in large type,
   skip link, live region for copy, favicon, title case, cursor hidden until the mouse moves,
@@ -90,7 +93,6 @@ page, build the scroll moments chapter by chapter (P6), then the motion pass (P7
 - Baseline screenshots in `screenshots/baseline/` (not committed).
 
 ## Deferred (don't lose these)
-- Before launch: replace the Interstellar film clip (unlicensed, see ASSETS.md). Owner decides what with.
 - After P7: feel-tuning rounds on the owner's real phone (playbook v2, Level 2).
 - Before merge: Netlify build to dist/ (see below).
 

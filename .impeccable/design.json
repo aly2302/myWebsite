@@ -1,43 +1,220 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-15T00:00:00Z",
+  "generatedAt": "2026-10-15T01:48:59.960Z",
   "title": "Design System: Rodrigo Novelo",
   "extensions": {
     "colorMeta": {
-      "void": { "role": "neutral", "displayName": "Void", "tonalRamp": ["#030304", "#0a0a0f", "#141419", "#1f1f25", "#2e2e35", "#45454d", "#6a6a72", "#9a9aa2"] },
-      "void-deep": { "role": "neutral", "displayName": "Void Deep", "tonalRamp": ["#050505", "#0d0d0d", "#171717", "#232323", "#333333", "#4a4a4a", "#6e6e6e", "#9c9c9c"] },
-      "gargantua-gold": { "role": "primary", "displayName": "Gargantua Gold", "tonalRamp": ["#2a2010", "#45361c", "#625029", "#836c37", "#a68a47", "#c5a059", "#d9c08c", "#efe3c8"] },
-      "tesseract-cyan": { "role": "secondary", "displayName": "Tesseract Cyan", "tonalRamp": ["#06302b", "#0c4d46", "#136c63", "#1d8d82", "#2fb0a3", "#44d4c5", "#5efce8", "#bffef6"] },
-      "matrix-green": { "role": "tertiary", "displayName": "Matrix Green", "tonalRamp": ["#00260a", "#004012", "#005c1b", "#007a24", "#00992d", "#00bf37", "#00ff41", "#b3ffc6"] },
-      "breach-red": { "role": "tertiary", "displayName": "Breach Red", "tonalRamp": ["#330a0a", "#551111", "#7a1818", "#a32020", "#cc2828", "#ff3333", "#ff7a7a", "#ffc7c7"] },
-      "starlight": { "role": "neutral", "displayName": "Starlight", "tonalRamp": ["#2b2b2b", "#454545", "#626262", "#808080", "#a0a0a0", "#c0c0c0", "#dedede", "#f0f0f0"] },
-      "pure-white": { "role": "neutral", "displayName": "Pure White", "tonalRamp": ["#333333", "#4d4d4d", "#666666", "#808080", "#999999", "#bfbfbf", "#e6e6e6", "#ffffff"] },
-      "dust-grey": { "role": "neutral", "displayName": "Dust Grey", "tonalRamp": ["#262626", "#3a3a3a", "#4f4f4f", "#656565", "#7d7d7d", "#989898", "#bdbdbd", "#e0e0e0"] }
+      "void": {
+        "role": "neutral",
+        "displayName": "Void",
+        "tonalRamp": [
+          "#030304",
+          "#0a0a0f",
+          "#141419",
+          "#1f1f25",
+          "#2e2e35",
+          "#45454d",
+          "#6a6a72",
+          "#9a9aa2"
+        ]
+      },
+      "void-deep": {
+        "role": "neutral",
+        "displayName": "Void Deep",
+        "tonalRamp": [
+          "#050505",
+          "#0d0d0d",
+          "#171717",
+          "#232323",
+          "#333333",
+          "#4a4a4a",
+          "#6e6e6e",
+          "#9c9c9c"
+        ]
+      },
+      "gargantua-gold": {
+        "role": "primary",
+        "displayName": "Gargantua Gold",
+        "tonalRamp": [
+          "#2a2010",
+          "#45361c",
+          "#625029",
+          "#836c37",
+          "#a68a47",
+          "#c5a059",
+          "#d9c08c",
+          "#efe3c8"
+        ]
+      },
+      "tesseract-cyan": {
+        "role": "secondary",
+        "displayName": "Tesseract Cyan",
+        "tonalRamp": [
+          "#06302b",
+          "#0c4d46",
+          "#136c63",
+          "#1d8d82",
+          "#2fb0a3",
+          "#44d4c5",
+          "#5efce8",
+          "#bffef6"
+        ]
+      },
+      "matrix-green": {
+        "role": "tertiary",
+        "displayName": "Matrix Green",
+        "tonalRamp": [
+          "#00260a",
+          "#004012",
+          "#005c1b",
+          "#007a24",
+          "#00992d",
+          "#00bf37",
+          "#00ff41",
+          "#b3ffc6"
+        ]
+      },
+      "breach-red": {
+        "role": "tertiary",
+        "displayName": "Breach Red",
+        "tonalRamp": [
+          "#330a0a",
+          "#551111",
+          "#7a1818",
+          "#a32020",
+          "#cc2828",
+          "#ff3333",
+          "#ff7a7a",
+          "#ffc7c7"
+        ]
+      },
+      "starlight": {
+        "role": "neutral",
+        "displayName": "Starlight",
+        "tonalRamp": [
+          "#2b2b2b",
+          "#454545",
+          "#626262",
+          "#808080",
+          "#a0a0a0",
+          "#c0c0c0",
+          "#dedede",
+          "#f0f0f0"
+        ]
+      },
+      "pure-white": {
+        "role": "neutral",
+        "displayName": "Pure White",
+        "tonalRamp": [
+          "#333333",
+          "#4d4d4d",
+          "#666666",
+          "#808080",
+          "#999999",
+          "#bfbfbf",
+          "#e6e6e6",
+          "#ffffff"
+        ]
+      },
+      "dust-grey": {
+        "role": "neutral",
+        "displayName": "Dust Grey",
+        "tonalRamp": [
+          "#262626",
+          "#3a3a3a",
+          "#4f4f4f",
+          "#656565",
+          "#7d7d7d",
+          "#989898",
+          "#bdbdbd",
+          "#e0e0e0"
+        ]
+      }
     },
     "typographyMeta": {
-      "display": { "displayName": "Display", "purpose": "The hero name only, with the moving grey-to-white shine." },
-      "headline": { "displayName": "Headline", "purpose": "Section titles." },
-      "title": { "displayName": "Title", "purpose": "Card headers, timeline columns, project names." },
-      "body": { "displayName": "Body", "purpose": "All paragraphs, in monospace." },
-      "label": { "displayName": "Label", "purpose": "Uppercase HUD lines led by a gold rule." }
+      "display": {
+        "displayName": "Display",
+        "purpose": "The hero name only, with the moving grey-to-white shine."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section titles."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Card headers, timeline columns, project names."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "All paragraphs, in monospace."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Uppercase HUD lines led by a gold rule."
+      }
     },
     "shadows": [
-      { "name": "cyan-lift", "value": "0 10px 30px rgba(94, 252, 232, 0.1)", "purpose": "Skill-card hover." },
-      { "name": "accent-halo", "value": "0 0 30px rgba(94, 252, 232, 0.15)", "purpose": "Timeline card hover; gold version for work entries." },
-      { "name": "signal-glow", "value": "0 0 15px var(--gold)", "purpose": "Active states: Matrix toggle, active side-nav node, loading bar." },
-      { "name": "void-sink", "value": "0 0 50px rgba(0, 0, 0, 0.8)", "purpose": "Video frame and blog panel sitting deeper in the void." }
+      {
+        "name": "cyan-lift",
+        "value": "0 10px 30px rgba(94, 252, 232, 0.1)",
+        "purpose": "Skill-card hover."
+      },
+      {
+        "name": "accent-halo",
+        "value": "0 0 30px rgba(94, 252, 232, 0.15)",
+        "purpose": "Timeline card hover; gold version for work entries."
+      },
+      {
+        "name": "signal-glow",
+        "value": "0 0 15px var(--gold)",
+        "purpose": "Active states: Matrix toggle, active side-nav node, loading bar."
+      },
+      {
+        "name": "void-sink",
+        "value": "0 0 50px rgba(0, 0, 0, 0.8)",
+        "purpose": "Video frame and blog panel sitting deeper in the void."
+      }
     ],
     "motion": [
-      { "name": "ease-physics", "value": "cubic-bezier(0.19, 1, 0.22, 1)", "purpose": "Panel and header movement." },
-      { "name": "duration-ui", "value": "0.3s", "purpose": "Colour and border changes on hover." },
-      { "name": "duration-panel", "value": "0.4s-0.5s", "purpose": "Card lift and header hide." },
-      { "name": "shine-loop", "value": "5s linear infinite", "purpose": "Hero name gradient sweep." }
+      {
+        "name": "ease-physics",
+        "value": "cubic-bezier(0.19, 1, 0.22, 1)",
+        "purpose": "Panel and header movement."
+      },
+      {
+        "name": "duration-ui",
+        "value": "0.3s",
+        "purpose": "Colour and border changes on hover."
+      },
+      {
+        "name": "duration-panel",
+        "value": "0.4s-0.5s",
+        "purpose": "Card lift and header hide."
+      },
+      {
+        "name": "shine-loop",
+        "value": "5s linear infinite",
+        "purpose": "Hero name gradient sweep."
+      },
+      {
+        "name": "signature-line",
+        "value": "scaleY/scaleX scrubbed over the page; email underline scaleX scrubbed on Contact",
+        "purpose": "The one signature motion."
+      }
     ],
     "breakpoints": [
-      { "name": "phone-sm", "value": "400px" },
-      { "name": "phone", "value": "768px" },
-      { "name": "cursor-off", "value": "991px" },
-      { "name": "tablet", "value": "1024px" }
+      {
+        "name": "phone-sm",
+        "value": "400px"
+      },
+      {
+        "name": "phone",
+        "value": "768px"
+      },
+      {
+        "name": "tablet",
+        "value": "1024px"
+      }
     ]
   },
   "components": [
@@ -58,14 +235,6 @@
       "css": ".ds-btn-secondary { display: inline-flex; align-items: center; justify-content: center; gap: 15px; padding: 15px 25px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03); color: #fff; font-family: 'Space Mono', monospace; font-size: 0.9rem; text-transform: uppercase; text-decoration: none; border-radius: 0; transition: 0.3s; } .ds-btn-secondary svg { color: #989898; transition: 0.3s; } .ds-btn-secondary:hover, .ds-btn-secondary:focus-visible { background: rgba(197,160,89,0.1); border-color: #c5a059; transform: translateY(-3px); outline: none; } .ds-btn-secondary:hover svg { color: #c5a059; }"
     },
     {
-      "name": "Breach Toggle",
-      "kind": "button",
-      "refersTo": "button-breach",
-      "description": "Header switch for Matrix mode: red outline that fills red with a glow.",
-      "html": "<button class=\"ds-btn-breach\">MATRIX</button>",
-      "css": ".ds-btn-breach { min-width: 180px; padding: 8px 16px; border: 1px solid #ff3333; background: transparent; color: #ff3333; font-family: 'Space Mono', monospace; font-size: 0.8rem; text-transform: uppercase; border-radius: 0; transition: 0.3s; cursor: pointer; } .ds-btn-breach:hover, .ds-btn-breach:focus-visible { background: #ff3333; color: #000; box-shadow: 0 0 15px #ff3333; outline: none; }"
-    },
-    {
       "name": "Navigation",
       "kind": "nav",
       "refersTo": "nav-link",
@@ -74,63 +243,67 @@
       "css": ".ds-nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background: rgba(3,3,4,0.85); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.05); } .ds-nav-brand { font-family: 'Syncopate', sans-serif; font-weight: 700; font-size: 1.2rem; letter-spacing: 2px; color: #fff; } .ds-nav-links { display: flex; gap: 30px; } .ds-nav-links a { position: relative; color: #989898; font-family: 'Space Mono', monospace; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; text-decoration: none; transition: 0.3s; } .ds-nav-links a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 1px; background: #c5a059; transition: 0.3s; } .ds-nav-links a:hover, .ds-nav-links a:focus-visible { color: #c5a059; outline: none; } .ds-nav-links a:hover::after, .ds-nav-links a:focus-visible::after { width: 100%; } .ds-nav-links a.ds-nav-gold { color: #c5a059; }"
     },
     {
-      "name": "Skill Card",
-      "kind": "card",
-      "refersTo": "card-skill",
-      "description": "Glass panel listing skills as pills; lights up cyan on hover.",
-      "html": "<div class=\"ds-card-skill\"><div class=\"ds-card-skill-head\">CORE PROGRAMMING</div><div class=\"ds-pills\"><span class=\"ds-pill\">Python</span><span class=\"ds-pill\">C / C++</span><span class=\"ds-pill\">SQL</span></div></div>",
-      "css": ".ds-card-skill { background: rgba(15,15,20,0.6); border: 1px solid rgba(255,255,255,0.1); padding: 25px; border-radius: 0; transition: all 0.4s ease; } .ds-card-skill-head { font-family: 'Syncopate', sans-serif; font-size: 1.1rem; color: #fff; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid rgba(255,255,255,0.1); transition: 0.4s; } .ds-pills { display: flex; flex-wrap: wrap; gap: 10px; } .ds-pill { font-family: 'Space Mono', monospace; font-size: 0.85rem; color: #aaa; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 5px 12px; border-radius: 2px; transition: 0.3s; } .ds-card-skill:hover { background: rgba(20,20,25,0.9); border-color: #5efce8; transform: translateY(-5px); box-shadow: 0 10px 30px rgba(94,252,232,0.1); } .ds-card-skill:hover .ds-card-skill-head { color: #5efce8; border-color: #5efce8; } .ds-card-skill:hover .ds-pill { color: #fff; border-color: rgba(94,252,232,0.3); background: rgba(94,252,232,0.05); }"
-    },
-    {
       "name": "Project Module",
       "kind": "card",
       "refersTo": "card-module",
       "description": "Large blurred glass panel for a project; turns gold on hover, along with its tech tags.",
       "html": "<div class=\"ds-module\"><h3 class=\"ds-module-title\">GEN_AI EMAIL ASSISTANT</h3><p class=\"ds-module-body\">A privacy-focused email drafting agent leveraging LLMs and RAG.</p><span class=\"ds-tag\">Python</span><span class=\"ds-tag\">Redis</span></div>",
       "css": ".ds-module { background: rgba(20,20,25,0.4); border: 1px solid rgba(255,255,255,0.08); padding: 3rem; border-radius: 0; backdrop-filter: blur(10px); transition: all 0.5s cubic-bezier(0.19,1,0.22,1); } .ds-module-title { font-family: 'Syncopate', sans-serif; font-size: 1.8rem; color: #fff; line-height: 1.2; margin: 0 0 1rem; } .ds-module-body { font-family: 'Space Mono', monospace; color: #f0f0f0; line-height: 1.6; margin: 0 0 1.5rem; } .ds-tag { display: inline-block; font-family: 'Space Mono', monospace; font-size: 0.8rem; font-weight: 700; color: #989898; border: 1px solid rgba(255,255,255,0.15); padding: 6px 14px; margin: 0 6px 6px 0; transition: 0.3s; } .ds-module:hover { background: rgba(255,255,255,0.05); border-color: #c5a059; transform: translateY(-5px); } .ds-module:hover .ds-tag { color: #c5a059; border-color: #c5a059; }"
-    },
-    {
-      "name": "HUD Label",
-      "kind": "custom",
-      "refersTo": "label",
-      "description": "Uppercase gold telemetry line led by a 40px rule and a status light.",
-      "html": "<div class=\"ds-hud\"><span class=\"ds-hud-light\"></span>SYSTEM ONLINE // PORTUGAL</div>",
-      "css": ".ds-hud { display: flex; align-items: center; gap: 15px; font-family: 'Space Mono', monospace; font-size: 0.9rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: #c5a059; } .ds-hud::before { content: ''; width: 40px; height: 1px; background: #c5a059; } .ds-hud-light { width: 10px; height: 10px; border-radius: 50%; background: #00ff41; box-shadow: 0 0 10px #00ff41; }"
     }
   ],
   "narrative": {
-    "northStar": "The Event Horizon HUD",
-    "overview": "The site is an astronaut's heads-up display at the edge of Gargantua. A near-black void fills the screen, with a slow particle field and a radial vignette that darkens the edges like a gravity well. On top of it, thin-bordered instrument panels carry the content: gold readouts, cyan data signals, monospace telemetry. Its references are Interstellar (the quote, the video, the tesseract side nav) and The Matrix (a hidden mode that hides the content and fills the screen with falling green code).\n\nThe mood is cinematic. Type is wide and spaced out for headlines and monospace for everything else, so the whole page reads like instrument output. Labels are in uppercase system language (\"SYSTEM ONLINE\", \"ARCHIVE ACCESS\", \"TEMPORAL LOG\"). Density is low: each section takes a full viewport and the content sits inside a 1200px column with generous space around it.\n\nInteraction is where the panels come alive. At rest they are dark, translucent glass. When the cursor arrives (a custom gold dot with a trailing ring), borders light up gold or cyan, panels lift a few pixels and coloured light spills out.",
+    "northStar": "The Event Horizon",
+    "overview": "A black-hole void with a slow gold particle field. Content sits on dark, square, hairline-bordered panels and is written plainly. The cinematic world lives in the material and the motion, not in sci-fi labels. The signature is a gold line that draws down the side rail as you scroll and ends by underlining the email address in Contact.",
     "keyCharacteristics": [
-      "Void-black canvas with a live particle field and an edge vignette",
-      "Syncopate for display, Space Mono for everything else",
-      "Gold for action and identity, cyan for knowledge and data, green only in Matrix mode",
-      "Square-cornered, hairline-bordered instrument panels",
-      "Glass at rest, coloured glow on interaction",
-      "Custom cursor on desktop, native cursor on touch"
+      "Void-black canvas, gold particle field, edge vignette",
+      "Syncopate for display and titles, Space Mono for everything else",
+      "Gold = action and identity; cyan = knowledge; green = Matrix easter egg only",
+      "Square hairline panels with a thin top accent rule",
+      "Coloured glow only on hover; flat at rest",
+      "One signature motion: the gold line"
     ],
     "rules": [
-      { "name": "The One Job Rule", "body": "Each accent means one thing. Gold is action and identity, cyan is knowledge and data, green is Matrix mode only, red is alarm only. Don't use cyan on a CTA or gold on an education entry.", "section": "colors" },
-      { "name": "The Void Base Rule", "body": "Every surface is the void plus transparency (rgba(15,15,20,0.6), rgba(20,20,25,0.4)), never a lighter solid grey. Panels let the particle field show through.", "section": "colors" },
-      { "name": "The Telemetry Rule", "body": "If text isn't a headline, it's in Space Mono. Syncopate never sets a paragraph.", "section": "typography" },
-      { "name": "The Slash Rule", "body": "Labels separate their parts with // or | (\"SYSTEM ONLINE // PORTUGAL\", \"WebDev | Networking | Cybersecurity\"), never bullets or commas.", "section": "typography" },
-      { "name": "The Light-Not-Shadow Rule", "body": "Elevation is shown with coloured light, not grey drop shadows. If a panel needs to come forward, it glows in its accent.", "section": "elevation" }
+      {
+        "name": "The One Job Rule",
+        "body": "Gold is action and identity, cyan is knowledge. Never swap them.",
+        "section": "colors"
+      },
+      {
+        "name": "The Void Base Rule",
+        "body": "Surfaces are the void plus a dark translucent fill; never a lighter solid grey.",
+        "section": "colors"
+      },
+      {
+        "name": "The Telemetry Rule",
+        "body": "If it is not a name or a title, it is in Space Mono.",
+        "section": "typography"
+      },
+      {
+        "name": "The No-Kicker Rule",
+        "body": "No small labels above headings; context goes beside or below the title.",
+        "section": "typography"
+      },
+      {
+        "name": "The Light-Not-Shadow Rule",
+        "body": "No grey drop shadows. Depth comes from borders and colour on hover.",
+        "section": "elevation"
+      }
     ],
     "dos": [
-      "Do set every surface as void plus transparency, and let the particle field show through.",
-      "Do keep corners square (0px) on panels and buttons; 2–4px only on tiny chips and badges.",
-      "Do use Gargantua Gold for action and identity, and Tesseract Cyan for knowledge and data (the One Job Rule).",
-      "Do use the physics ease (cubic-bezier(0.19, 1, 0.22, 1)) for movement such as panels and the header.",
-      "Do keep HUD language to small secondary labels inside components, with // separators; section names stay plain.",
-      "Do use the :root tokens; the current hard-coded #fff, #aaa, #666 and #ff4444 (the breach button, which differs from --error #ff3333) are drift to fold back into tokens."
+      "Do keep surfaces as the void plus a dark translucent fill.",
+      "Do keep corners square; 2-4px only on tiny badges.",
+      "Do use gold for action and identity, cyan for knowledge (the One Job Rule).",
+      "Do use the physics ease (cubic-bezier(0.19, 1, 0.22, 1)) for hover movement and the header.",
+      "Do put context beside or below a title, never above it.",
+      "Do use the :root tokens and the type ramp for every new colour and size."
     ],
     "donts": [
-      "Don't use grey drop shadows for elevation; use coloured light.",
+      "Don't use grey drop shadows or static glows.",
       "Don't set paragraphs in Syncopate.",
-      "Don't use Matrix Green outside Matrix mode and the status light.",
-      "Don't round panels or buttons.",
-      "Don't fill surfaces with solid lighter greys; they break the void.",
-      "Don't put kicker or eyebrow labels above headings (decided after the October 2026 critique)."
+      "Don't use Matrix Green outside the easter egg.",
+      "Don't put kicker or eyebrow labels above headings.",
+      "Don't add backdrop blur to panels over the particle canvas.",
+      "Don't add a second signature motion; the gold line is the one."
     ]
   }
 }
