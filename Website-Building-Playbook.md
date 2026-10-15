@@ -16,14 +16,12 @@ Raw prompting stalls at "good" because every session starts from zero: Claude do
 
 ## How Claude works in this system
 
-The first real run showed that the process fails less on technique than on rhythm: Claude stopped too often, asked about things it could decide, and reported too much. These rules fix that and belong in every project's CLAUDE.md.
+Great results need Claude to own the craft and you to own the taste. These rules go in every project's CLAUDE.md.
 
 - **Autopilot through PROGRESS.md.** Each session Claude reads PROGRESS.md, then only the playbook section for the current phase, never the whole playbook. It runs the phase end to end (build, verify, fix, commit) and stops only at a gate that needs you. You type "continue".
 - **Gates that stop for you:** motion level (start), brief facts (P1), references pick (P2), direction pick (P3), scroll script approval (P4), hero "oh damn" (P5), feel-tuning (after P7), launch (P9). Polish fixes, P6 chapters, the P7 motion pass and P8 quality run without stopping and end in one short report.
 - **Decision rule.** Claude decides anything reasonable and reversible (cleanup, unused files, small technical choices) and says what it did. It asks only about content and facts, taste and direction, anything that can't be undone, and anything involving accounts or money.
-- **Working style.** Fewer, bigger steps. When you report a bug, Claude fixes it directly instead of re-investigating. One short report per phase, with a few screenshots at most.
 - **New wording needs approval.** Claude's sentences can sound unlike the client. New copy may only state facts from PRODUCT.md (no invented promises such as "I reply to every message"), and new sentences are shown to you in the report.
-- **Deferred items are written down.** Anything postponed goes into PROGRESS.md's Deferred list with the phase it belongs to.
 
 **PROGRESS.md template:**
 
@@ -68,8 +66,6 @@ Four global installs, checked against each official repo on 2026-10-14 and re-ve
 
 **Check it worked:** in any folder, start Claude Code and ask "List the skills you can use." You should see the gsap skills, Emil's four and context7.
 
-**In the Claude desktop app:** `/exit` and `/model` don't exist. After installing per-project skills, start a new session so they load, and switch models in the app's model picker. Also have `ffmpeg` installed: it turns video and image prep into one command each.
-
 ## The stack
 
 One stack for every project. Each piece has one job, and two tools never own the same job; two systems fighting over scroll is the most common cause of jank.
@@ -112,8 +108,6 @@ Every project gets the same files. They're Claude's memory: short, true, updated
 | `ASSETS.md` + `assets/` | Every asset: file, source link, license, credit, where used | Claude (P-Asset), from your files and its searches | Phase 3 (improve mode: the baseline), updated whenever assets change |
 | `PROGRESS.md` | Current phase, decisions, build order, deferred items | Claude | Phase 0, updated at every gate |
 | `content/` | Your source material: CV, briefs, copy, photos to process | You | Before Phase 1; never published |
-
-Add to `.gitignore`: `node_modules/`, `dist/`, `.claude/skills/impeccable/scripts/bin/` (a 19 MB binary that re-downloads), `.impeccable/live/`, `.playwright-cli/`, `screenshots/`.
 
 Don't create empty PRODUCT.md or DESIGN.md files yourself. Impeccable checks DESIGN.md to decide whether a design already exists, and its docs explain that DESIGN.md is recorded from what was built, because rules written before the build get defended against reality.
 
@@ -386,7 +380,7 @@ Level 2 reads as "clean, with nice effects"; if the client describes sites where
 
 **Content before the brief.** Put the CV, brief and real copy in `content/` before `/impeccable init`. In the first run the interview came first, and PRODUCT.md had to be rewritten when the CV showed a job the site didn't mention. Check CV facts against confidentiality (client names, internal systems) before they reach the page.
 
-**Critique budget.** A full `/impeccable critique` runs two sub-agents and is expensive. Run it at the baseline (existing sites), once after polish to measure the change, and at P8. In between use `npx impeccable detect`, which is free. If a sub-agent fails to launch, retry once.
+**Measure, don't guess.** Run the full `/impeccable critique` at the baseline (existing sites), after polish and at P8, and compare scores; use `npx impeccable detect` between steps.
 
 | # | Phase | What happens | Tool | Gate: done when |
 | --- | --- | --- | --- | --- |
@@ -552,14 +546,11 @@ Yes, the playbook works on existing sites, and it's the fastest way to learn it 
 6. **Polish by section, not by problem type.** The critique groups problems by type, but fixes land by section (the hero fix absorbs the gradient, the kicker and the status line). Content and section labels are one fix, and content always comes first. Run the fixes without stopping, detector after each, then re-critique once to measure.
 7. **Retrofit motion.** Write SCROLL_SCRIPT.md for the cleaned-up page at the agreed level, then build it (P6), then P7 and P8. Most old sites improve most from three things: one continuity carrier, owned exit seams, and Lenis.
 
-**Improve-mode traps from the first run:**
+**Improve-mode traps:**
 
-- Old global overrides cause new bugs: grep for `!important` in media queries before resizing anything.
-- Inline scripts couple markup and behaviour: grep an element's id before deleting it.
-- Renaming a section id breaks every `#link` to it: check all anchors resolve after a rename.
-- The phone page gets longer while content is added and shorter only at the adapt fix; measure section heights with one script to find where the length comes from.
+- Old global overrides cause new bugs: find `!important` rules in media queries before resizing anything.
+- Old markup is wired to old scripts: search an element's id before deleting or renaming it, and check every `#link` still resolves.
 - Fixed decorative navs placed before the header put dozens of tab stops before the main nav: put them after it in the markup.
-- The Impeccable design hook repeats every old finding after each edit and goes quiet after 6 edits; run the detector once per fix instead of reacting to the hook.
 
 Not built with Next.js? GSAP and Lenis work on plain HTML (see the vanilla variant), Webflow, WordPress and other frameworks. Don't migrate just to follow the playbook; change the stack lines in CLAUDE.md instead.
 
@@ -583,7 +574,7 @@ Not built with Next.js? GSAP and Lenis work on plain HTML (see the vanilla varia
 
 This workflow will reliably lift you from "prompted until decent" to consistently strong, distinctive sites. It won't hand you award winners on day one. Here's what it can't do and what that means for you.
 
-- **It has been run once, in improve mode.** v3 folds in a full improve-mode run on a vanilla HTML portfolio (baseline 15/32 to 24/32 after polish, detector 35 findings to 0). The from-scratch path (Phases 0-5) and Level 3 choreography still need their first real run; keep notes as you go.
+- **It has been run once, in improve mode.** The from-scratch path (Phases 0-5) and Level 3 choreography still need their first real run; keep notes as you go.
 - **Claude's checks miss interaction feel.** Every bug the user found in the first run (a line that vanished after scrolling back up, a flickering cursor, an email button that did nothing without a mail app) passed the screenshots. The interaction smoke test narrows that gap; your real phone closes it.
 - **Taste is still yours.** The tools prevent bad defaults and offer good options. Choosing between them, and the last 10% of feel, is your eye. It improves with each project.
 - **The hero asset sets the ceiling.** Without a distinctive photo, video loop or 3D model, the result is clean but not memorable. Budget real time for it.
@@ -609,7 +600,7 @@ Build the skill after one real project, not before. A skill written from a plan 
     existing-site.md    # the improve-a-site flow and its traps
     vanilla.md          # the plain HTML/CSS/JS variant
     verification.md     # verify steps, interaction smoke test, motion bugs screenshots miss
-    workflow.md         # autopilot, gates, decision rule, working style
+    workflow.md         # autopilot, gates, decision rule
   prompts/              # P0-P9, P-Fix
 ~/.claude/agents/reference-scout.md
 ```
