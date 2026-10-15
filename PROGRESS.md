@@ -6,7 +6,7 @@ Branch: `redesign`.
 
 ## Current phase
 Improve step 5, polish. Work through the 10 baseline problems one at a time, stopping for
-review after each. Next up: item 6 (plain section labels).
+review after each. Next up: item 7 (phone layout).
 Playbook sections to read: "Improving a site you already built".
 Critique backlog: `.impeccable/critique/2026-10-15T00-29-18Z__index-html.md` (score 15/32).
 
@@ -58,8 +58,11 @@ page, build the scroll moments chapter by chapter (P6), then the motion pass (P7
 - Fix 5, accessibility: zoom allowed, gold :focus-visible ring and gold text selection, side nav
   is 7 labelled buttons after the header in tab order (aria-current on the active one), reduced
   motion stops CSS animations, freezes the particles, pauses the video and draws Matrix once.
-- Hero second line shortened (awaiting approval): "Networking degree, self-hosted servers and
+- Hero second line shortened (approved): "Networking degree, self-hosted servers and
   published LLM research. Based in Portugal."
+- Fix 6, labels: nav, side nav and footer all read Home / Experience / Projects / Skills / Education /
+  Blog / Contact (footer adds LinkedIn, GitHub). Kickers and HUD captions removed, #timeline renamed
+  #education with an EDUCATION heading, Blog no longer gold. Detector: 27 findings, 0 kickers.
 - Baseline screenshots in `screenshots/baseline/` (not committed).
 
 ## Deferred (don't lose these)

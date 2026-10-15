@@ -117,3 +117,4 @@ Mode: new | improve. Motion level: 1 | 2 | 3. Branch: ...
 - [improve 5 / fix 5] Claude's own wording can sound unlike the client; show new sentences for approval before moving on (the hero line came out long and stiff).
 - [improve 5 / fix 5] Deferred items need tracking so they aren't forgotten: keep a "Deferred" list in PROGRESS.md with the fix each item belongs to.
 - [process] Every note here is tagged by phase, but not by mode. When merging into the skill, mark each one new / improve / both; this run only exercises improve mode, so the from-scratch path (Phases 0-5) still needs its own test project.
+- [improve 5 / fix 6] Renaming a section's id breaks every in-page link pointing at it (nav, side nav, footer). Check anchors with one script after any rename: every href="#x" must resolve.

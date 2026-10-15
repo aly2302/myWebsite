@@ -260,24 +260,6 @@
             margin-bottom: 1rem;
         }
 
-        .hud-text {
-            font-size: 0.9rem;
-            color: var(--gold);
-            letter-spacing: 0.25em;
-            text-transform: uppercase;
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            font-weight: 700;
-            flex-wrap: wrap;
-        }
-        .hud-text::before {
-            content: ''; display: block; width: 40px; height: 1px; background: var(--gold);
-        }
-
-        .system-status { font-weight: bold; transition: color 0.3s; }
-        .system-status.offline { color: var(--error); text-shadow: 0 0 5px var(--error); }
 
         /* * ============================================================
          * 7. BUTTONS & IDENTITY
@@ -999,7 +981,6 @@
             .brand { font-size: 1rem; }
 
             h2 { font-size: 2rem !important; }
-            .hud-text { font-size: 0.8rem; }
             
             section { padding: 60px 0; min-height: auto; }
             #home { padding-top: 110px; }
@@ -1060,11 +1041,11 @@
         <div class="brand">R // NOVELO</div>
         <nav class="nav-links">
             <a href="#home" class="nav-link">Home</a>
-            <a href="#experience" class="nav-link">Work</a>
-            <a href="#projects" class="nav-link">Systems</a>
+            <a href="#experience" class="nav-link">Experience</a>
+            <a href="#projects" class="nav-link">Projects</a>
             <a href="#skills" class="nav-link">Skills</a>
-            <a href="#timeline" class="nav-link">Log</a>
-            <a href="#blog-incoming" class="nav-link" style="color: var(--gold);">Blog</a>
+            <a href="#education" class="nav-link">Education</a>
+            <a href="#blog-incoming" class="nav-link">Blog</a>
             <a href="#contact" class="nav-link">Contact</a>
         </nav>
     </header>
@@ -1074,8 +1055,8 @@
         <button type="button" class="thread-node" data-target="experience" aria-label="Go to Experience" title="Experience"></button>
         <button type="button" class="thread-node" data-target="projects" aria-label="Go to Projects" title="Projects"></button>
         <button type="button" class="thread-node" data-target="skills" aria-label="Go to Skills" title="Skills"></button>
-        <button type="button" class="thread-node" data-target="timeline" aria-label="Go to Education" title="Education"></button>
-        <button type="button" class="thread-node" data-target="blog-incoming" aria-label="Go to Blog" title="Blog" style="border-color: var(--gold);"></button>
+        <button type="button" class="thread-node" data-target="education" aria-label="Go to Education" title="Education"></button>
+        <button type="button" class="thread-node" data-target="blog-incoming" aria-label="Go to Blog" title="Blog"></button>
         <button type="button" class="thread-node" data-target="contact" aria-label="Go to Contact" title="Contact"></button>
     </nav>
 
@@ -1156,7 +1137,6 @@
 
         <section id="projects">
             <div class="container">
-                <div class="hud-text">ARCHIVE ACCESS</div>
                 <h2 class="section-title">PROJECTS</h2>
 
                 <div class="data-module hover-target" style="border-left: 3px solid var(--gold);">
@@ -1206,7 +1186,7 @@
                     <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px;">
                          <div style="display: flex; align-items: center;">
                             <span class="status-light" style="background: var(--cyan); box-shadow: 0 0 10px var(--cyan);"></span>
-                            <h4 style="color: var(--cyan); font-family: var(--font-hud); letter-spacing: 1px; font-size: 0.9rem;">VERIFIED PUBLICATION [2025]</h4>
+                            <h4 style="color: var(--cyan); font-family: var(--font-hud); letter-spacing: 1px; font-size: 0.9rem;">PUBLICATION · 2025</h4>
                          </div>
                          <i class="fa-solid fa-arrow-up-right-from-square" style="color: var(--cyan);"></i>
                     </div>
@@ -1263,7 +1243,6 @@
 
         <section id="skills">
             <div class="container">
-                <div class="hud-text">tech stack</div>
                 <h2 class="section-title">TECHNICAL SKILLS</h2>
 
                 <div class="skills-grid">
@@ -1359,9 +1338,9 @@
             </div>
         </section>
 
-        <section id="timeline">
+        <section id="education">
             <div class="container">
-                <div class="hud-text">TEMPORAL LOG</div>
+                <h2 class="section-title">EDUCATION</h2>
                 
                 <div class="temporal-interface">
                     
@@ -1369,15 +1348,12 @@
                         <video autoplay loop muted playsinline aria-hidden="true" id="holo-video">
                             <source src="assets/interstellar_msg.mp4" type="video/mp4">
                         </video>
-                        <div style="position: absolute; bottom: 10px; left: 20px; color: #fff; font-family: var(--font-hud); font-size: 0.8rem; background: rgba(0,0,0,0.7); padding: 5px;">
-                            DATA_STREAM: CONNECTED // SPLIT_MODE
-                        </div>
                     </div>
 
                     <div class="timeline-split-container">
                         
                         <div class="timeline-col">
-                            <h3 class="col-header" style="color: var(--cyan);">ACADEMIC PATH</h3>
+                            <h3 class="col-header" style="color: var(--cyan);">DEGREE</h3>
                             
                             <div class="holo-beam-inner blue">
                                 <div class="holo-card edu">
@@ -1472,11 +1448,13 @@
                 <button type="button" class="matrix-egg hover-target" id="matrix-toggle-btn" aria-pressed="false" aria-label="Matrix mode" title="Matrix mode">⟁</button>
                 
                 <div class="footer-links">
-                    <a href="#home" class="footer-link">Home Base</a>
-                    <a href="#skills" class="footer-link">Skills</a>
+                    <a href="#experience" class="footer-link">Experience</a>
                     <a href="#projects" class="footer-link">Projects</a>
-                    <a href="#blog-incoming" class="footer-link">Blog</a>
-                    <a href="https://github.com/aly2302" target="_blank" class="footer-link">GitHub</a>
+                    <a href="#skills" class="footer-link">Skills</a>
+                    <a href="#education" class="footer-link">Education</a>
+                    <a href="#contact" class="footer-link">Contact</a>
+                    <a href="https://www.linkedin.com/in/rodrigo-novelo-997079332/" target="_blank" rel="noopener" class="footer-link">LinkedIn</a>
+                    <a href="https://github.com/aly2302" target="_blank" rel="noopener" class="footer-link">GitHub</a>
                 </div>
                 
                 <div class="footer-contact">
