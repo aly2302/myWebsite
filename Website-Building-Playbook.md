@@ -134,7 +134,7 @@ Three habits:
 
 - **Mix, never clone.** Layout from one reference, motion from another, type from a third.
 - **Diverge, then converge.** Use `/impeccable generate 3 variants of [element]` on the static hero and pick in the browser. Picking is fast; describing is slow.
-- **Mockup first when you can.** Impeccable's comp-first path renders a full mockup and builds toward it; its docs say this composes bolder than code-first. It needs an image-generation tool connected; code-first works without one.
+- **Mockup first when you can.** Impeccable's comp-first path renders a full mockup and builds toward it; its docs say this composes bolder than code-first. Automatic comp-first needs an image generator Impeccable can call (Claude Code has none built in; the fallback is a paid OpenAI API key). Without one, do it by hand: make a mockup of the key screen in any image tool, or ask Claude in the Claude app for a visual design, save it as references/hero-mockup.png, and tell Claude Code to build toward it (prompt P5-Comp). The mockup decides the look; SCROLL_SCRIPT.md still decides the motion.
 
 ## References: fit plus wildcards
 
@@ -344,6 +344,16 @@ Then: `/impeccable generate 3 variants of the hero` (keep `npm run dev` running;
 ```markdown
 Now add Chapter 1's load animation and exit seam exactly as scripted.
 Verify the seam at 25/50/75% per CLAUDE.md. Push to GitHub so I get a Vercel preview.
+```
+
+**P5-Comp · Build toward a mockup** (optional, for redesigns; replaces the first P5 prompt)
+
+```markdown
+Build Chapter 1 toward references/hero-mockup.png as a static layout, no scroll animation.
+Match its layout, scale, spacing and type hierarchy; use real copy from PRODUCT.md;
+follow CLAUDE.md, including the banned defaults. Where the mockup is unclear
+(hover states, mobile, exact fonts), choose what fits the direction and tell me.
+Screenshot your result next to the mockup and list the differences before fixing them.
 ```
 
 **P6 · Each chapter** (`/clear` first)
