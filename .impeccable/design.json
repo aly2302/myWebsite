@@ -1,0 +1,309 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-15T01:48:59.960Z",
+  "title": "Design System: Rodrigo Novelo",
+  "extensions": {
+    "colorMeta": {
+      "void": {
+        "role": "neutral",
+        "displayName": "Void",
+        "tonalRamp": [
+          "#030304",
+          "#0a0a0f",
+          "#141419",
+          "#1f1f25",
+          "#2e2e35",
+          "#45454d",
+          "#6a6a72",
+          "#9a9aa2"
+        ]
+      },
+      "void-deep": {
+        "role": "neutral",
+        "displayName": "Void Deep",
+        "tonalRamp": [
+          "#050505",
+          "#0d0d0d",
+          "#171717",
+          "#232323",
+          "#333333",
+          "#4a4a4a",
+          "#6e6e6e",
+          "#9c9c9c"
+        ]
+      },
+      "gargantua-gold": {
+        "role": "primary",
+        "displayName": "Gargantua Gold",
+        "tonalRamp": [
+          "#2a2010",
+          "#45361c",
+          "#625029",
+          "#836c37",
+          "#a68a47",
+          "#c5a059",
+          "#d9c08c",
+          "#efe3c8"
+        ]
+      },
+      "tesseract-cyan": {
+        "role": "secondary",
+        "displayName": "Tesseract Cyan",
+        "tonalRamp": [
+          "#06302b",
+          "#0c4d46",
+          "#136c63",
+          "#1d8d82",
+          "#2fb0a3",
+          "#44d4c5",
+          "#5efce8",
+          "#bffef6"
+        ]
+      },
+      "matrix-green": {
+        "role": "tertiary",
+        "displayName": "Matrix Green",
+        "tonalRamp": [
+          "#00260a",
+          "#004012",
+          "#005c1b",
+          "#007a24",
+          "#00992d",
+          "#00bf37",
+          "#00ff41",
+          "#b3ffc6"
+        ]
+      },
+      "breach-red": {
+        "role": "tertiary",
+        "displayName": "Breach Red",
+        "tonalRamp": [
+          "#330a0a",
+          "#551111",
+          "#7a1818",
+          "#a32020",
+          "#cc2828",
+          "#ff3333",
+          "#ff7a7a",
+          "#ffc7c7"
+        ]
+      },
+      "starlight": {
+        "role": "neutral",
+        "displayName": "Starlight",
+        "tonalRamp": [
+          "#2b2b2b",
+          "#454545",
+          "#626262",
+          "#808080",
+          "#a0a0a0",
+          "#c0c0c0",
+          "#dedede",
+          "#f0f0f0"
+        ]
+      },
+      "pure-white": {
+        "role": "neutral",
+        "displayName": "Pure White",
+        "tonalRamp": [
+          "#333333",
+          "#4d4d4d",
+          "#666666",
+          "#808080",
+          "#999999",
+          "#bfbfbf",
+          "#e6e6e6",
+          "#ffffff"
+        ]
+      },
+      "dust-grey": {
+        "role": "neutral",
+        "displayName": "Dust Grey",
+        "tonalRamp": [
+          "#262626",
+          "#3a3a3a",
+          "#4f4f4f",
+          "#656565",
+          "#7d7d7d",
+          "#989898",
+          "#bdbdbd",
+          "#e0e0e0"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The hero name only, with the moving grey-to-white shine."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section titles."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Card headers, timeline columns, project names."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "All paragraphs, in monospace."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Uppercase HUD lines led by a gold rule."
+      }
+    },
+    "shadows": [
+      {
+        "name": "cyan-lift",
+        "value": "0 10px 30px rgba(94, 252, 232, 0.1)",
+        "purpose": "Skill-card hover."
+      },
+      {
+        "name": "accent-halo",
+        "value": "0 0 30px rgba(94, 252, 232, 0.15)",
+        "purpose": "Timeline card hover; gold version for work entries."
+      },
+      {
+        "name": "signal-glow",
+        "value": "0 0 15px var(--gold)",
+        "purpose": "Active states: Matrix toggle, active side-nav node, loading bar."
+      },
+      {
+        "name": "void-sink",
+        "value": "0 0 50px rgba(0, 0, 0, 0.8)",
+        "purpose": "Video frame and blog panel sitting deeper in the void."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-physics",
+        "value": "cubic-bezier(0.19, 1, 0.22, 1)",
+        "purpose": "Panel and header movement."
+      },
+      {
+        "name": "duration-ui",
+        "value": "0.3s",
+        "purpose": "Colour and border changes on hover."
+      },
+      {
+        "name": "duration-panel",
+        "value": "0.4s-0.5s",
+        "purpose": "Card lift and header hide."
+      },
+      {
+        "name": "shine-loop",
+        "value": "5s linear infinite",
+        "purpose": "Hero name gradient sweep."
+      },
+      {
+        "name": "signature-line",
+        "value": "scaleY/scaleX scrubbed over the page; email underline scaleX scrubbed on Contact",
+        "purpose": "The one signature motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "phone-sm",
+        "value": "400px"
+      },
+      {
+        "name": "phone",
+        "value": "768px"
+      },
+      {
+        "name": "tablet",
+        "value": "1024px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The main identity action (Download CV): gold hairline that fills gold on hover.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M12 3v12m0 0l-5-5m5 5l5-5M5 21h14\"/></svg>DOWNLOAD CV</a>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 15px; padding: 15px 25px; border: 1px solid #c5a059; background: rgba(197, 160, 89, 0.05); color: #fff; font-family: 'Space Mono', monospace; font-size: 0.9rem; text-transform: uppercase; text-decoration: none; border-radius: 0; transition: 0.3s; } .ds-btn-primary:hover, .ds-btn-primary:focus-visible { background: #c5a059; color: #000; outline: none; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Links to LinkedIn, GitHub and email: faint glass that turns gold and lifts on hover.",
+      "html": "<a class=\"ds-btn-secondary\" href=\"#\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><rect x=\"3\" y=\"5\" width=\"18\" height=\"14\"/><path d=\"M3 7l9 6 9-6\"/></svg>EMAIL ME</a>",
+      "css": ".ds-btn-secondary { display: inline-flex; align-items: center; justify-content: center; gap: 15px; padding: 15px 25px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03); color: #fff; font-family: 'Space Mono', monospace; font-size: 0.9rem; text-transform: uppercase; text-decoration: none; border-radius: 0; transition: 0.3s; } .ds-btn-secondary svg { color: #989898; transition: 0.3s; } .ds-btn-secondary:hover, .ds-btn-secondary:focus-visible { background: rgba(197,160,89,0.1); border-color: #c5a059; transform: translateY(-3px); outline: none; } .ds-btn-secondary:hover svg { color: #c5a059; }"
+    },
+    {
+      "name": "Navigation",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Fixed glass header with brand and monospace links that underline in gold.",
+      "html": "<nav class=\"ds-nav\"><span class=\"ds-nav-brand\">R // NOVELO</span><div class=\"ds-nav-links\"><a href=\"#\">Home</a><a href=\"#\">Skills</a><a href=\"#\">Systems</a><a href=\"#\" class=\"ds-nav-gold\">Blog</a></div></nav>",
+      "css": ".ds-nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background: rgba(3,3,4,0.85); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.05); } .ds-nav-brand { font-family: 'Syncopate', sans-serif; font-weight: 700; font-size: 1.2rem; letter-spacing: 2px; color: #fff; } .ds-nav-links { display: flex; gap: 30px; } .ds-nav-links a { position: relative; color: #989898; font-family: 'Space Mono', monospace; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; text-decoration: none; transition: 0.3s; } .ds-nav-links a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 1px; background: #c5a059; transition: 0.3s; } .ds-nav-links a:hover, .ds-nav-links a:focus-visible { color: #c5a059; outline: none; } .ds-nav-links a:hover::after, .ds-nav-links a:focus-visible::after { width: 100%; } .ds-nav-links a.ds-nav-gold { color: #c5a059; }"
+    },
+    {
+      "name": "Project Module",
+      "kind": "card",
+      "refersTo": "card-module",
+      "description": "Large blurred glass panel for a project; turns gold on hover, along with its tech tags.",
+      "html": "<div class=\"ds-module\"><h3 class=\"ds-module-title\">GEN_AI EMAIL ASSISTANT</h3><p class=\"ds-module-body\">A privacy-focused email drafting agent leveraging LLMs and RAG.</p><span class=\"ds-tag\">Python</span><span class=\"ds-tag\">Redis</span></div>",
+      "css": ".ds-module { background: rgba(20,20,25,0.4); border: 1px solid rgba(255,255,255,0.08); padding: 3rem; border-radius: 0; backdrop-filter: blur(10px); transition: all 0.5s cubic-bezier(0.19,1,0.22,1); } .ds-module-title { font-family: 'Syncopate', sans-serif; font-size: 1.8rem; color: #fff; line-height: 1.2; margin: 0 0 1rem; } .ds-module-body { font-family: 'Space Mono', monospace; color: #f0f0f0; line-height: 1.6; margin: 0 0 1.5rem; } .ds-tag { display: inline-block; font-family: 'Space Mono', monospace; font-size: 0.8rem; font-weight: 700; color: #989898; border: 1px solid rgba(255,255,255,0.15); padding: 6px 14px; margin: 0 6px 6px 0; transition: 0.3s; } .ds-module:hover { background: rgba(255,255,255,0.05); border-color: #c5a059; transform: translateY(-5px); } .ds-module:hover .ds-tag { color: #c5a059; border-color: #c5a059; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Event Horizon",
+    "overview": "A black-hole void with a slow gold particle field. Content sits on dark, square, hairline-bordered panels and is written plainly. The cinematic world lives in the material and the motion, not in sci-fi labels. The signature is a gold line that draws down the side rail as you scroll and ends by underlining the email address in Contact.",
+    "keyCharacteristics": [
+      "Void-black canvas, gold particle field, edge vignette",
+      "Syncopate for display and titles, Space Mono for everything else",
+      "Gold = action and identity; cyan = knowledge; green = Matrix easter egg only",
+      "Square hairline panels with a thin top accent rule",
+      "Coloured glow only on hover; flat at rest",
+      "One signature motion: the gold line"
+    ],
+    "rules": [
+      {
+        "name": "The One Job Rule",
+        "body": "Gold is action and identity, cyan is knowledge. Never swap them.",
+        "section": "colors"
+      },
+      {
+        "name": "The Void Base Rule",
+        "body": "Surfaces are the void plus a dark translucent fill; never a lighter solid grey.",
+        "section": "colors"
+      },
+      {
+        "name": "The Telemetry Rule",
+        "body": "If it is not a name or a title, it is in Space Mono.",
+        "section": "typography"
+      },
+      {
+        "name": "The No-Kicker Rule",
+        "body": "No small labels above headings; context goes beside or below the title.",
+        "section": "typography"
+      },
+      {
+        "name": "The Light-Not-Shadow Rule",
+        "body": "No grey drop shadows. Depth comes from borders and colour on hover.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do keep surfaces as the void plus a dark translucent fill.",
+      "Do keep corners square; 2-4px only on tiny badges.",
+      "Do use gold for action and identity, cyan for knowledge (the One Job Rule).",
+      "Do use the physics ease (cubic-bezier(0.19, 1, 0.22, 1)) for hover movement and the header.",
+      "Do put context beside or below a title, never above it.",
+      "Do use the :root tokens and the type ramp for every new colour and size."
+    ],
+    "donts": [
+      "Don't use grey drop shadows or static glows.",
+      "Don't set paragraphs in Syncopate.",
+      "Don't use Matrix Green outside the easter egg.",
+      "Don't put kicker or eyebrow labels above headings.",
+      "Don't add backdrop blur to panels over the particle canvas.",
+      "Don't add a second signature motion; the gold line is the one."
+    ]
+  }
+}

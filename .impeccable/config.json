@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "dark-glow",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-10-15T01:21:57.643Z",
+        "reason": "User chose hybrid depth (glass at rest, glow on interaction) in /impeccable document on 2026-10-15; the one remaining glow is the cyan hover state"
+      }
+    ]
+  }
+}
