@@ -6,7 +6,7 @@ Branch: `redesign`.
 
 ## Current phase
 Improve step 5, polish. Work through the 10 baseline problems one at a time, stopping for
-review after each. Next up: item 8 (video: poster, lazy load, smaller file).
+review after each. Next up: item 9 (blog to one line, end on contact, footer + Interstellar quote).
 Playbook sections to read: "Improving a site you already built".
 Critique backlog: `.impeccable/critique/2026-10-15T00-29-18Z__index-html.md` (score 15/32).
 
@@ -69,6 +69,9 @@ page, build the scroll moments chapter by chapter (P6), then the motion pass (P7
   the header; email assistant details collapse behind "+ Architecture and stack" on phones only;
   "ISEC, Coimbra" with the full name below; a global mobile h2 override removed; tighter cards.
   Phone page 10,535px to 9,311px. The repo link sits inside the collapsed details on phones.
+- Fix 8, video: 12-second loop (assets/interstellar_loop.mp4, 160 KB, was 10 MB) with a 13 KB poster;
+  preload none, plays only while on screen, poster only under reduced motion. The old
+  interstellar_msg.mp4 is no longer referenced; delete it if the user agrees.
 - Baseline screenshots in `screenshots/baseline/` (not committed).
 
 ## Deferred (don't lose these)

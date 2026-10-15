@@ -1408,8 +1408,8 @@
                 <div class="temporal-interface">
                     
                     <div class="holo-projector">
-                        <video autoplay loop muted playsinline aria-hidden="true" id="holo-video">
-                            <source src="assets/interstellar_msg.mp4" type="video/mp4">
+                        <video loop muted playsinline preload="none" poster="assets/interstellar_poster.jpg" width="640" height="360" aria-hidden="true" id="holo-video">
+                            <source src="assets/interstellar_loop.mp4" type="video/mp4">
                         </video>
                     </div>
 
@@ -1639,10 +1639,15 @@
             if (!reduceMotion) requestAnimationFrame(animateSingularity);
         }
 
-        if (reduceMotion) {
-            const v = document.getElementById('holo-video');
-            v.removeAttribute('autoplay');
-            v.pause();
+        // The video only loads and plays while it's on screen; reduced motion keeps the poster
+        const holoVideo = document.getElementById('holo-video');
+        if (!reduceMotion && 'IntersectionObserver' in window) {
+            new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) holoVideo.play().catch(() => {});
+                    else holoVideo.pause();
+                });
+            }, { threshold: 0.25 }).observe(holoVideo);
         }
 
         resize();
