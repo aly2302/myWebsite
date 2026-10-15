@@ -178,92 +178,22 @@
         }
         .nav-link:hover::after { width: 100%; }
 
-        .breach-btn {
-            border: 1px solid #ff4444;
-            color: #ff4444;
-            background: transparent;
-            padding: 8px 16px;
-            font-family: var(--font-hud);
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            transition: 0.3s;
-            overflow: hidden;
-            position: relative;
-            min-width: 180px;
-            text-align: center;
-        }
-        
-        .breach-btn:hover {
-            background: #ff4444;
-            color: #000;
-            box-shadow: 0 0 15px #ff4444;
-        }
-        
-        /* Matrix Mode State for Button */
-        body.matrix-mode .breach-btn {
-            background: var(--matrix);
-            color: #000;
-            border-color: var(--matrix);
-            box-shadow: 0 0 15px var(--matrix);
-        }
+        /* Matrix easter egg: rain stays behind the content, which stays readable and clickable */
+        body.matrix-mode #matrix-canvas { opacity: 0.35; }
+        body.matrix-mode #singularity-canvas { opacity: 0.2; }
 
-        /* * ============================================================
-         * 5. MATRIX VISUAL EFFECTS (UPDATED: SMOOTH SIGNAL NOISE)
-         * ============================================================
-         */
-        
-        body.matrix-mode #main-content {
-            opacity: 0;
-            pointer-events: none;
-            filter: blur(10px);
-            transition: opacity 0.5s ease;
+        .matrix-egg {
+            background: none;
+            border: none;
+            color: var(--gold);
+            font-size: 1.6rem;
+            line-height: 1;
+            padding: 10px;
+            cursor: none;
+            transition: color 0.3s;
         }
-
-        /* REPLACED: Violent shaking with smooth signal interference */
-        .glitch-layer {
-            animation: signal-noise 4s infinite linear;
-            will-change: filter, opacity;
-        }
-        
-        @keyframes signal-noise {
-            0% { 
-                filter: blur(0px) brightness(1) hue-rotate(0deg); 
-                opacity: 1; 
-                transform: scale(1);
-            }
-            30% { 
-                filter: blur(0px) brightness(1) hue-rotate(0deg); 
-                opacity: 1; 
-            }
-            31% { 
-                /* Subtle flicker */
-                filter: blur(2px) brightness(1.2) hue-rotate(10deg); 
-                opacity: 0.95; 
-                transform: scale(1.002);
-            }
-            32% { 
-                filter: blur(0px) brightness(1) hue-rotate(0deg); 
-                opacity: 1; 
-                transform: scale(1);
-            }
-            70% { 
-                filter: blur(0px) brightness(1) hue-rotate(0deg); 
-                opacity: 1; 
-            }
-            71% { 
-                /* Deeper interference, no shake */
-                filter: blur(4px) brightness(0.8) hue-rotate(-10deg) contrast(1.2); 
-                opacity: 0.9; 
-            }
-            73% { 
-                filter: blur(0px) brightness(1) hue-rotate(0deg); 
-                opacity: 1; 
-            }
-            100% { 
-                filter: blur(0px) brightness(1) hue-rotate(0deg); 
-                opacity: 1; 
-            }
-        }
+        .matrix-egg:hover,
+        .matrix-egg[aria-pressed="true"] { color: var(--matrix); }
 
         /* * ============================================================
          * 6. TYPOGRAPHY & LAYOUT
@@ -1051,12 +981,6 @@
             header { padding: 15px 20px; justify-content: space-between; }
             .nav-links { display: none; }
             .brand { font-size: 1rem; }
-            .breach-btn { 
-                min-width: auto; 
-                padding: 8px 12px; 
-                font-size: 0.75rem;
-                flex-grow: 0;
-            }
 
             h2 { font-size: 2rem !important; }
             .hud-text { font-size: 0.8rem; }
@@ -1096,7 +1020,6 @@
 
         @media (max-width: 400px) {
             header { padding: 10px 15px; }
-            .breach-btn { font-size: 0.65rem; padding: 6px 10px; }
             .container { padding: 0 15px; }
             
             .edu-institution-hero { font-size: 1.2rem; }
@@ -1137,7 +1060,6 @@
             <a href="#blog-incoming" class="nav-link" style="color: var(--gold);">Blog</a>
             <a href="#contact" class="nav-link">Contact</a>
         </nav>
-        <button class="breach-btn hover-target" id="matrix-toggle-btn" onclick="toggleMatrixMode()">MATRIX</button>
     </header>
 
     <main id="main-content">
@@ -1530,7 +1452,7 @@
             <div class="footer-content">
                 <div class="footer-logo">R // NOVELO</div>
                 
-                <div style="font-size: 2rem; color: var(--gold); animation: spin 20s linear infinite;">⟁</div>
+                <button type="button" class="matrix-egg hover-target" id="matrix-toggle-btn" aria-pressed="false" aria-label="Matrix mode" title="Matrix mode">⟁</button>
                 
                 <div class="footer-links">
                     <a href="#home" class="footer-link">Home Base</a>
@@ -1799,49 +1721,29 @@
             }
         }
 
-        function toggleMatrixMode() {
-            const btn = document.getElementById('matrix-toggle-btn');
-            
-            if (isMatrixActive) {
-                restoreReality();
-                return;
-            }
-            
-            // ACTIVATE MATRIX
+        const matrixBtn = document.getElementById('matrix-toggle-btn');
+
+        function startMatrix() {
             isMatrixActive = true;
             document.body.classList.add('matrix-mode');
-            
-            btn.innerText = "RESTORE REALITY";
-            
-            matrixCanvas.style.opacity = '1';
-            document.getElementById('singularity-canvas').style.opacity = '0.2';
-            document.getElementById('main-content').classList.add('glitch-layer');
-            
-            matrixInterval = setInterval(drawMatrix, 30);
+            matrixBtn.setAttribute('aria-pressed', 'true');
+            matrixInterval = setInterval(drawMatrix, 50);
         }
 
-        function restoreReality() {
-            const btn = document.getElementById('matrix-toggle-btn');
-            
-            // DEACTIVATE MATRIX
+        function stopMatrix() {
             isMatrixActive = false;
             document.body.classList.remove('matrix-mode');
-            
-            btn.innerText = "BREACH PROTOCOL";
-            
-            matrixCanvas.style.opacity = '0';
-            document.getElementById('singularity-canvas').style.opacity = '1';
-            document.getElementById('main-content').classList.remove('glitch-layer');
-            
-            document.getElementById('main-content').style.opacity = '1';
-            document.getElementById('main-content').style.pointerEvents = 'auto';
-            document.getElementById('main-content').style.filter = 'none';
-
+            matrixBtn.setAttribute('aria-pressed', 'false');
             clearInterval(matrixInterval);
-            mCtx.clearRect(0,0, matrixCanvas.width, matrixCanvas.height);
+            mCtx.clearRect(0, 0, matrixCanvas.width, matrixCanvas.height);
             animateSingularity();
         }
-        
+
+        matrixBtn.addEventListener('click', () => isMatrixActive ? stopMatrix() : startMatrix());
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape' && isMatrixActive) stopMatrix();
+        });
+
         window.addEventListener('resize', () => {
              matrixCanvas.width = window.innerWidth;
              matrixCanvas.height = window.innerHeight;

@@ -6,7 +6,7 @@ Branch: `redesign`.
 
 ## Current phase
 Improve step 5, polish. Work through the 10 baseline problems one at a time, stopping for
-review after each. Next up: item 4 (Matrix mode as a quiet easter egg).
+review after each. Next up: item 5 (accessibility basics).
 Playbook sections to read: "Improving a site you already built".
 Critique backlog: `.impeccable/critique/2026-10-15T00-29-18Z__index-html.md` (score 15/32).
 
@@ -53,6 +53,8 @@ page, build the scroll moments chapter by chapter (P6), then the motion pass (P7
 - Fix 3, email: the address itself is the one primary button (mailto), with a Copy button that
   says "Copied" inline (no alert, no forced mailto). CV, LinkedIn and GitHub are quiet text links.
   A Contact section before the footer repeats the same actions; Contact added to both navs.
+- Fix 4, Matrix: red header button removed; the footer glyph is now the toggle (aria-pressed, Esc
+  turns it off). Rain runs at 35% behind the content; nothing is hidden, blurred or blocked.
 - Baseline screenshots in `screenshots/baseline/` (not committed).
 
 ## Open questions
