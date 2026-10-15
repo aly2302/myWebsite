@@ -94,10 +94,13 @@ mm.add(
                     { autoAlpha: 1, y: 0, duration: 0.8, stagger: 0.1 }, 0.35);
 
             if (desktop) {
-                gsap.to(['.hero-name', '.hero-role'], {
+                // fromTo with explicit start values: a plain to() would record the role line's
+                // pre-intro opacity (0) as its start, and scrolling back up would hide it again
+                gsap.fromTo(['.hero-name', '.hero-role'], { y: 0, opacity: 1 }, {
                     y: -60,
                     opacity: 0.3,
                     ease: 'none',
+                    immediateRender: false,
                     scrollTrigger: { trigger: home, start: 'bottom 75%', end: 'bottom 25%', scrub: true },
                 });
             }
