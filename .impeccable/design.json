@@ -121,7 +121,7 @@
       "Do keep corners square (0px) on panels and buttons; 2–4px only on tiny chips and badges.",
       "Do use Gargantua Gold for action and identity, and Tesseract Cyan for knowledge and data (the One Job Rule).",
       "Do use the physics ease (cubic-bezier(0.19, 1, 0.22, 1)) for movement such as panels and the header.",
-      "Do write labels in uppercase HUD language with // separators.",
+      "Do keep HUD language to small secondary labels inside components, with // separators; section names stay plain.",
       "Do use the :root tokens; the current hard-coded #fff, #aaa, #666 and #ff4444 (the breach button, which differs from --error #ff3333) are drift to fold back into tokens."
     ],
     "donts": [
@@ -129,7 +129,8 @@
       "Don't set paragraphs in Syncopate.",
       "Don't use Matrix Green outside Matrix mode and the status light.",
       "Don't round panels or buttons.",
-      "Don't fill surfaces with solid lighter greys; they break the void."
+      "Don't fill surfaces with solid lighter greys; they break the void.",
+      "Don't put kicker or eyebrow labels above headings (decided after the October 2026 critique)."
     ]
   }
 }

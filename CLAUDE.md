@@ -4,6 +4,8 @@
 PRODUCT.md (facts), REFERENCES.md, the Impeccable surface brief (direction),
 SCROLL_SCRIPT.md (motion plan), DESIGN.md once it exists. Ask if they conflict.
 Website-Building-Playbook.md is the process; we are in improve mode, one step at a time.
+Don't read the whole playbook each session. Read PROGRESS.md first, then only the playbook
+section for the current phase. Update PROGRESS.md when a step or gate is done.
 
 ## Stack (no alternatives)
 Plain HTML, CSS and vanilla JS. Vite is the dev server and bundler only.

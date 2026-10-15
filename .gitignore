@@ -3,3 +3,4 @@ dist/
 .playwright-cli/
 .claude/skills/impeccable/scripts/bin/
 screenshots/
+.impeccable/live/
