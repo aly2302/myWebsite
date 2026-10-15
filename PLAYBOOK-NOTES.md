@@ -111,3 +111,4 @@ Mode: new | improve. Motion level: 1 | 2 | 3. Branch: ...
 - [improve 5 / fix 1] Content-first makes the phone page longer before adapt shortens it (6,800px to 9,900px). Expected; don't judge mobile until the adapt fix.
 - [improve 5 / fix 2] The critique's top 10 is grouped by problem type, but work happens by section: the hero fix also absorbed the gradient text (fix 10), the kicker (fix 6) and the status line (fix 4). Order polish fixes by section, not by problem type.
 - [improve 5 / fix 2] Vanilla inline scripts couple markup and behaviour: removing the hero status line broke nothing only because the Matrix JS that wrote to it was edited too. Grep element ids before deleting markup.
+- [improve 5 / fix 3] Writing new UI copy invited an unconfirmed promise ("I reply to every message"); caught on review and removed. Add to the craft rules: new copy may only state facts from PRODUCT.md, including promises about behaviour.

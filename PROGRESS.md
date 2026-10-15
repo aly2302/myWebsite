@@ -6,7 +6,7 @@ Branch: `redesign`.
 
 ## Current phase
 Improve step 5, polish. Work through the 10 baseline problems one at a time, stopping for
-review after each. Next up: item 3 (email as the primary action).
+review after each. Next up: item 4 (Matrix mode as a quiet easter egg).
 Playbook sections to read: "Improving a site you already built".
 Critique backlog: `.impeccable/critique/2026-10-15T00-29-18Z__index-html.md` (score 15/32).
 
@@ -50,6 +50,9 @@ page, build the scroll moments chapter by chapter (P6), then the motion pass (P7
 - Fix 2, hero: h1 "Rodrigo Novelo" in solid white (gradient shine removed), role line "Frontend developer
   building enterprise Angular apps at Closer Consulting", a depth line, no kicker, quote and
   status line removed (Matrix JS no longer writes to it). Quote can return in the footer (fix 9).
+- Fix 3, email: the address itself is the one primary button (mailto), with a Copy button that
+  says "Copied" inline (no alert, no forced mailto). CV, LinkedIn and GitHub are quiet text links.
+  A Contact section before the footer repeats the same actions; Contact added to both navs.
 - Baseline screenshots in `screenshots/baseline/` (not committed).
 
 ## Open questions

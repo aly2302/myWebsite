@@ -381,6 +381,46 @@
         }
         .id-btn.primary:hover i { color: #000; }
 
+        .contact-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 2rem;
+        }
+        .email-cta { text-transform: none; font-size: 1rem; }
+        .copy-label { min-width: 4ch; }
+        .copy-btn { font-family: var(--font-hud); cursor: none; }
+        .copy-btn.copied { border-color: var(--gold); color: var(--gold); }
+        .copy-btn.copied i { color: var(--gold); }
+
+        .contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 28px;
+            margin-top: 1.25rem;
+        }
+        .contact-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 0;
+            transition: color 0.3s;
+        }
+        .contact-link:hover { color: var(--gold); }
+
+        #contact { min-height: auto; padding: 140px 0 120px; }
+        .contact-lede {
+            color: var(--text-main);
+            font-size: 1.1rem;
+            max-width: 50ch;
+            margin-top: -2rem;
+        }
+
         /* * ============================================================
          * 8. SKILLS GRID
          * ============================================================
@@ -1024,7 +1064,9 @@
             section { padding: 60px 0; min-height: auto; }
             #home { padding-top: 110px; }
 
-            .identity-grid { grid-template-columns: 1fr; }
+            .email-cta { flex: 1 1 100%; }
+            .copy-btn { flex: 0 0 auto; }
+            .contact-lede { margin-top: -1rem; }
             .skills-grid { grid-template-columns: 1fr; }
 
             .data-module { padding: 1.5rem; }
@@ -1081,6 +1123,7 @@
         <div class="thread-node" onclick="scrollToSection('skills')" data-target="skills"></div>
         <div class="thread-node" onclick="scrollToSection('timeline')" data-target="timeline"></div>
         <div class="thread-node" onclick="scrollToSection('blog-incoming')" data-target="blog-incoming" style="border-color: var(--gold);"></div>
+        <div class="thread-node" onclick="scrollToSection('contact')" data-target="contact"></div>
     </div>
 
     <header id="main-header">
@@ -1092,6 +1135,7 @@
             <a href="#skills" class="nav-link">Skills</a>
             <a href="#timeline" class="nav-link">Log</a>
             <a href="#blog-incoming" class="nav-link" style="color: var(--gold);">Blog</a>
+            <a href="#contact" class="nav-link">Contact</a>
         </nav>
         <button class="breach-btn hover-target" id="matrix-toggle-btn" onclick="toggleMatrixMode()">MATRIX</button>
     </header>
@@ -1109,19 +1153,18 @@
                     With a networking degree, self-hosted infrastructure and published LLM research underneath the UI. Based in Portugal.
                 </p>
 
-                <div class="identity-grid">
-                    <a href="assets/rodrigoNovelo_cv.pdf" download="Rodrigo_Novelo_CV.pdf" class="id-btn primary hover-target">
-                        <i class="fa-solid fa-file-pdf"></i> Download CV
+                <div class="contact-actions">
+                    <a href="mailto:rodrigonovelo.pro@gmail.com" class="id-btn primary email-cta hover-target">
+                        <i class="fa-solid fa-envelope" aria-hidden="true"></i> rodrigonovelo.pro@gmail.com
                     </a>
-                    <a href="https://www.linkedin.com/in/rodrigo-novelo-997079332/" target="_blank" class="id-btn hover-target">
-                        <i class="fa-brands fa-linkedin-in"></i> LinkedIn
-                    </a>
-                    <a href="https://github.com/aly2302" target="_blank" class="id-btn hover-target">
-                        <i class="fa-brands fa-github"></i> GitHub
-                    </a>
-                    <button onclick="copyEmail()" class="id-btn hover-target">
-                        <i class="fa-solid fa-envelope"></i> Email Me
+                    <button type="button" class="id-btn copy-btn hover-target" data-copy-email>
+                        <i class="fa-regular fa-copy" aria-hidden="true"></i> <span class="copy-label">Copy</span>
                     </button>
+                </div>
+                <div class="contact-links">
+                    <a href="assets/rodrigoNovelo_cv.pdf" download="Rodrigo_Novelo_CV.pdf" class="contact-link hover-target"><i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i> Download CV</a>
+                    <a href="https://www.linkedin.com/in/rodrigo-novelo-997079332/" target="_blank" rel="noopener" class="contact-link hover-target"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i> LinkedIn</a>
+                    <a href="https://github.com/aly2302" target="_blank" rel="noopener" class="contact-link hover-target"><i class="fa-brands fa-github" aria-hidden="true"></i> GitHub</a>
                 </div>
 
             </div>
@@ -1463,6 +1506,26 @@
             </div>
         </section>
 
+        <section id="contact">
+            <div class="container">
+                <h2 class="section-title">CONTACT</h2>
+                <p class="contact-lede">Open to conversations about frontend roles. Email is the best way to reach me.</p>
+                <div class="contact-actions">
+                    <a href="mailto:rodrigonovelo.pro@gmail.com" class="id-btn primary email-cta hover-target">
+                        <i class="fa-solid fa-envelope" aria-hidden="true"></i> rodrigonovelo.pro@gmail.com
+                    </a>
+                    <button type="button" class="id-btn copy-btn hover-target" data-copy-email>
+                        <i class="fa-regular fa-copy" aria-hidden="true"></i> <span class="copy-label">Copy</span>
+                    </button>
+                </div>
+                <div class="contact-links">
+                    <a href="assets/rodrigoNovelo_cv.pdf" download="Rodrigo_Novelo_CV.pdf" class="contact-link hover-target"><i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i> Download CV</a>
+                    <a href="https://www.linkedin.com/in/rodrigo-novelo-997079332/" target="_blank" rel="noopener" class="contact-link hover-target"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i> LinkedIn</a>
+                    <a href="https://github.com/aly2302" target="_blank" rel="noopener" class="contact-link hover-target"><i class="fa-brands fa-github" aria-hidden="true"></i> GitHub</a>
+                </div>
+            </div>
+        </section>
+
         <footer>
             <div class="footer-content">
                 <div class="footer-logo">R // NOVELO</div>
@@ -1679,17 +1742,25 @@
         /**
          * 4. EMAIL COPY FUNCTION
          */
-        function copyEmail() {
-            const email = "rodrigonovelo.pro@gmail.com";
-            
-            navigator.clipboard.writeText(email).then(() => {
-                alert("Email copied to clipboard: " + email);
-                window.location.href = "mailto:" + email;
-            }).catch(err => {
-                console.error('Failed to copy: ', err);
-                window.location.href = "mailto:" + email;
+        const EMAIL = "rodrigonovelo.pro@gmail.com";
+
+        document.querySelectorAll('[data-copy-email]').forEach(btn => {
+            const label = btn.querySelector('.copy-label');
+            let resetTimer;
+            btn.addEventListener('click', () => {
+                navigator.clipboard.writeText(EMAIL).then(() => {
+                    label.textContent = 'Copied';
+                    btn.classList.add('copied');
+                }).catch(() => {
+                    label.textContent = 'Copy failed, use the link';
+                });
+                clearTimeout(resetTimer);
+                resetTimer = setTimeout(() => {
+                    label.textContent = 'Copy';
+                    btn.classList.remove('copied');
+                }, 2500);
             });
-        }
+        });
 
         /**
          * 5. THE MATRIX EASTER EGG & SINGLE BUTTON TOGGLE
