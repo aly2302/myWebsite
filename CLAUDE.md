@@ -3,9 +3,16 @@
 ## Read first
 PRODUCT.md (facts), REFERENCES.md, the Impeccable surface brief (direction),
 SCROLL_SCRIPT.md (motion plan), DESIGN.md once it exists. Ask if they conflict.
-Website-Building-Playbook.md is the process; we are in improve mode, one step at a time.
-Don't read the whole playbook each session. Read PROGRESS.md first, then only the playbook
-section for the current phase. Update PROGRESS.md when a step or gate is done.
+Website-Building-Playbook.md is the process; we are in improve mode at motion level 2.
+
+## Autopilot
+- Each session: read PROGRESS.md first, then only the playbook section it names for the
+  current phase. Never read the whole playbook.
+- Do that phase or step, running commands yourself. Stop at its gate, update PROGRESS.md,
+  commit, and report. The user reviews and types "continue" for the next one.
+- Ask instead of guessing on taste or on facts missing from PRODUCT.md. The CV is the source
+  of truth for facts.
+- Process lessons go in PLAYBOOK-NOTES.md, not in the playbook.
 
 ## Stack (no alternatives)
 Plain HTML, CSS and vanilla JS. Vite is the dev server and bundler only.
@@ -60,4 +67,7 @@ bounce/elastic easing, the same fade-up on everything. [+ your own]
 5. Fix what's off, then report what changed with the screenshots.
 
 ## Checkpoints
-Work on the `redesign` branch. Commit after every passed gate: git commit -m "gate N: [phase]".
+Work on the `redesign` branch. Commit after every passed step: git commit -m "improve N: [step]";
+during polish, one commit per fix ("fix N: [what]").
+Before merging to main: the site deploys from the repo root on Netlify, so set up a Vite build
+to dist/ first, or the kit files and .claude/ get published.

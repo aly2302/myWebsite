@@ -1,6 +1,7 @@
 # Progress
 
 Mode: improve an existing site (playbook section "Improving a site you already built").
+Motion level: 2 (Polished): Lenis smooth scroll, a few scroll moments, one signature move.
 Branch: `redesign`.
 
 ## Current phase
@@ -12,7 +13,13 @@ Critique backlog: `.impeccable/critique/2026-10-15T00-29-18Z__index-html.md` (sc
 ## Decisions (2026-10-15)
 - Polish, not redesign: keep the void, gold/cyan, Syncopate + Space Mono, panel language.
 - Sci-fi voice turned down: plain section names, HUD language only in small secondary labels,
-  Matrix mode becomes a quiet easter egg that can't break the page, film quote leaves the hero.
+  film quote leaves the hero.
+- Matrix mode stays only as a quiet easter egg that can never block buttons or hide content.
+- Skills on the site = skills on the CV. Remove the ones the CV doesn't list
+  (C#, SQL as a language, Flask, VMware, Google Cloud APIs, Prometheus & Grafana, GNS3,
+  Cisco Packet Tracer, Wireshark); networking shows through the CCNA certifications instead.
+- Dates follow the CV: email assistant March-July 2025.
+- Motion level 2. Step 6 is a short SCROLL_SCRIPT.md with a few moments, not full choreography.
 - Kicker/eyebrow labels above headings are banned (DESIGN.md updated).
 - Page order: who + role -> Closer -> projects + publication -> skills + education -> contact.
 - Scope: all 10 problems.
@@ -39,6 +46,8 @@ Then: re-run `/impeccable critique`, then step 6 (retrofit motion: SCROLL_SCRIPT
 - Baseline screenshots in `screenshots/baseline/` (not committed).
 
 ## Open questions
-- Confirm skills on the site but not on the CV: C#, Flask, VMware, Google Cloud APIs,
-  Prometheus & Grafana.
-- Email assistant dates: site says 03-08/2025, CV says March-July 2025.
+- Signature move (one sentence for CLAUDE.md): decide during step 6.
+
+## Before merging to main
+- Netlify serves the repo root with no build. Add netlify.toml (npm run build, publish dist)
+  so CLAUDE.md, PRODUCT.md, .claude/ and content/ are not published.
