@@ -99,6 +99,6 @@ page, build the scroll moments chapter by chapter (P6), then the motion pass (P7
 ## Open questions
 - Omitted "SPMS Design System" from the Closer tags: it names the client. Add it back if that's fine.
 
-## Before merging to main
-- Netlify serves the repo root with no build. Add netlify.toml (npm run build, publish dist)
-  so CLAUDE.md, PRODUCT.md, .claude/ and content/ are not published.
+## Deploy
+- netlify.toml builds with Vite and publishes dist/ only. Static files live in public/assets/.
+  Merge PR #1 (redesign -> main) to deploy to production.

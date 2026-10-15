@@ -32,7 +32,7 @@ Use Context7 for current API docs before writing library code.
 - `index.html` is the whole site today: inline `<style>` and inline `<script>`.
   Keep that layout unless a step says otherwise. New library code goes in an ES module
   (`<script type="module" src="/src/main.js">`) so npm imports work through Vite.
-- `assets/` holds the CV PDF and the video. Media keeps fixed aspect ratios.
+- `public/assets/` holds the CV PDF and favicon (copied as-is into the build). Media keeps fixed aspect ratios.
 - Design tokens live in `:root` (`--void`, `--gold`, `--matrix`, `--cyan`, `--font-display`,
   `--font-hud`, `--ease-physics`). Use tokens; never hard-code new colors or fonts.
 - Existing canvases (`#singularity-canvas`, `#matrix-canvas`) and the custom cursor run
@@ -78,5 +78,4 @@ bounce/elastic easing, the same fade-up on everything. [+ your own]
 ## Checkpoints
 Work on the `redesign` branch. Commit after every passed step: git commit -m "improve N: [step]";
 during polish, one commit per fix ("fix N: [what]").
-Before merging to main: the site deploys from the repo root on Netlify, so set up a Vite build
-to dist/ first, or the kit files and .claude/ get published.
+Netlify builds with npm run build and publishes dist/ only (netlify.toml); kit files never ship.
