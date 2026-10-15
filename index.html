@@ -944,7 +944,8 @@
             section { padding: 60px 0; min-height: auto; }
             #home { padding-top: 110px; }
 
-            .email-cta { flex: 1 1 100%; }
+            .email-cta { flex: 1 1 100%; min-width: 0; padding: 15px 16px; gap: 10px; font-size: 0.9rem; }
+            .email-label { min-width: 0; overflow-wrap: anywhere; }
             .copy-btn { flex: 0 0 auto; }
             .contact-lede { margin-top: -1rem; }
             .skills-grid { grid-template-columns: 1fr; }
@@ -1400,7 +1401,8 @@
         let width, height;
         let particles = [];
         
-        let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+        // Off-screen until a real pointer arrives, so touch screens don't get a phantom cursor at the centre
+        let mouse = { x: -9999, y: -9999 };
         
         window.addEventListener('mousemove', e => {
             mouse.x = e.clientX;
@@ -1414,6 +1416,7 @@
                 mouse.y = e.touches[0].clientY;
             }
         }, {passive: true});
+        window.addEventListener('touchend', () => { mouse.x = -9999; mouse.y = -9999; }, {passive: true});
 
         function resize() {
             width = window.innerWidth;
