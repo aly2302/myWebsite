@@ -6,7 +6,7 @@ Branch: `redesign`.
 
 ## Current phase
 Improve step 5, polish. Work through the 10 baseline problems one at a time, stopping for
-review after each. Next up: item 5 (accessibility basics).
+review after each. Next up: item 6 (plain section labels).
 Playbook sections to read: "Improving a site you already built".
 Critique backlog: `.impeccable/critique/2026-10-15T00-29-18Z__index-html.md` (score 15/32).
 
@@ -55,7 +55,16 @@ page, build the scroll moments chapter by chapter (P6), then the motion pass (P7
   A Contact section before the footer repeats the same actions; Contact added to both navs.
 - Fix 4, Matrix: red header button removed; the footer glyph is now the toggle (aria-pressed, Esc
   turns it off). Rain runs at 35% behind the content; nothing is hidden, blurred or blocked.
+- Fix 5, accessibility: zoom allowed, gold :focus-visible ring and gold text selection, side nav
+  is 7 labelled buttons after the header in tab order (aria-current on the active one), reduced
+  motion stops CSS animations, freezes the particles, pauses the video and draws Matrix once.
+- Hero second line shortened (awaiting approval): "Networking degree, self-hosted servers and
+  published LLM research. Based in Portugal."
 - Baseline screenshots in `screenshots/baseline/` (not committed).
+
+## Deferred (don't lose these)
+- Fix 9: bring the Interstellar quote back in the footer (user request, 2026-10-15).
+- Before merge: Netlify build to dist/ (see below).
 
 ## Open questions
 - Omitted "SPMS Design System" from the Closer tags: it names the client. Add it back if that's fine.
