@@ -287,41 +287,33 @@
             position: relative;
         }
 
-        /* CLEAN CINEMATIC TITLE */
-        h1.glitch {
+        .hero-name {
             font-family: var(--font-display);
-            /* Smaller, cleaner size as requested */
-            font-size: clamp(2rem, 5vw, 4rem); 
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 2rem;
-            display: inline-block;
+            font-size: clamp(2.2rem, 6vw, 4.5rem);
             font-weight: 700;
-
-            /* The Smooth Shine Effect */
-            background: linear-gradient(
-                to right, 
-                #666 0%, 
-                #fff 50%, 
-                #666 100%
-            );
-            background-size: 200% auto;
-            
-            /* Clips the background to the text shape */
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            
-            /* The Animation */
-            animation: shine 5s linear infinite;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            line-height: 1.1;
+            color: #fff;
+            margin-bottom: 2rem;
+            text-wrap: balance;
         }
 
-        /* Moves the gradient smoothly */
-        @keyframes shine {
-            to {
-                background-position: 200% center;
-            }
+        .hero-role {
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            line-height: 1.5;
+            color: var(--text-main);
+            max-width: 46ch;
+            margin-bottom: 1rem;
         }
-        
+        .hero-role-title { color: var(--gold); }
+
+        .hero-sub {
+            font-size: 1rem;
+            color: var(--text-muted);
+            max-width: 60ch;
+            margin-bottom: 1rem;
+        }
 
         .hud-text {
             font-size: 0.9rem;
@@ -1012,7 +1004,6 @@
         
         @media (max-width: 1024px) {
             .container { padding: 0 25px; }
-            h1.glitch { font-size: 5rem; }
             .tesseract-thread { display: none; }
         }
 
@@ -1027,11 +1018,11 @@
                 flex-grow: 0;
             }
 
-            h1.glitch { font-size: 3rem; }
             h2 { font-size: 2rem !important; }
             .hud-text { font-size: 0.8rem; }
             
             section { padding: 60px 0; min-height: auto; }
+            #home { padding-top: 110px; }
 
             .identity-grid { grid-template-columns: 1fr; }
             .skills-grid { grid-template-columns: 1fr; }
@@ -1064,7 +1055,6 @@
         @media (max-width: 400px) {
             header { padding: 10px 15px; }
             .breach-btn { font-size: 0.65rem; padding: 6px 10px; }
-            h1.glitch { font-size: 2.2rem; }
             .container { padding: 0 15px; }
             
             .edu-institution-hero { font-size: 1.2rem; }
@@ -1110,18 +1100,13 @@
         
         <section id="home">
             <div class="container">
-                <div class="hud-text">
-                    <span class="status-light" id="sys-light" style="background: var(--matrix); box-shadow: 0 0 10px var(--matrix);"></span>
-                    <span id="sys-text" class="system-status">SYSTEM ONLINE // PORTUGAL</span>
-                </div>
-                
-                <h1 class="glitch" data-text="RODRIGO">rodrigo<br>.DEV</h1>
-                
-                <p style="max-width: 600px; margin-bottom: 2rem; color: #aaa; font-size: 1.25rem; border-left: 2px solid var(--gold); padding-left: 30px;">
-                    "We've always defined ourselves by the ability to overcome the impossible." <br>
-                    <span style="font-size: 1rem; color: var(--gold); margin-top: 15px; display: block; font-weight: bold;">
-                    WebDev | Networking | Cybersecurity
-                    </span>
+                <h1 class="hero-name">Rodrigo Novelo</h1>
+
+                <p class="hero-role">
+                    <span class="hero-role-title">Frontend developer</span> building enterprise Angular apps at Closer Consulting.
+                </p>
+                <p class="hero-sub">
+                    With a networking degree, self-hosted infrastructure and published LLM research underneath the UI. Based in Portugal.
                 </p>
 
                 <div class="identity-grid">
@@ -1761,11 +1746,6 @@
             document.getElementById('singularity-canvas').style.opacity = '0.2';
             document.getElementById('main-content').classList.add('glitch-layer');
             
-            document.getElementById('sys-text').innerText = "SYSTEM OFFLINE // CRITICAL FAILURE";
-            document.getElementById('sys-text').classList.add('offline');
-            document.getElementById('sys-light').style.background = "#ff3333";
-            document.getElementById('sys-light').style.boxShadow = "0 0 10px #ff3333";
-            
             matrixInterval = setInterval(drawMatrix, 30);
         }
 
@@ -1781,11 +1761,6 @@
             matrixCanvas.style.opacity = '0';
             document.getElementById('singularity-canvas').style.opacity = '1';
             document.getElementById('main-content').classList.remove('glitch-layer');
-            
-            document.getElementById('sys-text').innerText = "SYSTEM ONLINE // PORTUGAL";
-            document.getElementById('sys-text').classList.remove('offline');
-            document.getElementById('sys-light').style.background = "var(--matrix)";
-            document.getElementById('sys-light').style.boxShadow = "0 0 10px var(--matrix)";
             
             document.getElementById('main-content').style.opacity = '1';
             document.getElementById('main-content').style.pointerEvents = 'auto';

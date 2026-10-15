@@ -6,7 +6,7 @@ Branch: `redesign`.
 
 ## Current phase
 Improve step 5, polish. Work through the 10 baseline problems one at a time, stopping for
-review after each. Next up: item 2 (hero).
+review after each. Next up: item 3 (email as the primary action).
 Playbook sections to read: "Improving a site you already built".
 Critique backlog: `.impeccable/critique/2026-10-15T00-29-18Z__index-html.md` (score 15/32).
 
@@ -47,6 +47,9 @@ page, build the scroll moments chapter by chapter (P6), then the motion pass (P7
 - Fix 1, content: Experience section (Closer) after the hero, winery demoted to an "Earlier" line,
   3 new projects + DOI, skills rebuilt from the CV (6 groups, frontend first), certifications and
   languages in the education block. Order is now home, experience, projects, skills, education, blog.
+- Fix 2, hero: h1 "Rodrigo Novelo" in solid white (gradient shine removed), role line "Frontend developer
+  building enterprise Angular apps at Closer Consulting", a depth line, no kicker, quote and
+  status line removed (Matrix JS no longer writes to it). Quote can return in the footer (fix 9).
 - Baseline screenshots in `screenshots/baseline/` (not committed).
 
 ## Open questions
