@@ -1075,7 +1075,7 @@
 
                 <div class="contact-actions">
                     <a href="mailto:rodrigonovelo.pro@gmail.com" class="id-btn primary email-cta hover-target">
-                        <i class="fa-solid fa-envelope" aria-hidden="true"></i> rodrigonovelo.pro@gmail.com
+                        <i class="fa-solid fa-envelope" aria-hidden="true"></i> <span class="email-label">rodrigonovelo.pro@gmail.com</span>
                     </a>
                     <button type="button" class="id-btn copy-btn hover-target" data-copy-email>
                         <i class="fa-regular fa-copy" aria-hidden="true"></i> <span class="copy-label">Copy</span>
@@ -1427,7 +1427,7 @@
                 <p class="contact-lede">Open to conversations about frontend roles. Email is the best way to reach me.</p>
                 <div class="contact-actions">
                     <a href="mailto:rodrigonovelo.pro@gmail.com" class="id-btn primary email-cta hover-target">
-                        <i class="fa-solid fa-envelope" aria-hidden="true"></i> rodrigonovelo.pro@gmail.com
+                        <i class="fa-solid fa-envelope" aria-hidden="true"></i> <span class="email-label">rodrigonovelo.pro@gmail.com</span>
                     </a>
                     <button type="button" class="id-btn copy-btn hover-target" data-copy-email>
                         <i class="fa-regular fa-copy" aria-hidden="true"></i> <span class="copy-label">Copy</span>
@@ -1672,6 +1672,19 @@
          * 4. EMAIL COPY FUNCTION
          */
         const EMAIL = "rodrigonovelo.pro@gmail.com";
+
+        // mailto does nothing visible when no email app is set up, so every click also copies the address
+        document.querySelectorAll('.email-cta').forEach(link => {
+            const label = link.querySelector('.email-label');
+            let resetTimer;
+            link.addEventListener('click', () => {
+                navigator.clipboard.writeText(EMAIL).then(() => {
+                    label.textContent = 'Copied · opening your email app';
+                }).catch(() => {});
+                clearTimeout(resetTimer);
+                resetTimer = setTimeout(() => { label.textContent = EMAIL; }, 3500);
+            });
+        });
 
         document.querySelectorAll('[data-copy-email]').forEach(btn => {
             const label = btn.querySelector('.copy-label');

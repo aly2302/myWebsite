@@ -53,6 +53,8 @@ page, build the scroll moments chapter by chapter (P6), then the motion pass (P7
 - Fix 3, email: the address itself is the one primary button (mailto), with a Copy button that
   says "Copied" inline (no alert, no forced mailto). CV, LinkedIn and GitHub are quiet text links.
   A Contact section before the footer repeats the same actions; Contact added to both navs.
+  Follow-up: clicking the email button also copies the address and shows "Copied · opening your
+  email app", because mailto alone does nothing without a default email app.
 - Fix 4, Matrix: red header button removed; the footer glyph is now the toggle (aria-pressed, Esc
   turns it off). Rain runs at 35% behind the content; nothing is hidden, blurred or blocked.
 - Fix 5, accessibility: zoom allowed, gold :focus-visible ring and gold text selection, side nav
