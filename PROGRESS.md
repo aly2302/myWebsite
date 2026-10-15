@@ -6,7 +6,7 @@ Branch: `redesign`.
 
 ## Current phase
 Improve step 5, polish. Work through the 10 baseline problems one at a time, stopping for
-review after each. Next up: item 7 (phone layout).
+review after each. Next up: item 8 (video: poster, lazy load, smaller file).
 Playbook sections to read: "Improving a site you already built".
 Critique backlog: `.impeccable/critique/2026-10-15T00-29-18Z__index-html.md` (score 15/32).
 
@@ -65,6 +65,10 @@ page, build the scroll moments chapter by chapter (P6), then the motion pass (P7
 - Fix 6, labels: nav, side nav and footer all read Home / Experience / Projects / Skills / Education /
   Blog / Contact (footer adds LinkedIn, GitHub). Kickers and HUD captions removed, #timeline renamed
   #education with an EDUCATION heading, Blog no longer gold. Detector: 27 findings, 0 kickers.
+- Fix 7, phone: Menu button (44px, aria-expanded, closes on link tap and Esc) opens the nav under
+  the header; email assistant details collapse behind "+ Architecture and stack" on phones only;
+  "ISEC, Coimbra" with the full name below; a global mobile h2 override removed; tighter cards.
+  Phone page 10,535px to 9,311px. The repo link sits inside the collapsed details on phones.
 - Baseline screenshots in `screenshots/baseline/` (not committed).
 
 ## Deferred (don't lose these)

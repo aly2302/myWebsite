@@ -584,6 +584,21 @@
             font-size: 0.9rem;
         }
 
+        .menu-toggle { display: none; }
+
+        .module-details summary {
+            display: none;
+            list-style: none;
+        }
+        .module-details summary::-webkit-details-marker { display: none; }
+
+        .edu-fullname {
+            display: block;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+        }
+
         .module-content-hidden {
             margin-top: 1.5rem;
             padding-top: 1.5rem;
@@ -978,9 +993,54 @@
         @media (max-width: 768px) {
             header { padding: 15px 20px; justify-content: space-between; }
             .nav-links { display: none; }
+            .menu-toggle {
+                display: inline-flex;
+                align-items: center;
+                min-height: 44px;
+                padding: 0 16px;
+                background: none;
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                color: var(--text-main);
+                font-family: var(--font-hud);
+                font-size: 0.85rem;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+            .menu-toggle[aria-expanded="true"] { border-color: var(--gold); color: var(--gold); }
+            header.nav-open .nav-links {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                gap: 0;
+                border-top: 1px solid rgba(255, 255, 255, 0.08);
+            }
+            header.nav-open .nav-link {
+                padding: 14px 0;
+                font-size: 1rem;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            }
+            header.nav-open .nav-link::after { display: none; }
+
+            .module-details summary {
+                display: block;
+                margin-top: 1rem;
+                padding: 12px 0;
+                color: var(--gold);
+                font-size: 0.9rem;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                cursor: pointer;
+            }
+            .module-details summary::before { content: '+ '; }
+            .module-details[open] summary::before { content: '2  '; }
+            .module-details .module-content-hidden { margin-top: 0.5rem; }
+
+            .skill-card { padding: 20px; }
+            .skill-header { margin-bottom: 14px; }
+            .project-grid .data-module { padding: 1.5rem; }
+            .edu-institution-hero { font-size: 1.4rem; }
             .brand { font-size: 1rem; }
 
-            h2 { font-size: 2rem !important; }
             
             section { padding: 60px 0; min-height: auto; }
             #home { padding-top: 110px; }
@@ -1019,7 +1079,6 @@
             header { padding: 10px 15px; }
             .container { padding: 0 15px; }
             
-            .edu-institution-hero { font-size: 1.2rem; }
             .tech-tag { padding: 4px 8px; font-size: 0.7rem; }
             
             .construction-desc, p { font-size: 0.9rem; }
@@ -1039,7 +1098,8 @@
 
     <header id="main-header">
         <div class="brand">R // NOVELO</div>
-        <nav class="nav-links">
+        <button type="button" class="menu-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+        <nav class="nav-links" id="site-nav" aria-label="Main">
             <a href="#home" class="nav-link">Home</a>
             <a href="#experience" class="nav-link">Experience</a>
             <a href="#projects" class="nav-link">Projects</a>
@@ -1150,6 +1210,8 @@
                         A privacy-focused email drafting agent leveraging LLMs and RAG to ground responses in user history. It led to a peer-reviewed publication.
                     </p>
 
+                    <details class="module-details" open>
+                        <summary>Architecture and stack</summary>
                     <div class="module-content-hidden">
                         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
                             <div>
@@ -1180,6 +1242,7 @@
                             <a href="https://github.com/aly2302/email-assistant-llm" target="_blank" class="hover-target" style="margin-left: 20px; color: var(--gold); text-decoration: none; border-bottom: 1px solid var(--gold); font-weight: bold; font-size: 0.9rem; display: inline-block;">ACCESS SOURCE CODE</a>
                         </div>
                     </div>
+                    </details>
                 </div>
 
                 <a href="https://www.mdpi.com/1999-5903/17/12/536" target="_blank" class="data-module publication-card hover-target" style="margin-top: 2rem;">
@@ -1358,7 +1421,8 @@
                             <div class="holo-beam-inner blue">
                                 <div class="holo-card edu">
                                     <span class="time-stamp-holo">09/2021 - 10/2025</span>
-                                    <h2 class="edu-institution-hero">Instituto Superior de Engenharia de Coimbra (ISEC)</h2>
+                                    <h2 class="edu-institution-hero">ISEC, Coimbra</h2>
+                                    <span class="edu-fullname">Instituto Superior de Engenharia de Coimbra</span>
                                     <span class="edu-degree">B.SC. COMPUTER ENGINEERING · NETWORKS AND SYSTEMS ADMINISTRATION</span>
                                     <p style="color: #aaa; font-size: 0.95rem; margin-top: 15px;">
                                         Network design, Linux and Windows systems, security and performance monitoring, alongside web programming and object-oriented programming. Final-year project: the AI Email Assistant, published in Future Internet (MDPI, 2025).
@@ -1639,6 +1703,20 @@
 
             updateActiveSection();
         });
+
+        const menuToggle = document.querySelector('.menu-toggle');
+        function setMenu(open) {
+            header.classList.toggle('nav-open', open);
+            menuToggle.setAttribute('aria-expanded', String(open));
+            menuToggle.textContent = open ? 'Close' : 'Menu';
+        }
+        menuToggle.addEventListener('click', () => setMenu(!header.classList.contains('nav-open')));
+        document.querySelectorAll('.nav-link').forEach(link => link.addEventListener('click', () => setMenu(false)));
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
+
+        if (window.matchMedia('(max-width: 768px)').matches) {
+            document.querySelectorAll('.module-details').forEach(d => d.removeAttribute('open'));
+        }
 
         function scrollToSection(id) {
             document.getElementById(id).scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
