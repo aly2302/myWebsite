@@ -83,6 +83,8 @@ page, build the scroll moments chapter by chapter (P6), then the motion pass (P7
 - Baseline screenshots in `screenshots/baseline/` (not committed).
 
 ## Deferred (don't lose these)
+- Before launch: replace the Interstellar film clip (unlicensed, see ASSETS.md). Owner decides what with.
+- After P7: feel-tuning rounds on the owner's real phone (playbook v2, Level 2).
 - Before merge: Netlify build to dist/ (see below).
 
 ## Open questions

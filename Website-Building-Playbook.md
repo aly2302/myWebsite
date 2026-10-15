@@ -71,6 +71,7 @@ Every project gets the same files. They're Claude's memory: short, true, updated
 | `.impeccable/surfaces/*.md` | The chosen direction and its "direction contract", plus your signature move | Impeccable during shape and build | Phases 3-5 |
 | `SCROLL_SCRIPT.md` | Chapter storyboard of what moves on scroll | Claude drafts, you approve | Phase 4 |
 | `DESIGN.md` | The design system as actually built | `/impeccable document` | After Phase 5 |
+| `ASSETS.md` + `assets/` | Every asset: file, source link, license, credit, where used | Claude (P-Asset), from your files and its searches | Phase 3, updated whenever assets change |
 
 Don't create empty PRODUCT.md or DESIGN.md files yourself. Impeccable checks DESIGN.md to decide whether a design already exists, and its docs explain that DESIGN.md is recorded from what was built, because rules written before the build get defended against reality.
 
@@ -135,6 +136,55 @@ Three habits:
 - **Mix, never clone.** Layout from one reference, motion from another, type from a third.
 - **Diverge, then converge.** Use `/impeccable generate 3 variants of [element]` on the static hero and pick in the browser. Picking is fast; describing is slow.
 - **Mockup first when you can.** Impeccable's comp-first path renders a full mockup and builds toward it; its docs say this composes bolder than code-first. Automatic comp-first needs an image generator Impeccable can call (Claude Code has none built in; the fallback is a paid OpenAI API key). Without one, do it by hand: make a mockup of the key screen in any image tool, or ask Claude in the Claude app for a visual design, save it as references/hero-mockup.png, and tell Claude Code to build toward it (prompt P5-Comp). The mockup decides the look; SCROLL_SCRIPT.md still decides the motion.
+
+## Hero asset: where the "wow" comes from
+
+On cinematic sites, one strong visual does more than any prompt; it's most of what sites like MotionSites sell. Choose it in Phase 3, right after the direction, and have it in `assets/` before the hero is built. Without one, a Level 3 site comes out clean but not cinematic.
+
+| Asset | Where to get it | Best for | Prepare it |
+| --- | --- | --- | --- |
+| AI video loop | Image-to-video AI tools (for example Runway, Kling or Google Veo; check current pricing and usage rights). Start from a still that matches the direction; 5-10 s, seamless loop, no text | Atmospheric heroes, product mood, scroll-scrubbed sequences | Compress to H.264 and WebM, a few MB at most, plus a poster image. For scroll-scrub, encode all keyframes (`ffmpeg -g 1`) or export WebP frames |
+| Stock video | Pexels or Mixkit (free; check each license) | Real footage, fast | Same as above |
+| 3D model | [Poly Haven](https://polyhaven.com) (CC0, free), Sketchfab (license varies per model), Spline community | A rotating or interactive centerpiece | gltf-transform (Draco or Meshopt), textures to KTX2 or WebP, a few MB at most |
+| Code-built visual | Claude writes a WebGL shader, particle field or R3F scene | No asset available; abstract or tech brands | Follow the 3D rules, with a poster fallback |
+| Real photography | The client | Restaurants, people, places: nothing beats real | AVIF or WebP, fixed aspect ratios |
+
+**Rules:** one hero asset that fits the direction, not a pile of effects. A lighter version or poster for phones. Check the license, and never take assets from another site. Decide in the scroll script how scroll uses it: scrubbed, scaling into the next chapter as the continuity carrier, or fixed behind the page.
+
+### Finding assets: you, Claude, or both
+
+Every project has an `ASSETS.md` in its kit: each asset's file, source link, license, whether credit is required, and where it's used. Assets reach it two ways, and most projects mix them:
+
+- **You provide:** drop files into `assets/` (client photos, a video you generated, a model you bought) and say what they are. Claude adds them to ASSETS.md and prepares them.
+- **Claude finds:** Claude searches the sources below for the direction, returns a shortlist of 3-5 options per need with links, license, preview screenshot and file size, and you pick. Claude downloads what the source allows directly (Poly Haven, for example); for sites that need a sign-in or have no direct link, it gives you the link to download into `assets/`.
+
+**Curated sources** (free unless noted; always confirm each item's license):
+
+| Need | Sources |
+| --- | --- |
+| Video loops | [Pexels Videos](https://www.pexels.com/videos/), [Mixkit](https://mixkit.co), [Coverr](https://coverr.co) |
+| AI-generated video (paid) | Runway, Kling, Google Veo: start from a still that matches the direction |
+| 3D models | [Poly Haven](https://polyhaven.com) (CC0), [Sketchfab](https://sketchfab.com) (filter for downloadable and Creative Commons), [Spline community](https://spline.design) |
+| Textures and HDRI lighting | [Poly Haven](https://polyhaven.com), [ambientCG](https://ambientcg.com) (CC0) |
+| Photos | [Unsplash](https://unsplash.com), [Pexels](https://www.pexels.com) |
+| Icons | [Lucide](https://lucide.dev), [Phosphor](https://phosphoricons.com) |
+| Fonts | [Google Fonts](https://fonts.google.com), [Fontshare](https://www.fontshare.com) (free for commercial use) |
+| Effects to learn from | [Codrops](https://tympanus.net/codrops), [Made With GSAP](https://madewithgsap.com) (techniques, not assets to copy) |
+
+For client or commercial sites, never use NonCommercial (NC) licenses. Free stock is used by thousands of sites, so it can look generic; prefer AI-generated or client material for the hero, and stock for supporting pieces. Real client material always beats stock. Use stock and generated assets where the client has none, and mark in ASSETS.md which ones should be replaced by real photography later.
+
+**P-Asset · Find and prepare assets**
+
+```markdown
+Create or update ASSETS.md. Assets I've provided are in assets/: [list, or "none"].
+For what's still missing ([hero video loop | hero 3D model | textures | photos | icons]),
+search the playbook's curated sources for options that fit the locked direction.
+Give me 3-5 options per need: link, license, credit required, preview screenshot, size.
+After I pick: download what's allowed (or give me the links), prepare each for the web per
+the hero asset rules (compressed desktop and mobile versions, poster image, [all-keyframe
+video | WebP frames | compressed GLB]), record everything in ASSETS.md, and report sizes.
+If nothing fits, propose 3 code-built options instead.
+```
 
 ## References: fit plus wildcards
 
@@ -258,12 +308,14 @@ A strong first 3D site: a tier 1 hero (a rendered or generated product loop scru
 
 Same order every project. Don't start a phase until the previous gate passes, and commit at every gate so you can always roll back. Phases 0-4 are decisions (about an hour or two); 5-9 are building.
 
+**First decide the motion level with the client;** it sets how much of the process applies. **Level 1, Simple:** clean layout and typography, subtle hovers and fades, no scroll story; Phase 4 shrinks to one line and 3D is skipped. **Level 2, Polished:** smooth scroll, a few scroll moments, one signature move. **Level 3, Showcase:** full scroll choreography, a hero asset, maybe 3D: the cinematic sites this playbook was built for. The quality process is the same at every level.
+
 | # | Phase | What happens | Tool | Gate: done when |
 | --- | --- | --- | --- | --- |
 | 0 | Setup | Terminal setup, then kit files and Lenis | Terminal block + P0 | Dev server runs; Claude lists impeccable, playwright-cli, shadcn |
 | 1 | Brief | Answer Impeccable's product questions | `/impeccable init` | PRODUCT.md is true and names one main action |
 | 2 | References | Scout returns fit and wildcard pools; you keep 3 | P2 | Three refs, each with a role |
-| 3 | Direction | Pick from Impeccable's hand of directions | P3 (`/impeccable shape`) | Direction locked in the surface brief; signature move in CLAUDE.md |
+| 3 | Direction | Pick from Impeccable's hand of directions; choose and prepare the hero asset (P-Asset) | P3 (`/impeccable shape`) | Direction locked in the surface brief; signature move in CLAUDE.md; hero asset ready in assets/ (Level 3) |
 | 4 | Scroll script | Claude drafts the storyboard; you edit | P4 | Every seam has an owner and a carrier |
 | 5 | Hero | Static hero, three variants, pick, then its seam; first Vercel preview | P5 | "Oh damn" on desktop and on your real phone |
 | 6 | Chapters | One chapter plus its exit seam at a time; `/clear` between | P6 | Mid-seam screenshots look intentional |
@@ -379,6 +431,8 @@ Apply the review. Then use improve-animations, animation-performance and mobile-
 Transform, opacity and clip-path only; Lenis and ScrollTrigger in sync. Verify reduced motion
 and phone per CLAUDE.md. Fix the top five issues and list the rest.
 ```
+
+**Feel-tuning rounds** (Level 2-3, after P7): watch the site on your real phone, then give two or three rounds of specific feedback naming the seam, what feels wrong and what you want, for example "The Ch2 to Ch3 stack feels abrupt: start the scale-down earlier and make it slower." Screenshots can't judge timing; this is where award-level feel comes from. Stop when nothing bothers you.
 
 **P8 · Quality**
 
